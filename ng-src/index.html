@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BonJishoAngular</title>
+  <base href="./">
+  <script>
+    bon = {};
+    bon.fs = require("fs");
+    bon.sqlite3 = require("sqlite3");
+    bon.remote = require("electron").remote;
+    bon.currentWindow = bon.remote.getCurrentWindow();
+
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+  <script>
+      bon.body = document.body;
+
+      bon.currentWindow.on('blur', () => {
+        bon.body.classList.add("body_blur");
+      })
+      bon.currentWindow.on('focus', () => {
+        bon.body.classList.remove("body_blur");
+      })
+  </script>
+</body>
+</html>

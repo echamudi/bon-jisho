@@ -1,0 +1,22 @@
+<div class="basicSearch">
+  <div class="basicSearch-areaField">
+    <div class="searchField">
+        <input class="searchField-input" type="text" placeholder="Search" [(ngModel)]="keyword" (ngModelChange)="search()">
+    </div>
+  </div>
+  <div class="basicSearch-areaResult">
+    <div class="searchResult">
+        <div class="searchResult-item" *ngFor="let item of list" (click)="openDetails(item)">
+          <div class="searchResult-itemKanji">{{ item.kanji }}</div>
+          <div class="searchResult-itemReading">{{ item.reading }}</div>
+          <div class="searchResult-itemMeaning">
+              {{ item.meaning | slice:0:200 }}
+              {{ item.meaning.length > 200 ? '...' : ''}}
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="basicSearch-areaContent">
+    <app-entry-details #entryDetails></app-entry-details>
+  </div>
+</div>

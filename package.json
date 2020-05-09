@@ -1,0 +1,106 @@
+{
+  "name": "bon-jisho",
+  "productName": "Bon Jisho",
+  "version": "0.1.0",
+  "description": "Japanese open source dictionary",
+  "main": "src/index.js",
+  "scripts": {
+    "ng": "ng",
+    "ng-start": "ng serve",
+    "ng-build": "ng build",
+    "ng-watch": "ng build --watch",
+    "ng-test": "ng test",
+    "ng-lint": "ng lint",
+    "ng-e2e": "ng e2e",
+    "db-build": "japanese-db-maker sqlite -s ./db-src -d ./src/db-dist",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ezhmd/bon-jisho.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ezzat Chamudi",
+    "email": "chamudi.git@outlook.com"
+  },
+  "private": true,
+  "license": "UNLICENSED",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "bon_jisho"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "@angular/animations": "~8.2.0",
+    "@angular/common": "~8.2.0",
+    "@angular/compiler": "~8.2.0",
+    "@angular/core": "~8.2.0",
+    "@angular/forms": "~8.2.0",
+    "@angular/platform-browser": "~8.2.0",
+    "@angular/platform-browser-dynamic": "~8.2.0",
+    "@angular/router": "~8.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "rxjs": "~6.4.0",
+    "sqlite3": "^4.1.0",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.802.2",
+    "@angular/cli": "~8.2.2",
+    "@angular/compiler-cli": "~8.2.0",
+    "@angular/language-service": "~8.2.0",
+    "@electron-forge/cli": "^6.0.0-beta.44",
+    "@electron-forge/maker-deb": "^6.0.0-beta.44",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.44",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.44",
+    "@electron-forge/maker-zip": "^6.0.0-beta.44",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "^24.0.17",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^8.9.5",
+    "@types/sqlite3": "^3.1.5",
+    "codelyzer": "^5.0.0",
+    "electron": "6.0.2",
+    "japanese-db-maker": "0.4.0",
+    "jasmine-core": "~3.4.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.5.3"
+  }
+}
