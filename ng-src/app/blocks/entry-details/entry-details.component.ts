@@ -9,19 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EntryDetailsComponent implements OnInit {
 
   detailsString = '';
+  detailsObj: any = null;
+  dictIndexRow: any = null;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  setDetails(keyObject: any) {
-    console.log('key object', keyObject);
+  setDetails(dictIndexRow: object) {
+    console.log('key object', dictIndexRow);
+    this.dictIndexRow = dictIndexRow;
 
     try {
-      (window as any).electron.ipcRenderer.invoke('get-details-json', keyObject)
+      (window as any).electron.ipcRenderer.invoke('get-details-json', dictIndexRow)
         .then((res: any) => {
-          this.detailsString = JSON.stringify(JSON.parse(res.json), null, 2);
+          this.detailsObj = JSON.parse(res.json);
+          this.detailsString = JSON.stringify(this.detailsObj, null, 2);
         });
     } catch (err) {
       console.log(err);
