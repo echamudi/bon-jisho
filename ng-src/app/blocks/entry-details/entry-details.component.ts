@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { DbService } from 'ng-src/app/services/db.service';
+import { ElectronService } from 'ng-src/app/services/electron.service';
 
 @Component({
   selector: 'app-entry-details',
@@ -12,7 +12,7 @@ export class EntryDetailsComponent implements OnInit {
   detailsObj: any = null;
   dictIndexRow: any = null;
 
-  constructor() { }
+  constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
   }
@@ -22,7 +22,7 @@ export class EntryDetailsComponent implements OnInit {
     this.dictIndexRow = dictIndexRow;
 
     try {
-      (window as any).electron.ipcRenderer.invoke('get-details-json', dictIndexRow)
+      this.electronService.ipcRenderer.invoke('get-details-json', dictIndexRow)
         .then((res: any) => {
           this.detailsObj = JSON.parse(res.json);
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);

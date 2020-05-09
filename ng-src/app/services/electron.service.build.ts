@@ -12,6 +12,6 @@ export class ElectronService {
   ipcRenderer: any;
 
   constructor() {
-    this.ipcRenderer = (window as any).bon.remote;
+    this.ipcRenderer = (window as any).electron.ipcRenderer;
   }
 }
