@@ -11,6 +11,8 @@ import { ToolbarComponent } from './blocks/toolbar/toolbar.component';
 import { BasicSearchComponent } from './views/basic-search/basic-search.component';
 import { EntryDetailsComponent } from './blocks/entry-details/entry-details.component';
 
+import { ElectronService } from './services/electron.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { EntryDetailsComponent } from './blocks/entry-details/entry-details.comp
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ElectronService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
