@@ -1,7 +1,7 @@
 <div class="basicSearch">
   <div class="basicSearch-areaField">
     <div class="searchField">
-        <input class="searchField-input" type="text" placeholder="Search" [(ngModel)]="keyword" (ngModelChange)="search()">
+        <input class="searchField-input" type="text" placeholder="Search" [(ngModel)]="keyword" (ngModelChange)="search($event)">
     </div>
   </div>
   <div class="basicSearch-areaResult">

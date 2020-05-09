@@ -20,14 +20,22 @@ export class BasicSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search() {
-    if (this.keyword.length > 0) {
-      (window as any).electron.ipcRenderer.invoke('get-bon-entries', this.keyword).then((res: any) => {
-        this.list = res;
-      });
-    } else {
-      this.list = [];
-    }
+  search($event) {
+    const currentKeyword = $event;
+    setTimeout(() => {
+      if (currentKeyword.length === 0) {
+        this.list = [];
+        return;
+      }
+
+      // This is done to prevent searching during typing
+      if (currentKeyword === this.keyword) {
+        console.log('queried for', currentKeyword);
+        (window as any).electron.ipcRenderer.invoke('get-bon-entries', currentKeyword).then((res: any) => {
+          this.list = res;
+        });
+      }
+    }, 200);
   }
 
   openDetails(item) {
