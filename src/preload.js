@@ -1,16 +1,16 @@
-const { contextBridge, ipcRenderer, remote } = require("electron");
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld(
-  "electron",
+  'electron',
   {
-    ipcRenderer: ipcRenderer
-  }
+    ipcRenderer,
+  },
 );
 
-ipcRenderer.on('browser-window-blur', (event, args) => {
-  window.document.body.classList.add("body_blur");
-})
+ipcRenderer.on('browser-window-blur', () => {
+  window.document.body.classList.add('body_blur');
+});
 
-ipcRenderer.on('browser-window-focus', (event, args) => {
-  window.document.body.classList.remove("body_blur");
-})
+ipcRenderer.on('browser-window-focus', () => {
+  window.document.body.classList.remove('body_blur');
+});

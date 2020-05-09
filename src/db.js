@@ -1,19 +1,16 @@
-const fs = require("fs");
-const sqlite3 = require("sqlite3");
-const path = require("path");
+const sqlite3 = require('sqlite3');
+const path = require('path');
 
 const db = new sqlite3.Database(path.join(__dirname, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
 
 function getBonEntries(keyword) {
-  console.log(keyword);
   const isKanji = keyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
   const isKana = keyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
 
   let query;
 
   if (isKanji) {
-    query =
-      `
+    query = `
       SELECT *
       FROM dict_index
       WHERE
@@ -33,8 +30,7 @@ function getBonEntries(keyword) {
       ;
     `;
   } else if (isKana) {
-    query =
-      `
+    query = `
       SELECT *
       FROM dict_index
       WHERE
@@ -54,8 +50,7 @@ function getBonEntries(keyword) {
       ;
     `;
   } else {
-    query =
-      `
+    query = `
       SELECT *
       FROM dict_index
       WHERE
@@ -90,9 +85,9 @@ function getBonEntries(keyword) {
     `;
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     db.all(query, {
-      1: keyword
+      1: keyword,
     }, (err, rows) => {
       // console.log(err);
       // console.log(rows);
@@ -107,19 +102,17 @@ function getBonEntries(keyword) {
  */
 function getDetailsJson(item) {
   const sourceId = item.source;
-  const id = item.id;
+  const { id } = item;
 
   return new Promise((resolve, reject) => {
     let query = '';
-    // JMdict
     if (sourceId === 1) {
-      query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?'
-    }
-    // JMnedict
-    else if (sourceId === 2) {
-      query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?'
-    }
-    else {
+      // JMdict
+      query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
+    } else if (sourceId === 2) {
+      // JMnedict
+      query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
+    } else {
       reject();
     }
 
@@ -132,5 +125,5 @@ function getDetailsJson(item) {
 
 module.exports = {
   getBonEntries,
-  getDetailsJson
-}
+  getDetailsJson,
+};

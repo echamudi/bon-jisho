@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require("path");
-const db = require("./db");
+const path = require('path');
+const db = require('./db');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -22,7 +22,7 @@ const createWindow = () => {
       enableRemoteModule: true,
       contextIsolation: true,
       sandbox: true,
-      preload: path.join(__dirname, "preload.js")
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
@@ -68,11 +68,11 @@ app.on('activate', () => {
 
 app.allowRendererProcessReuse = true;
 
-app.on('browser-window-blur', function (event, browserWindow) {
+app.on('browser-window-blur', (event, browserWindow) => {
   browserWindow.webContents.send('browser-window-blur', null);
 });
 
-app.on('browser-window-focus', function (event, browserWindow) {
+app.on('browser-window-focus', (event, browserWindow) => {
   browserWindow.webContents.send('browser-window-focus', null);
 });
 
@@ -80,16 +80,22 @@ app.on('browser-window-focus', function (event, browserWindow) {
 
 ipcMain.handle(
   'get-bon-entries',
-  async (event, message) => await db.getBonEntries(message));
+  async (event, message) => db.getBonEntries(message),
+);
 
 ipcMain.handle(
   'get-details-json',
-  async (event, message) => await db.getDetailsJson(message));
+  async (event, message) => db.getDetailsJson(message),
+);
 
 ipcMain.handle(
   'toggle-maximize',
-  async (event, message) => {
+  async () => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
-    focusedWindow.isMaximized() ? focusedWindow.unmaximize() : focusedWindow.maximize();
-  }
-)
+    if (focusedWindow.isMaximized()) {
+      focusedWindow.unmaximize();
+    } else {
+      focusedWindow.maximize();
+    }
+  },
+);
