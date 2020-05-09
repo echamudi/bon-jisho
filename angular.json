@@ -19,8 +19,8 @@
           "options": {
             "fileReplacements": [
               {
-                "replace": "ng-src/app/services/node.service.ts",
-                "with": "ng-src/app/services/node.service.build.ts"
+                "replace": "ng-src/app/services/electron.service.ts",
+                "with": "ng-src/app/services/electron.service.build.ts"
               }
             ],
             "outputPath": "src/ng-dist/",
@@ -46,9 +46,9 @@
                   "with": "ng-src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "ng-src/app/services/node.service.ts",
-                  "with": "ng-src/app/services/node.service.build.ts"
-                  }
+                  "replace": "ng-src/app/services/electron.service.ts",
+                  "with": "ng-src/app/services/electron.service.build.ts"
+                }
               ],
               "optimization": true,
               "outputHashing": "all",

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DbService } from 'ng-src/app/services/db.service';
+// import { DbService } from 'ng-src/app/services/db.service';
 
 @Component({
   selector: 'app-entry-details',
@@ -8,17 +8,21 @@ import { DbService } from 'ng-src/app/services/db.service';
 })
 export class EntryDetailsComponent implements OnInit {
 
-  detailsString: string = '';
+  detailsString = '';
 
-  constructor(private dbService: DbService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  async setDetails(keyObject: any) {
+  setDetails(keyObject: any) {
+    console.log('key object', keyObject);
+
     try {
-      let res = await this.dbService.getDetailsJson(keyObject);
-      this.detailsString = JSON.stringify(JSON.parse(res['json']), null, 2);
+      (window as any).electron.ipcRenderer.invoke('get-details-json', keyObject)
+        .then((res: any) => {
+          this.detailsString = JSON.stringify(JSON.parse(res.json), null, 2);
+        });
     } catch (err) {
       console.log(err);
     }

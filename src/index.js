@@ -1,4 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require("path");
+const db = require("./db");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -16,7 +18,11 @@ const createWindow = () => {
     height: 600,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false,
+      enableRemoteModule: true,
+      contextIsolation: true,
+      sandbox: true,
+      preload: path.join(__dirname, "preload.js")
     },
   });
 
@@ -24,7 +30,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${__dirname}/ng-dist/index.html`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools({mode: 'detach'});
+  mainWindow.webContents.openDevTools({ mode: 'detach' });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -59,3 +65,31 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+app.allowRendererProcessReuse = true;
+
+app.on('browser-window-blur', function (event, browserWindow) {
+  browserWindow.webContents.send('browser-window-blur', null);
+});
+
+app.on('browser-window-focus', function (event, browserWindow) {
+  browserWindow.webContents.send('browser-window-focus', null);
+});
+
+// Communication
+
+ipcMain.handle(
+  'get-bon-entries',
+  async (event, message) => await db.getBonEntries(message));
+
+ipcMain.handle(
+  'get-details-json',
+  async (event, message) => await db.getDetailsJson(message));
+
+ipcMain.handle(
+  'toggle-maximize',
+  async (event, message) => {
+    const focusedWindow = BrowserWindow.getFocusedWindow();
+    focusedWindow.isMaximized() ? focusedWindow.unmaximize() : focusedWindow.maximize();
+  }
+)

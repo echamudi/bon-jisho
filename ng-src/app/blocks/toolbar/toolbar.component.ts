@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NodeService } from 'ng-src/app/services/node.service';
+// import { NodeService } from 'ng-src/app/services/node.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,13 +8,12 @@ import { NodeService } from 'ng-src/app/services/node.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private nodeService: NodeService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   dblclick() {
-    var window = this.nodeService.remote.BrowserWindow.getFocusedWindow();
-    window.isMaximized() ? window.unmaximize() : window.maximize();
+    (window as any).electron.ipcRenderer.invoke('toggle-maximize');
   }
 }
