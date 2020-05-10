@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
+import { JMdictEntry } from 'ng-src/app/classes/jmdict-entry';
+import { JMdict } from 'japanese-db-maker';
 
 @Component({
   selector: 'app-entry-details',
@@ -9,7 +11,7 @@ import { ElectronService } from 'ng-src/app/services/electron.service';
 export class EntryDetailsComponent implements OnInit {
 
   detailsString = '';
-  detailsObj: any = null;
+  detailsObj: JMdict.entry = null;
   dictIndexRow: any = null;
 
   constructor(private electronService: ElectronService) { }
@@ -26,6 +28,9 @@ export class EntryDetailsComponent implements OnInit {
         .then((res: any) => {
           this.detailsObj = JSON.parse(res.json);
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+
+          const obj = new JMdictEntry(this.detailsObj);
+          obj.getAllKanjiReadingPairs();
         });
     } catch (err) {
       console.log(err);
