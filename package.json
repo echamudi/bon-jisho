@@ -13,10 +13,10 @@
     "ng-lint": "ng lint",
     "ng-e2e": "ng e2e",
     "db-build": "japanese-db-maker sqlite -s ./db-src -d ./src/db-dist",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "echo \"No linting configured\""
   },
   "repository": {
@@ -30,33 +30,6 @@
   },
   "private": true,
   "license": "UNLICENSED",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "bon_jisho"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
   "dependencies": {
     "@angular/animations": "~9.1.6",
     "@angular/common": "~9.1.6",
@@ -66,7 +39,7 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
-    "electron-squirrel-startup": "^1.0.0",
+    "source-map-support": "^0.5.16",
     "rxjs": "~6.5.5",
     "sqlite3": "^4.2.0",
     "tslib": "^1.11.2",
@@ -77,11 +50,6 @@
     "@angular/cli": "~9.1.5",
     "@angular/compiler-cli": "~9.1.6",
     "@angular/language-service": "~9.1.6",
-    "@electron-forge/cli": "^6.0.0-beta.51",
-    "@electron-forge/maker-deb": "^6.0.0-beta.51",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
-    "@electron-forge/maker-zip": "^6.0.0-beta.51",
     "@types/jasmine": "~3.5.10",
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "^25.2.1",
@@ -89,7 +57,10 @@
     "@types/node": "^13.13.5",
     "@types/sqlite3": "^3.1.6",
     "codelyzer": "^5.2.2",
-    "electron": "8.2.5",
+    "electron": "8.2.0",
+    "electron-builder": "^22.4.1",
+    "electron-webpack": "^2.8.2",
+    "webpack": "~4.42.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
