@@ -26,7 +26,7 @@ const createMainWindow = () => {
   });
 
   if (isDevelopment) {
-    window.webContents.openDevTools();
+    window.webContents.openDevTools({ mode: 'detach' });
   }
 
   if (isDevelopment) {
