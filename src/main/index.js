@@ -11,6 +11,16 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow;
 
 const createMainWindow = () => {
+
+  /** @type {string} */
+  let preloadPath;
+
+  if (isDevelopment) {
+    preloadPath = path.resolve(__static, '../src/preload/preload.js');
+  } else {
+    preloadPath = path.join(__static, '/pre.asar/preload.js');
+  }
+
   // Create the browser window.
   const window = new BrowserWindow({
     width: 800,
@@ -21,7 +31,7 @@ const createMainWindow = () => {
       enableRemoteModule: true,
       contextIsolation: true,
       sandbox: true,
-      preload: path.resolve(__static, 'preload.js'),
+      preload: preloadPath,
     },
   });
 
@@ -34,7 +44,7 @@ const createMainWindow = () => {
     window.loadURL('http://localhost:4200');
   } else {
     window.loadURL(formatUrl({
-      pathname: path.join(__static, '/ng-dist/index.html'),
+      pathname: path.join(__static, '/ng.asar/index.html'),
       protocol: 'file',
       slashes: true,
     }));
