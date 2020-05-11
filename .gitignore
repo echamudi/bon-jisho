@@ -94,7 +94,6 @@ out/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/src/ng-dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -139,13 +138,23 @@ testem.log
 Thumbs.db
 
 # Bon Jisho
-db-dist
-ng-dist
-
 # db-src
-db-src/JMdict_e
-db-src/JMdict_e.xml
-db-src/JMnedict
-db-src/JMnedict.xml
-db-src/kanjidic2
-db-src/kanjidic2.xml
+/db-src/JMdict_e
+/db-src/JMdict_e.xml
+/db-src/JMnedict
+/db-src/JMnedict.xml
+/db-src/kanjidic2
+/db-src/kanjidic2.xml
+
+# ng-src
+
+# db-dist
+/static/db-dist
+
+# ng-dist
+/static/ng-dist
+
+# Electron Builder
+/dist
+/static/ng.asar
+/static/pre.asar

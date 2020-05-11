@@ -29,11 +29,11 @@ This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db-maker
     ```sh
     # Terminal 1
     # This command will watch Angular code changes
-    npm run ng-watch 
+    yarn ng-start 
 
     # Terminal 2
-    # This command will start Electron forge
-    npm run start
+    # This command will start Electron Webpack
+    yarn dev
     ```
 
 ## Building
@@ -41,7 +41,19 @@ This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db-maker
 To build and package a single executable app, run following command:
 
 ```sh
-ng build --configuration="production" && npm run make
+# Build Database
+yarn db-build
+
+# Build Preload Asar
+npx asar pack ./src/preload ./static/pre.asar
+
+# Build Angular Asar
+ng build --configuration="production"
+npx asar pack ./static/ng-dist ./static/ng.asar
+rm -rf ./static/ng-dist
+
+# Build Angular App
+yarn dist
 ```
 
 ## Authors

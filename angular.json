@@ -23,7 +23,7 @@
                 "with": "ng-src/app/services/electron.service.build.ts"
               }
             ],
-            "outputPath": "src/ng-dist/",
+            "outputPath": "static/ng-dist/",
             "index": "ng-src/index.html",
             "main": "ng-src/main.ts",
             "polyfills": "ng-src/polyfills.ts",
