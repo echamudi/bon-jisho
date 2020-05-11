@@ -28,7 +28,7 @@ const createMainWindow = () => {
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: false,
-      enableRemoteModule: true,
+      enableRemoteModule: false,
       contextIsolation: true,
       sandbox: true,
       preload: preloadPath,
