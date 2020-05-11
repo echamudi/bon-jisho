@@ -1,7 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
-import * as db from './db';
+
+const db = require('./db');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
