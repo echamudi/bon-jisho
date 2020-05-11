@@ -41,8 +41,18 @@ This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db-maker
 To build and package a single executable app, run following command:
 
 ```sh
+# Build Database
 yarn db-build
+
+# Build Preload Asar
+npx asar pack ./src/preload ./static/pre.asar
+
+# Build Angular Asar
 ng build --configuration="production"
+npx asar pack ./static/ng-dist ./static/ng.asar
+rm -rf ./static/ng-dist
+
+# Build Angular App
 yarn dist
 ```
 
