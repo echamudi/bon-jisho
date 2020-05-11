@@ -29,11 +29,11 @@ This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db-maker
     ```sh
     # Terminal 1
     # This command will watch Angular code changes
-    npm run ng-watch 
+    yarn ng-watch 
 
     # Terminal 2
-    # This command will start Electron forge
-    npm run start
+    # This command will start Electron Webpack
+    yarn dev
     ```
 
 ## Building
