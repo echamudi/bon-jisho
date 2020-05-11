@@ -12,7 +12,7 @@
     "ng-test": "ng test",
     "ng-lint": "ng lint",
     "ng-e2e": "ng e2e",
-    "db-build": "japanese-db-maker sqlite -s ./db-src -d ./src/db-dist",
+    "db-build": "japanese-db-maker sqlite -s ./db-src -d ./static/db-dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
@@ -39,8 +39,9 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
-    "source-map-support": "^0.5.16",
+    "babel-loader": "^8.1.0",
     "rxjs": "~6.5.5",
+    "source-map-support": "^0.5.16",
     "sqlite3": "^4.2.0",
     "tslib": "^1.11.2",
     "zone.js": "~0.10.3"
@@ -60,7 +61,6 @@
     "electron": "8.2.0",
     "electron-builder": "^22.4.1",
     "electron-webpack": "^2.8.2",
-    "webpack": "~4.42.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -75,6 +75,7 @@
     "protractor": "~5.4.4",
     "ts-node": "~8.10.1",
     "tslint": "~6.1.2",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "webpack": "~4.42.1"
   }
 }
