@@ -28,24 +28,16 @@ const createMainWindow = () => {
     window.webContents.openDevTools();
   }
 
-  // if (isDevelopment) {
-  //   window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
-  // } else {
-  //   window.loadURL(formatUrl({
-  //     pathname: path.join(__dirname, 'index.html'),
-  //     protocol: 'file',
-  //     slashes: true,
-  //   }));
-  // }
-
-  // console.log(__static);
-  // console.log(@);
-
-  window.loadURL(formatUrl({
-    pathname: path.join(__static, '/ng-dist/index.html'),
-    protocol: 'file',
-    slashes: true,
-  }));
+  if (isDevelopment) {
+    // window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
+    window.loadURL('http://localhost:4200');
+  } else {
+    window.loadURL(formatUrl({
+      pathname: path.join(__static, '/ng-dist/index.html'),
+      protocol: 'file',
+      slashes: true,
+    }));
+  }
 
   window.on('closed', () => {
     mainWindow = null;
