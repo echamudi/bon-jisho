@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3');
 const path = require('path');
 
-const db = new sqlite3.Database(path.join(__dirname, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
+const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
 
 function getBonEntries(keyword) {
   const isKanji = keyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;

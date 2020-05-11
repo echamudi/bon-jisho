@@ -1,19 +1,17 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
-const db = require('./db');
+import { app, BrowserWindow, ipcMain } from 'electron';
+import * as path from 'path';
+import { format as formatUrl } from 'url';
+import * as db from './db';
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
-  app.quit();
-}
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-const createWindow = () => {
+const createMainWindow = () => {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  const window = new BrowserWindow({
     width: 800,
     height: 600,
     titleBarStyle: 'hiddenInset',
@@ -22,45 +20,65 @@ const createWindow = () => {
       enableRemoteModule: true,
       contextIsolation: true,
       sandbox: true,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.resolve(__static, 'preload.js'),
     },
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/ng-dist/index.html`);
+  if (isDevelopment) {
+    window.webContents.openDevTools();
+  }
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools({ mode: 'detach' });
+  // if (isDevelopment) {
+  //   window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
+  // } else {
+  //   window.loadURL(formatUrl({
+  //     pathname: path.join(__dirname, 'index.html'),
+  //     protocol: 'file',
+  //     slashes: true,
+  //   }));
+  // }
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
+  // console.log(__static);
+  // console.log(@);
+
+  window.loadURL(formatUrl({
+    pathname: path.join(__static, '/ng-dist/index.html'),
+    protocol: 'file',
+    slashes: true,
+  }));
+
+  window.on('closed', () => {
     mainWindow = null;
   });
+
+  window.webContents.on('devtools-opened', () => {
+    window.focus();
+    setImmediate(() => {
+      window.focus();
+    });
+  });
+
+  return window;
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
-
-// Quit when all windows are closed.
+// quit application when all windows are closed
 app.on('window-all-closed', () => {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
+  // on macOS it is common for applications to stay open until the user explicitly quits
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
 app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+  // on macOS it is common to re-create a window even after all windows have been closed
   if (mainWindow === null) {
-    createWindow();
+    mainWindow = createMainWindow();
   }
+});
+
+// create main BrowserWindow when electron is ready
+app.on('ready', () => {
+  mainWindow = createMainWindow();
 });
 
 // In this file you can include the rest of your app's specific main process
