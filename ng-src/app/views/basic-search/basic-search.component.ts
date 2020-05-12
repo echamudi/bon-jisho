@@ -10,7 +10,14 @@ import { ElectronService } from 'ng-src/app/services/electron.service';
 export class BasicSearchComponent implements OnInit {
 
   keyword = '';
-  list: any[] = [];
+  list: {
+    source: number,
+    id: number,
+    kanji: string,
+    reading: string,
+    pri_point: number,
+    meaning: string
+  }[] = [];
   selectedItem: object = {};
 
   @ViewChild('entryDetails', { static: false })
