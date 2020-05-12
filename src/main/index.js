@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
@@ -11,7 +12,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow;
 
 const createMainWindow = () => {
-
   /** @type {string} */
   let preloadPath;
 

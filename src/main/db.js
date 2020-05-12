@@ -3,9 +3,11 @@
  * @typedef {import('japanese-db-maker').JapaneseDB.JMdictEntitiesRow} JapaneseDB.JMdictEntitiesRow
  * @typedef {import('japanese-db-maker').JapaneseDB.JMnedictEntitiesRow} JapaneseDB.JMnedictEntitiesRow
  * @typedef {import('japanese-db-maker').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
- * @typedef {import('japanese-db-maker').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.JMnedictJsonsRow} JapaneseDB.JMnedictJsonsRow
  * @typedef {import('japanese-db-maker').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
  * */
+
+/// <reference types="./main" />
 
 /** */
 const sqlite3 = require('sqlite3');
@@ -13,7 +15,9 @@ const path = require('path');
 
 const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
 
-function getBonEntries(keyword) {
+// Old
+
+module.exports.getBonEntries = (keyword) => {
   const isKanji = keyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
   const isKana = keyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
 
@@ -110,16 +114,16 @@ function getBonEntries(keyword) {
  * @param item row json from dict_index
  * @return entry object
  */
-function getDetailsJson(item) {
+module.exports.getDetailsJson = (item) => {
   const sourceId = item.source;
   const { id } = item;
 
   return new Promise((resolve, reject) => {
     let query = '';
-    if (sourceId === 1) {
+    if (sourceId === 1) => {
       // JMdict
       query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
-    } else if (sourceId === 2) {
+    } else if (sourceId === 2) => {
       // JMnedict
       query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
     } else {
@@ -139,39 +143,29 @@ function getDetailsJson(item) {
  * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
  * @returns {Promise<JapaneseDB.DictIndexRow[]>}
  */
-function getDictIndexRows(query) { };
+module.exports.getDictIndexRows = (query) => { };
 
 /**
  * @param {{}} query
  * @returns {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
  */
-function getEntities(query) { };
+module.exports.getEntities = (query) => { };
 
 /**
  * @param {{entSeqs: number[]}} query
  * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
  */
-function getJMdictJsonsRows(query) { };
+module.exports.getJMdictJsonsRows = (query) => { };
 
 /**
  * @param {{entSeqs: number[]}} query
  * @returns {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
  */
-function getJMnedictJsonsRows(query) { };
+module.exports.getJMnedictJsonsRows = (query) => { };
 
 /**
  *
  * @param {{kanjiChars: string[]}} query
  * @returns {Promise<JapaneseDB.KanjidicRow[]>}
  */
-function getKanjidicRows(query) { };
-
-module.exports = {
-  getBonEntries,
-  getDetailsJson,
-  getDictIndexRows,
-  getEntities,
-  getJMdictJsonsRows,
-  getJMnedictJsonsRows,
-  getKanjidicRows,
-};
+module.exports.getKanjidicRows = (query) => { };
