@@ -20,6 +20,8 @@ export class BasicSearchComponent implements OnInit {
 
   ngOnInit() {
     // For testing purpose;
+    this.keyword = '根本';
+    this.search(this.keyword);
   }
 
   search($event) {
