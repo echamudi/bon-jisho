@@ -19,6 +19,7 @@ export class BasicSearchComponent implements OnInit {
   constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
+    // For testing purpose;
   }
 
   search($event) {
