@@ -42,7 +42,7 @@ export class BasicSearchComponent implements OnInit {
       // This is done to prevent searching during typing
       if (currentKeyword === this.keyword) {
         console.log('queried for', currentKeyword);
-        this.electronService.ipcRenderer.invoke('get-bon-entries', currentKeyword).then((res: any) => {
+        this.electronService.ipcRenderer.invoke('getBonEntries', currentKeyword).then((res: any) => {
           this.list = res;
         });
       }

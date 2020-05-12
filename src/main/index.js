@@ -97,17 +97,9 @@ app.on('browser-window-focus', (event, browserWindow) => {
   browserWindow.webContents.send('browser-window-focus', null);
 });
 
-// Communication
-
-ipcMain.handle(
-  'get-bon-entries',
-  async (event, message) => db.getBonEntries(message),
-);
-
-ipcMain.handle(
-  'get-details-json',
-  async (event, message) => db.getDetailsJson(message),
-);
+/**
+ * Communication
+ */
 
 ipcMain.handle(
   'toggle-maximize',
@@ -120,3 +112,11 @@ ipcMain.handle(
     }
   },
 );
+
+// DB connection
+Object.keys(db).forEach((methodName) => {
+  ipcMain.handle(
+    methodName,
+    async (event, message) => db[methodName](message),
+  );
+});

@@ -24,7 +24,7 @@ export class EntryDetailsComponent implements OnInit {
     this.dictIndexRow = dictIndexRow;
 
     try {
-      this.electronService.ipcRenderer.invoke('get-details-json', dictIndexRow)
+      this.electronService.ipcRenderer.invoke('getDetailsJson', dictIndexRow)
         .then((res: any) => {
           this.detailsObj = JSON.parse(res.json);
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);

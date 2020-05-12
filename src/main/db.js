@@ -1,3 +1,13 @@
+/**
+ * @typedef {import('japanese-db-maker').JapaneseDB.DictIndexRow} JapaneseDB.DictIndexRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.JMdictEntitiesRow} JapaneseDB.JMdictEntitiesRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.JMnedictEntitiesRow} JapaneseDB.JMnedictEntitiesRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
+ * @typedef {import('japanese-db-maker').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
+ * */
+
+/** */
 const sqlite3 = require('sqlite3');
 const path = require('path');
 
@@ -123,7 +133,45 @@ function getDetailsJson(item) {
   });
 }
 
+// New
+
+/**
+ * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
+ * @returns {Promise<JapaneseDB.DictIndexRow[]>}
+ */
+function getDictIndexRows(query) { };
+
+/**
+ * @param {{}} query
+ * @returns {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
+ */
+function getEntities(query) { };
+
+/**
+ * @param {{entSeqs: number[]}} query
+ * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
+ */
+function getJMdictJsonsRows(query) { };
+
+/**
+ * @param {{entSeqs: number[]}} query
+ * @returns {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
+ */
+function getJMnedictJsonsRows(query) { };
+
+/**
+ *
+ * @param {{kanjiChars: string[]}} query
+ * @returns {Promise<JapaneseDB.KanjidicRow[]>}
+ */
+function getKanjidicRows(query) { };
+
 module.exports = {
   getBonEntries,
   getDetailsJson,
+  getDictIndexRows,
+  getEntities,
+  getJMdictJsonsRows,
+  getJMnedictJsonsRows,
+  getKanjidicRows,
 };
