@@ -7,6 +7,7 @@
  * @typedef {import('japanese-db-maker').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
  * */
 
+// eslint-disable-next-line spaced-comment
 /// <reference types="./main" />
 
 /** */
@@ -17,14 +18,46 @@ const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sql
 
 // Old
 
-module.exports.getBonEntries = (keyword) => {
-  const isKanji = keyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
-  const isKana = keyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
+/**
+ * @param item row json from dict_index
+ * @return entry object
+ */
+module.exports.getDetailsJson = (item) => {
+  const sourceId = item.source;
+  const { id } = item;
 
-  let query;
+  return new Promise((resolve, reject) => {
+    let query = '';
+    if (sourceId === 1) {
+      // JMdict
+      query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
+    } else if (sourceId === 2) {
+      // JMnedict
+      query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
+    } else {
+      reject();
+    }
 
-  if (isKanji) {
-    query = `
+    db.get(query, id, (err, cell) => {
+      if (err) reject(err);
+      resolve(cell);
+    });
+  });
+};
+
+// New
+
+/**
+ * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
+ * @returns {Promise<JapaneseDB.DictIndexRow[]>}
+ */
+module.exports.getDictIndexRows = (query) => {
+  const { keyword, column } = query;
+
+  let sql;
+
+  if (column === 'kanji') {
+    sql = `
       SELECT *
       FROM dict_index
       WHERE
@@ -43,8 +76,8 @@ module.exports.getBonEntries = (keyword) => {
       LIMIT 1000
       ;
     `;
-  } else if (isKana) {
-    query = `
+  } else if (column === 'reading') {
+    sql = `
       SELECT *
       FROM dict_index
       WHERE
@@ -64,7 +97,7 @@ module.exports.getBonEntries = (keyword) => {
       ;
     `;
   } else {
-    query = `
+    sql = `
       SELECT *
       FROM dict_index
       WHERE
@@ -98,52 +131,16 @@ module.exports.getBonEntries = (keyword) => {
       ;
     `;
   }
+  console.log(sql);
 
   return new Promise((resolve) => {
-    db.all(query, {
+    db.all(sql, {
       1: keyword,
     }, (err, rows) => {
-      // console.log(err);
-      // console.log(rows);
       resolve(rows);
     });
   });
-}
-
-/**
- * @param item row json from dict_index
- * @return entry object
- */
-module.exports.getDetailsJson = (item) => {
-  const sourceId = item.source;
-  const { id } = item;
-
-  return new Promise((resolve, reject) => {
-    let query = '';
-    if (sourceId === 1) => {
-      // JMdict
-      query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
-    } else if (sourceId === 2) => {
-      // JMnedict
-      query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
-    } else {
-      reject();
-    }
-
-    db.get(query, id, (err, cell) => {
-      if (err) reject(err);
-      resolve(cell);
-    });
-  });
-}
-
-// New
-
-/**
- * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
- * @returns {Promise<JapaneseDB.DictIndexRow[]>}
- */
-module.exports.getDictIndexRows = (query) => { };
+};
 
 /**
  * @param {{}} query

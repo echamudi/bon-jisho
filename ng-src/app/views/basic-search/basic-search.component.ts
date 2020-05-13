@@ -42,7 +42,16 @@ export class BasicSearchComponent implements OnInit {
       // This is done to prevent searching during typing
       if (currentKeyword === this.keyword) {
         console.log('queried for', currentKeyword);
-        this.electronService.ipcRenderer.invoke('getBonEntries', currentKeyword).then((res: any) => {
+
+        const isKanji = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
+        const isKana = currentKeyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
+
+        let column: string;
+        if (isKanji) column = 'kanji';
+        else if (isKana) column = 'reading';
+        else column = 'meaning';
+
+        this.electronService.ipcRenderer.invoke('getDictIndexRows', {keyword: currentKeyword, column}).then((res: any) => {
           this.list = res;
         });
       }
