@@ -3,6 +3,8 @@ import { EntryDetailsComponent } from 'ng-src/app/blocks/entry-details/entry-det
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import { JapaneseDB } from 'japanese-db-maker';
 
+import { getDictIndexRows } from 'src/main/db';
+
 @Component({
   selector: 'app-basic-search',
   templateUrl: './basic-search.component.html',
@@ -10,9 +12,9 @@ import { JapaneseDB } from 'japanese-db-maker';
 })
 export class BasicSearchComponent implements OnInit {
 
-  keyword = '';
+  keyword: string = '';
   list: JapaneseDB.DictIndexRow[] = [];
-  selectedItem: object = {};
+  selectedItem: JapaneseDB.DictIndexRow;
 
   @ViewChild('entryDetails', { static: false })
   entryDetails: EntryDetailsComponent;
@@ -45,7 +47,19 @@ export class BasicSearchComponent implements OnInit {
         else if (isKana) column = 'reading';
         else column = 'meaning';
 
-        this.electronService.ipcRenderer.invoke('getDictIndexRows', {keyword: currentKeyword, column}).then((res: any) => {
+        (
+          this
+          .electronService
+          .ipcRenderer
+          .invoke(
+            'getDictIndexRows',
+            {
+              keyword: currentKeyword,
+              column,
+            }
+          ) as ReturnType<typeof getDictIndexRows>
+        )
+          .then((res) => {
           this.list = res;
         });
       }

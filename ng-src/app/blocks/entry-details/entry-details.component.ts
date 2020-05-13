@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import { JMdictEntry } from 'ng-src/app/classes/jmdict-entry';
-import { JMdict } from 'japanese-db-maker';
+import { JMdict, JapaneseDB } from 'japanese-db-maker';
 
 @Component({
   selector: 'app-entry-details',
@@ -10,16 +10,16 @@ import { JMdict } from 'japanese-db-maker';
 })
 export class EntryDetailsComponent implements OnInit {
 
-  detailsString = '';
+  detailsString: string = '';
   detailsObj: JMdict.entry = null;
-  dictIndexRow: any = null;
+  dictIndexRow: JapaneseDB.DictIndexRow = null;
 
   constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
   }
 
-  setDetails(dictIndexRow: object) {
+  setDetails(dictIndexRow: JapaneseDB.DictIndexRow) {
     console.log('key object', dictIndexRow);
     this.dictIndexRow = dictIndexRow;
 
