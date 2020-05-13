@@ -131,7 +131,6 @@ module.exports.getDictIndexRows = (query) => {
       ;
     `;
   }
-  console.log(sql);
 
   return new Promise((resolve) => {
     db.all(sql, {
