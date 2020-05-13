@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EntryDetailsComponent } from 'ng-src/app/blocks/entry-details/entry-details.component';
 import { ElectronService } from 'ng-src/app/services/electron.service';
+import { JapaneseDB } from 'japanese-db-maker';
 
 @Component({
   selector: 'app-basic-search',
@@ -10,14 +11,7 @@ import { ElectronService } from 'ng-src/app/services/electron.service';
 export class BasicSearchComponent implements OnInit {
 
   keyword = '';
-  list: {
-    source: number,
-    id: number,
-    kanji: string,
-    reading: string,
-    pri_point: number,
-    meaning: string
-  }[] = [];
+  list: JapaneseDB.DictIndexRow[] = [];
   selectedItem: object = {};
 
   @ViewChild('entryDetails', { static: false })
