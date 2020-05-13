@@ -144,25 +144,25 @@ module.exports.getDictIndexRows = (query) => {
 
 /**
  * @param {{}} query
- * @returns {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
+ * @returns # {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
  */
 module.exports.getEntities = (query) => { };
 
 /**
  * @param {{entSeqs: number[]}} query
- * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
+ * @returns # {Promise<JapaneseDB.JMdictJsonsRow[]>}
  */
 module.exports.getJMdictJsonsRows = (query) => { };
 
 /**
  * @param {{entSeqs: number[]}} query
- * @returns {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
+ * @returns # {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
  */
 module.exports.getJMnedictJsonsRows = (query) => { };
 
 /**
  *
  * @param {{kanjiChars: string[]}} query
- * @returns {Promise<JapaneseDB.KanjidicRow[]>}
+ * @returns # {Promise<JapaneseDB.KanjidicRow[]>}
  */
 module.exports.getKanjidicRows = (query) => { };
