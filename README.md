@@ -12,7 +12,7 @@ Currently, the app is only supported on mac.
 
 ```
 yarn
-electron-builder install-app-deps
+npx electron-builder install-app-deps
 ```
 
 ### Building the Database
