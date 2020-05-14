@@ -1,0 +1,114 @@
+{
+  "ent_seq": [
+    "1290160"
+  ],
+  "k_ele": [
+    {
+      "keb": [
+        "根本"
+      ],
+      "ke_pri": [
+        "ichi1",
+        "news1",
+        "nf06"
+      ]
+    },
+    {
+      "keb": [
+        "根元"
+      ],
+      "ke_pri": [
+        "ichi1"
+      ]
+    },
+    {
+      "keb": [
+        "根源"
+      ],
+      "ke_pri": [
+        "news1",
+        "nf12"
+      ]
+    },
+    {
+      "keb": [
+        "根原"
+      ]
+    }
+  ],
+  "r_ele": [
+    {
+      "reb": [
+        "こんげん"
+      ],
+      "re_restr": [
+        "根元",
+        "根源",
+        "根原"
+      ],
+      "re_pri": [
+        "news1",
+        "nf12"
+      ]
+    },
+    {
+      "reb": [
+        "ねもと"
+      ],
+      "re_restr": [
+        "根本",
+        "根元"
+      ],
+      "re_pri": [
+        "ichi1"
+      ]
+    },
+    {
+      "reb": [
+        "こんぽん"
+      ],
+      "re_restr": [
+        "根本"
+      ],
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf06"
+      ]
+    }
+  ],
+  "sense": [
+    {
+      "pos": [
+        "n",
+        "adj-no"
+      ],
+      "gloss": [
+        {
+          "xml:lang": "eng",
+          "$t": "root"
+        },
+        {
+          "xml:lang": "eng",
+          "$t": "source"
+        },
+        {
+          "xml:lang": "eng",
+          "$t": "origin"
+        },
+        {
+          "xml:lang": "eng",
+          "$t": "foundation"
+        },
+        {
+          "xml:lang": "eng",
+          "$t": "base"
+        },
+        {
+          "xml:lang": "eng",
+          "$t": "principle"
+        }
+      ]
+    }
+  ]
+}

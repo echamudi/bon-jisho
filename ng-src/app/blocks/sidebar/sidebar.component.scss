@@ -1,0 +1,45 @@
+.sidebar {
+  background: #E4E4E4;
+  width: 100%;
+  height: 100%;
+  box-shadow: -1px 0px 0 0 #CDCDCD inset;
+  user-select: none;
+  padding: 20px 0;
+
+  @at-root :host-context(.body_blur) & {
+    background: #F6F6F6;
+  }
+}
+
+.list {
+  font-size: 13px;
+
+  &-separator {
+    color: #808080;
+    font-size: 11px;
+    height: 25px;
+    line-height: 30px;
+    padding-left: 10px;
+    font-weight: 500;
+  }
+
+  &-item {
+    color: #1F1E1F;
+    height: 24px;
+    line-height: 24px;
+    outline: none;
+    padding-left: 18px;
+
+    @at-root :host-context(.body_blur) & {
+      color: #787878;
+    }
+
+    &_active {
+      background: #CBCBCB;
+
+      @at-root :host-context(.body_blur) & {
+        background: #D2D2D2;
+      }
+    }
+  }
+}
