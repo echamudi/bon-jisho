@@ -8,6 +8,13 @@ A free Japanese dictionary based on electron.
 
 Currently, the app is only supported on mac.
 
+### Install the packages
+
+```
+yarn
+electron-builder install-app-deps
+```
+
 ### Building the Database
 
 Before compiling the app, we need to build the database.
