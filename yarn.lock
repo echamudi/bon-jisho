@@ -6180,10 +6180,10 @@ jake@^10.6.1:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-japanese-db@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/japanese-db/-/japanese-db-0.9.0.tgz#79149d40bf2dbb9f23dad231fa9655602b6efed5"
-  integrity sha512-YFURRElQn7OyOVdAhfMVlrUbXHLLn7CxTviyBWEKQW56X9ypZCkS+gE5XrQK6g1/07L6ZuyYfxthTuqjJPnIiQ==
+japanese-db@0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/japanese-db/-/japanese-db-0.10.0.tgz#2057a108886eabd7babc8f2b8d751c61c471ea5b"
+  integrity sha512-3GL1r2NM6YmW64MGVO/x/M3a1BlXi5uTd8jnkMbIlpiRYLoYiPnWqGd7rjnqyMyACpEyqXL/S1gZN++UkxBfTw==
   dependencies:
     commander "^5.1.0"
     kanji "^0.6.1"
