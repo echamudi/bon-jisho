@@ -1,4 +1,4 @@
-import { JMdict } from 'japanese-db-maker';
+import { JMdict } from 'japanese-db';
 
 export class JMdictEntry {
   private jmdictEntry: JMdict.entry;

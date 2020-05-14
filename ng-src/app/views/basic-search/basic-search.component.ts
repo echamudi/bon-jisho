@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EntryDetailsComponent } from 'ng-src/app/blocks/entry-details/entry-details.component';
 import { ElectronService } from 'ng-src/app/services/electron.service';
-import { JapaneseDB } from 'japanese-db-maker';
+import { JapaneseDB } from 'japanese-db';
 
 import { getDictIndexRows } from 'src/main/db';
 

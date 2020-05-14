@@ -1,10 +1,10 @@
 /**
- * @typedef {import('japanese-db-maker').JapaneseDB.DictIndexRow} JapaneseDB.DictIndexRow
- * @typedef {import('japanese-db-maker').JapaneseDB.JMdictEntitiesRow} JapaneseDB.JMdictEntitiesRow
- * @typedef {import('japanese-db-maker').JapaneseDB.JMnedictEntitiesRow} JapaneseDB.JMnedictEntitiesRow
- * @typedef {import('japanese-db-maker').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
- * @typedef {import('japanese-db-maker').JapaneseDB.JMnedictJsonsRow} JapaneseDB.JMnedictJsonsRow
- * @typedef {import('japanese-db-maker').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
+ * @typedef {import('japanese-db').JapaneseDB.DictIndexRow} JapaneseDB.DictIndexRow
+ * @typedef {import('japanese-db').JapaneseDB.JMdictEntitiesRow} JapaneseDB.JMdictEntitiesRow
+ * @typedef {import('japanese-db').JapaneseDB.JMnedictEntitiesRow} JapaneseDB.JMnedictEntitiesRow
+ * @typedef {import('japanese-db').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
+ * @typedef {import('japanese-db').JapaneseDB.JMnedictJsonsRow} JapaneseDB.JMnedictJsonsRow
+ * @typedef {import('japanese-db').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
  * */
 
 // eslint-disable-next-line spaced-comment

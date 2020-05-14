@@ -8,10 +8,17 @@ A free Japanese dictionary based on electron.
 
 Currently, the app is only supported on mac.
 
+### Install the packages
+
+```
+yarn
+npx electron-builder install-app-deps
+```
+
 ### Building the Database
 
 Before compiling the app, we need to build the database.
-This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db-maker). 
+This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db). 
 
 1. Put all the required materials (JMdict_e, JMnedict.xml, etc) inside `db-src` folder.
 
