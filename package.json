@@ -17,7 +17,8 @@
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "main-test": "npx mocha ./test/test.js"
   },
   "repository": {
     "type": "git",
@@ -74,6 +75,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.4",
+    "mocha": "^7.1.2",
     "protractor": "~7.0.0",
     "ts-node": "~8.10.1",
     "tslint": "~6.1.2",
