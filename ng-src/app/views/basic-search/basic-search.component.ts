@@ -66,7 +66,7 @@ export class BasicSearchComponent implements OnInit {
     }, 200);
   }
 
-  openDetails(item) {
+  openDetails(item: JapaneseDB.DictIndexRow) {
     this.selectedItem = item;
     this.entryDetails.setDetails(item);
   }
