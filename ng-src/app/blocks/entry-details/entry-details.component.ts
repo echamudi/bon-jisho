@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
-import { JMdictEntry } from 'ng-src/app/classes/jmdict-entry';
+import { JMdictEntry } from 'lib/jmdict-entry';
 import { JMdict, JapaneseDB } from 'japanese-db';
 import { getJMdictJsonsRows } from 'src/main/db';
 
