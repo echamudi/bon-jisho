@@ -3,6 +3,7 @@ import { ElectronService } from 'ng-src/app/services/electron.service';
 import { getAllKanjiReadingPairs } from 'lib/dict-processor';
 import { JMdict, JapaneseDB } from 'japanese-db';
 import { getJMdictJsonsRows } from 'src/main/db';
+import { KanjiReadingPairs } from 'types/bon-jisho';
 
 @Component({
   selector: 'app-entry-details',
@@ -11,6 +12,7 @@ import { getJMdictJsonsRows } from 'src/main/db';
 })
 export class EntryDetailsComponent implements OnInit {
 
+  alternatives: KanjiReadingPairs;
   detailsString: string = '';
   detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;
@@ -37,10 +39,9 @@ export class EntryDetailsComponent implements OnInit {
         .then((res) => {
           this.detailsObj = res[0].json;
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+          this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
 
-          const x = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
-
-          console.log(x);
+          console.log(this.alternatives);
         });
     } catch (err) {
       console.log(err);

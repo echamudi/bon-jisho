@@ -9,6 +9,13 @@
   <div>
     Alternative
   </div>
+  <div>
+    <span class="pill" *ngFor="let alternative of alternatives">
+      {{ alternative.kanji }} {{ alternative.reading }}
+    </span>
+  </div>
+  <div>
+    Raw
+  </div>
+  <pre>{{ detailsString }}</pre>
 </div>
-
-<pre>{{ detailsString }}</pre>
