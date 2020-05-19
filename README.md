@@ -18,7 +18,7 @@ npx electron-builder install-app-deps
 ### Building the Database
 
 Before compiling the app, we need to build the database.
-This project uses [Japanese DB Maker](https://github.com/ezhmd/japanese-db). 
+This project uses [Japanese DB](https://github.com/ezhmd/japanese-db) tool to build the database. 
 
 1. Put all the required materials (JMdict_e, JMnedict.xml, etc) inside `db-src` folder.
 
