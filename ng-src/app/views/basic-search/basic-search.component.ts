@@ -48,9 +48,7 @@ export class BasicSearchComponent implements OnInit {
         else column = 'meaning';
 
         (
-          this
-          .electronService
-          .ipcRenderer
+          this.electronService.ipcRenderer
           .invoke(
             'getDictIndexRows',
             {
