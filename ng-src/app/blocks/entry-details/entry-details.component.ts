@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import { JMdictEntry } from 'ng-src/app/classes/jmdict-entry';
 import { JMdict, JapaneseDB } from 'japanese-db';
+import { getJMdictJsonsRows } from 'src/main/db';
 
 @Component({
   selector: 'app-entry-details',
@@ -24,13 +25,23 @@ export class EntryDetailsComponent implements OnInit {
     this.dictIndexRow = dictIndexRow;
 
     try {
-      this.electronService.ipcRenderer.invoke('getDetailsJson', dictIndexRow)
-        .then((res: any) => {
-          this.detailsObj = JSON.parse(res.json);
+      (
+        this.electronService.ipcRenderer
+          .invoke(
+            'getJMdictJsonsRows',
+            {
+              entSeqs: [this.dictIndexRow.id],
+            }
+          ) as ReturnType<typeof getJMdictJsonsRows>
+      )
+        .then((res) => {
+          this.detailsObj = res[0].json;
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);
 
           const obj = new JMdictEntry(this.detailsObj);
-          obj.getAllKanjiReadingPairs();
+          const x = obj.getAllKanjiReadingPairs();
+
+          console.log(x);
         });
     } catch (err) {
       console.log(err);
