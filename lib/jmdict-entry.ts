@@ -1,37 +1,29 @@
 import { JMdict } from 'japanese-db';
 import { KanjiReadingPairs } from 'types/bon-jisho';
 
-export class JMdictEntry {
-  private jmdictEntry: JMdict.entry;
+export function getAllKanjiReadingPairs(kEles: JMdict.k_ele[], rEles: JMdict.r_ele[]): KanjiReadingPairs {
+  const pairs: KanjiReadingPairs = [];
 
-  constructor(jmdictEntry: JMdict.entry) {
-    this.jmdictEntry = jmdictEntry;
-  }
+  kEles.forEach(kEle => {
+    const kanji = kEle.keb[0];
 
-  getAllKanjiReadingPairs(): KanjiReadingPairs {
-    const pairs: KanjiReadingPairs = [];
+    rEles.forEach(rEle => {
+      const reading = rEle.reb[0];
+      let isItApplicable: boolean = false;
 
-    this.jmdictEntry.k_ele.forEach(kEle => {
-      const kanji = kEle.keb[0];
+      if (rEle.re_restr === undefined) {
+        isItApplicable = true;
+      } else if (rEle.re_restr.includes(kanji)) {
+        isItApplicable = true;
+      } else {
+        isItApplicable = false;
+      }
 
-      this.jmdictEntry.r_ele.forEach(rEle => {
-        const reading = rEle.reb[0];
-        let isItApplicable: boolean = false;
-
-        if (rEle.re_restr === undefined) {
-          isItApplicable = true;
-        } else if (rEle.re_restr.includes(kanji)) {
-          isItApplicable = true;
-        } else {
-          isItApplicable = false;
-        }
-
-        if (isItApplicable) {
-          pairs.push({kanji, reading});
-        }
-      });
+      if (isItApplicable) {
+        pairs.push({ kanji, reading });
+      }
     });
+  });
 
-    return pairs;
-  }
+  return pairs;
 }

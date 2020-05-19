@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
-import { JMdictEntry } from 'lib/jmdict-entry';
+import { getAllKanjiReadingPairs } from 'lib/jmdict-entry';
 import { JMdict, JapaneseDB } from 'japanese-db';
 import { getJMdictJsonsRows } from 'src/main/db';
 
@@ -38,8 +38,7 @@ export class EntryDetailsComponent implements OnInit {
           this.detailsObj = res[0].json;
           this.detailsString = JSON.stringify(this.detailsObj, null, 2);
 
-          const obj = new JMdictEntry(this.detailsObj);
-          const x = obj.getAllKanjiReadingPairs();
+          const x = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
 
           console.log(x);
         });
