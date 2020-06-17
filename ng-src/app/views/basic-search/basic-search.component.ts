@@ -47,8 +47,7 @@ export class BasicSearchComponent implements OnInit {
         else if (isKana) column = 'reading';
         else column = 'meaning';
 
-        (
-          this.electronService.ipcRenderer
+        (this.electronService.ipcRenderer
           .invoke(
             'getDictIndexRows',
             {
@@ -56,8 +55,7 @@ export class BasicSearchComponent implements OnInit {
               column,
             }
           ) as ReturnType<typeof getDictIndexRows>
-        )
-          .then((res) => {
+        ).then((res) => {
           this.list = res;
         });
       }
@@ -66,6 +64,8 @@ export class BasicSearchComponent implements OnInit {
 
   openDetails(item: JapaneseDB.DictIndexRow) {
     this.selectedItem = item;
-    this.entryDetails.setDetails(item);
+    this.entryDetails.dictIndexRow = item;
+    this.entryDetails.searchResult = this.list;
+    this.entryDetails.setDetails();
   }
 }

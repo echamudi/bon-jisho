@@ -1,18 +1,29 @@
 <div *ngIf="dictIndexRow" class="wrapper">
   <div class="main-kanji">
-      {{ dictIndexRow.kanji }}
+    {{ dictIndexRow.kanji }}
   </div>
   <div class="main-reading">
-      {{ dictIndexRow.reading }}
+    {{ dictIndexRow.reading }}
   </div>
   <hr>
   <div>
-    Alternative
+    Alternative Writings and Readngs
+    <!-- Same dictionary id -->
   </div>
   <div>
     <span class="pill" *ngFor="let alternative of alternatives">
       {{ alternative.kanji }} {{ alternative.reading }}
     </span>
+  </div>
+  <div>
+    Tags
+  </div>
+  <div>Explore:</div>
+  <div *ngIf="sameKanjiSameReading.length > 0">
+    Alternative Definitions
+  </div>
+  <div *ngIf="sameKanji.length > 0">
+    Same Writings
   </div>
   <div>
     Raw

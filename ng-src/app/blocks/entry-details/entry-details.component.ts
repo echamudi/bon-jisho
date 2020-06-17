@@ -16,33 +16,44 @@ export class EntryDetailsComponent implements OnInit {
   detailsString: string = '';
   detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;
+  searchResult: JapaneseDB.DictIndexRow[] = null;
+
+  sameKanjiSameReading: JapaneseDB.DictIndexRow[] = null;
+  sameKanji: JapaneseDB.DictIndexRow[] = null;
 
   constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
   }
 
-  setDetails(dictIndexRow: JapaneseDB.DictIndexRow) {
-    console.log('key object', dictIndexRow);
-    this.dictIndexRow = dictIndexRow;
+  async setDetails() {
+    console.log('entry-details > dictIndexRow', this.dictIndexRow);
+    console.log('entry-details > searchResult', this.searchResult);
 
-    try {
-      (this.electronService.ipcRenderer
-        .invoke(
-          'getJMdictJsonsRows',
-          {
-            entSeqs: [this.dictIndexRow.id],
-          }
-        ) as ReturnType<typeof getJMdictJsonsRows>
-      ).then((res) => {
-        this.detailsObj = res[0].json;
-        this.detailsString = JSON.stringify(this.detailsObj, null, 2);
-        this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
+    const dictDetails = await this.electronService.ipcRenderer
+      .invoke('getJMdictJsonsRows',
+        {
+          entSeqs: [this.dictIndexRow.id],
+        }
+      ) as ReturnType<typeof getJMdictJsonsRows>;
 
-        console.log(this.alternatives);
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    this.detailsObj = dictDetails[0].json;
+    this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+    this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele,
+      this.detailsObj.r_ele);
+
+    this.sameKanjiSameReading = this.searchResult.filter(
+      (value) =>
+        value.kanji === this.dictIndexRow.kanji
+        && value.reading === this.dictIndexRow.reading
+        && value.id !== this.dictIndexRow.id
+    );
+
+    this.sameKanji = this.searchResult.filter(
+      (value) =>
+        value.kanji === this.dictIndexRow.kanji
+        && value.reading !== this.dictIndexRow.reading
+        && value.id !== this.dictIndexRow.id
+    );
   }
 }
