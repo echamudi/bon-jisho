@@ -27,22 +27,20 @@ export class EntryDetailsComponent implements OnInit {
     this.dictIndexRow = dictIndexRow;
 
     try {
-      (
-        this.electronService.ipcRenderer
-          .invoke(
-            'getJMdictJsonsRows',
-            {
-              entSeqs: [this.dictIndexRow.id],
-            }
-          ) as ReturnType<typeof getJMdictJsonsRows>
-      )
-        .then((res) => {
-          this.detailsObj = res[0].json;
-          this.detailsString = JSON.stringify(this.detailsObj, null, 2);
-          this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
+      (this.electronService.ipcRenderer
+        .invoke(
+          'getJMdictJsonsRows',
+          {
+            entSeqs: [this.dictIndexRow.id],
+          }
+        ) as ReturnType<typeof getJMdictJsonsRows>
+      ).then((res) => {
+        this.detailsObj = res[0].json;
+        this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+        this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele, this.detailsObj.r_ele);
 
-          console.log(this.alternatives);
-        });
+        console.log(this.alternatives);
+      });
     } catch (err) {
       console.log(err);
     }
