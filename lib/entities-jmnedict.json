@@ -1,0 +1,15 @@
+{
+  "surname": "family or surname",
+  "place": "place name",
+  "unclass": "unclassified name",
+  "company": "company name",
+  "product": "product name",
+  "work": "work of art, literature, music, etc. name",
+  "masc": "male given name or forename",
+  "fem": "female given name or forename",
+  "person": "full name of a particular person",
+  "given": "given name or forename, gender not specified",
+  "station": "railway station",
+  "organization": "organization name",
+  "ok": "old or irregular kana form"
+}
