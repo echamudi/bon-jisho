@@ -1,29 +1,75 @@
-<div *ngIf="dictIndexRow" class="wrapper">
-  <div class="main-kanji">
-    {{ dictIndexRow.kanji }}
+<div *ngIf="dictIndexRow && detailsObj" class="wrapper">
+  <div class="entryHead">
+    <div class="entryHead-kanji">{{ dictIndexRow.kanji }}</div>
+    <div class="entryHead-reading">{{ dictIndexRow.reading }}</div>
   </div>
-  <div class="main-reading">
-    {{ dictIndexRow.reading }}
+  <div *ngIf="alternatives.length > 1">
+    <div class="detailRow">
+      <div class="detailRow-title">Alternative Writings and Readings</div>
+      <div *ngFor="let alternative of alternatives">
+        <strong>{{ alternative.kanji }}</strong> {{ alternative.reading }}
+      </div>
+    </div>
   </div>
-  <hr>
-  <div>
-    Alternative Writings and Readngs
-    <!-- Same dictionary id -->
+
+  <div class="separatorPad">
+    <div class="separatorPad-label">
+      TRANSLATION
+    </div>
   </div>
-  <div>
-    <span class="pill" *ngFor="let alternative of alternatives">
-      {{ alternative.kanji }} {{ alternative.reading }}
-    </span>
+  <div class="detailRow">
+    <div *ngFor="let sense of detailsObj.sense; index as i">
+      <div *ngIf="sense.pos" class="detailRow-title">{{ sense.pos.join(', ')}}</div>
+
+      <div class="senseItem">
+        <div class="senseItem-number">
+          {{ i + 1 }}
+        </div>
+        <div class="senseItem-text">
+          <span *ngIf="sense.stagk" class="senseItem-notice">only {{ sense.stagk.join(', ')}}</span>
+          <span *ngIf="sense.stagr" class="senseItem-notice">only {{ sense.stagr.join(', ')}} reading</span>
+          <span *ngFor="let gloss of sense.gloss">
+            {{ gloss.$t }};
+          </span>
+          <br>
+          <span *ngIf="sense.misc">
+            ({{ sense.misc.join(', ')}})
+          </span>
+          <span *ngIf="sense.xref">
+            See: {{ sense.xref.join(', ')}}
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    Tags
+
+  <div class="separatorPad">
+    <div class="separatorPad-label">
+      EXPLORE
+    </div>
   </div>
-  <div>Explore:</div>
-  <div *ngIf="sameKanjiSameReading.length > 0">
-    Alternative Definitions (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
+
+  <div *ngIf="sameKanjiSameReading.length > 0" class="detailRow">
+    <div class="detailRow-title">
+      Alternative Definitions<br>
+      (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
+    </div>
+    <div *ngFor="let row of sameKanjiSameReading">
+      {{ row.id }}<br>
+      {{ row.kanji }} {{ row.reading}}<br>
+      {{ row.meaning }}
+    </div>
   </div>
-  <div *ngIf="sameKanji.length > 0">
-    Same Writings (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
+  <div *ngIf="sameKanji.length > 0" class="detailRow">
+    <div class="detailRow-title">
+      Same Writings<br>
+      (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
+    </div>
+    <div *ngFor="let row of sameKanji">
+      {{ row.id }}<br>
+      {{ row.kanji }} {{ row.reading}}<br>
+      {{ row.meaning }}
+    </div>
   </div>
   <div>
     Raw

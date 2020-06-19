@@ -12,7 +12,7 @@ import { KanjiReadingPairs } from 'types/bon-jisho';
 })
 export class EntryDetailsComponent implements OnInit {
 
-  alternatives: KanjiReadingPairs;
+  alternatives: KanjiReadingPairs = [];
   detailsString: string = '';
   detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;

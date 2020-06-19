@@ -3,18 +3,25 @@
   width: 100%;
   height: 100%;
   overflow: auto;
+  background: #F1F2F6;
 }
 
 .wrapper {
-  padding: 10px;
+  padding: 20px;
+  max-width: 1024px;
+  margin: auto;
 }
 
-.main-kanji {
-  font-size: 100px;
-}
+.entryHead {
+  margin-bottom: 20px;
 
-.main-reading {
-  font-size: 30px;
+  &-kanji {
+    font-size: 100px;
+  }
+
+  &-reading {
+    font-size: 30px;
+  }
 }
 
 .pill {
@@ -22,4 +29,56 @@
   background: rgba(0,0,0,0.05);
   margin: 5px;
   padding: 5px;
+}
+
+.detailRow {
+  background: #fff;
+  margin-top: -1px;
+  border-top: solid #C5C6C8 1px;
+  border-bottom: solid #C5C6C8 1px;
+  padding: 10px;
+
+  &-title {
+    color: #7E7F80;
+    margin-bottom: 5px;
+  }
+}
+
+.separatorPad {
+  margin-top: 20px;
+  padding: 10px;
+  &-label {
+    color: #6C6D71;
+  }
+}
+
+.senseItem {
+  display: flex;
+  margin: 5px 0;
+
+  &-text {
+    flex: 1;
+  }
+
+  &-number {
+    width: 20px;
+    font-weight: bold;
+    display: flex;
+  }
+
+  &-notice {
+    display: inline-block;
+    color: #856404;
+    font-size: 83%;
+    padding: 1px 3px;
+    line-height: 1.15;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background: #fff3cd;
+    border: solid 1px #ffeeba;
+  }
+}
+
+.alternativeItem {
+
 }
