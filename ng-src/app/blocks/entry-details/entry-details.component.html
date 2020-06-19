@@ -20,10 +20,10 @@
   </div>
   <div>Explore:</div>
   <div *ngIf="sameKanjiSameReading.length > 0">
-    Alternative Definitions
+    Alternative Definitions (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
   </div>
   <div *ngIf="sameKanji.length > 0">
-    Same Writings
+    Same Writings (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
   </div>
   <div>
     Raw

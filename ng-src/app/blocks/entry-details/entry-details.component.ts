@@ -16,10 +16,10 @@ export class EntryDetailsComponent implements OnInit {
   detailsString: string = '';
   detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;
-  searchResult: JapaneseDB.DictIndexRow[] = null;
+  searchResult: JapaneseDB.DictIndexRow[] = [];
 
-  sameKanjiSameReading: JapaneseDB.DictIndexRow[] = null;
-  sameKanji: JapaneseDB.DictIndexRow[] = null;
+  sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
+  sameKanji: JapaneseDB.DictIndexRow[] = [];
 
   constructor(private electronService: ElectronService) { }
 
