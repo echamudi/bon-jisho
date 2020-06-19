@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import { getAllKanjiReadingPairs } from 'lib/dict-processor';
+import { getEntity } from 'lib/dict-processor';
+import * as c from 'lib/const';
 import { JMdict, JapaneseDB } from 'japanese-db';
 import { getJMdictJsonsRows } from 'src/main/db';
 import { KanjiReadingPairs } from 'types/bon-jisho';
