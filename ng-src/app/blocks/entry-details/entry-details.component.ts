@@ -1,7 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
-import { JMdictEntry } from 'ng-src/app/classes/jmdict-entry';
+import { getAllKanjiReadingPairs } from 'lib/dict-processor';
+import { getEntity } from 'lib/dict-processor';
+import * as c from 'lib/const';
 import { JMdict, JapaneseDB } from 'japanese-db';
+import { getJMdictJsonsRows } from 'src/main/db';
+import { KanjiReadingPairs } from 'types/bon-jisho';
 
 @Component({
   selector: 'app-entry-details',
@@ -10,30 +14,48 @@ import { JMdict, JapaneseDB } from 'japanese-db';
 })
 export class EntryDetailsComponent implements OnInit {
 
+  alternatives: KanjiReadingPairs = [];
   detailsString: string = '';
   detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;
+  searchResult: JapaneseDB.DictIndexRow[] = [];
+
+  sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
+  sameKanji: JapaneseDB.DictIndexRow[] = [];
 
   constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
   }
 
-  setDetails(dictIndexRow: JapaneseDB.DictIndexRow) {
-    console.log('key object', dictIndexRow);
-    this.dictIndexRow = dictIndexRow;
+  async setDetails() {
+    console.log('entry-details > dictIndexRow', this.dictIndexRow);
+    console.log('entry-details > searchResult', this.searchResult);
 
-    try {
-      this.electronService.ipcRenderer.invoke('getDetailsJson', dictIndexRow)
-        .then((res: any) => {
-          this.detailsObj = JSON.parse(res.json);
-          this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+    const dictDetails = await this.electronService.ipcRenderer
+      .invoke('getJMdictJsonsRows',
+        {
+          entSeqs: [this.dictIndexRow.id],
+        }
+      ) as ReturnType<typeof getJMdictJsonsRows>;
 
-          const obj = new JMdictEntry(this.detailsObj);
-          obj.getAllKanjiReadingPairs();
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    this.detailsObj = dictDetails[0].json;
+    this.detailsString = JSON.stringify(this.detailsObj, null, 2);
+    this.alternatives = getAllKanjiReadingPairs(this.detailsObj.k_ele,
+      this.detailsObj.r_ele);
+
+    this.sameKanjiSameReading = this.searchResult.filter(
+      (value) =>
+        value.kanji === this.dictIndexRow.kanji
+        && value.reading === this.dictIndexRow.reading
+        && value.id !== this.dictIndexRow.id
+    );
+
+    this.sameKanji = this.searchResult.filter(
+      (value) =>
+        value.kanji === this.dictIndexRow.kanji
+        && value.reading !== this.dictIndexRow.reading
+        && value.id !== this.dictIndexRow.id
+    );
   }
 }

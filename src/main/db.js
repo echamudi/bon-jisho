@@ -149,9 +149,24 @@ module.exports.getEntities = (query) => { };
 
 /**
  * @param {{entSeqs: number[]}} query
- * @returns # {Promise<JapaneseDB.JMdictJsonsRow[]>}
+ * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
  */
-module.exports.getJMdictJsonsRows = (query) => { };
+module.exports.getJMdictJsonsRows = (query) => {
+  const { entSeqs } = query;
+  const wildCards = Array(entSeqs.length).fill('?').join(',');
+
+  const sql = `SELECT * FROM jmdict_jsons WHERE ent_seq IN (${wildCards})`;
+
+  return new Promise((resolve) => {
+    db.all(sql, entSeqs, (err, rows) => {
+      const postProcessed = rows.map((value) => ({
+        ent_seq: value.ent_seq,
+        json: JSON.parse(value.json),
+      }));
+      resolve(postProcessed);
+    });
+  });
+};
 
 /**
  * @param {{entSeqs: number[]}} query
