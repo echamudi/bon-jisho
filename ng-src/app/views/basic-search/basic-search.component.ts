@@ -62,10 +62,8 @@ export class BasicSearchComponent implements OnInit {
     }, 200);
   }
 
-  openDetails(item: JapaneseDB.DictIndexRow) {
+  onSelectItem(item: JapaneseDB.DictIndexRow) {
     this.selectedItem = item;
-    this.entryDetails.dictIndexRow = item;
-    this.entryDetails.searchResult = this.list;
-    this.entryDetails.setDetails();
+    this.entryDetails.setDetails(item, this.list);
   }
 }

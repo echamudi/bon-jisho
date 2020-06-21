@@ -172,7 +172,22 @@ module.exports.getJMdictJsonsRows = (query) => {
  * @param {{entSeqs: number[]}} query
  * @returns # {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
  */
-module.exports.getJMnedictJsonsRows = (query) => { };
+module.exports.getJMnedictJsonsRows = (query) => {
+  const { entSeqs } = query;
+  const wildCards = Array(entSeqs.length).fill('?').join(',');
+
+  const sql = `SELECT * FROM jmnedict_jsons WHERE ent_seq IN (${wildCards})`;
+
+  return new Promise((resolve) => {
+    db.all(sql, entSeqs, (err, rows) => {
+      const postProcessed = rows.map((value) => ({
+        ent_seq: value.ent_seq,
+        json: JSON.parse(value.json),
+      }));
+      resolve(postProcessed);
+    });
+  });
+};
 
 /**
  *
