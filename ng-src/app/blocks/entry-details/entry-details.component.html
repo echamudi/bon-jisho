@@ -1,33 +1,33 @@
 <div *ngIf="dictIndexRow && detailsObj" class="wrapper">
-  <div class="entryHead">
-    <div class="entryHead-kanji">{{ dictIndexRow.kanji }}</div>
-    <div class="entryHead-reading">{{ dictIndexRow.reading }}</div>
+  <div class="entry-head">
+    <div class="entry-head__kanji">{{ dictIndexRow.kanji }}</div>
+    <div class="entry-head__reading">{{ dictIndexRow.reading }}</div>
   </div>
   <div *ngIf="alternatives.length > 1">
-    <div class="detailRow">
-      <div class="detailRow-title">Alternative Writings and Readings</div>
+    <div class="detail-row">
+      <div class="detail-row__title">Alternative Writings and Readings</div>
       <div *ngFor="let alternative of alternatives">
         <strong>{{ alternative.kanji }}</strong> {{ alternative.reading }}
       </div>
     </div>
   </div>
 
-  <div class="separatorPad">
-    <div class="separatorPad-label">
+  <div class="separator-pad">
+    <div class="separator-pad__label">
       TRANSLATION
     </div>
   </div>
-  <div class="detailRow">
+  <div class="detail-row">
     <div *ngFor="let sense of detailsObj.sense; index as i">
-      <div *ngIf="sense.pos" class="detailRow-title">{{ sense.pos.join(', ')}}</div>
+      <div *ngIf="sense.pos" class="detail-row__title">{{ sense.pos.join(', ')}}</div>
 
-      <div class="senseItem">
-        <div class="senseItem-number">
+      <div class="sense-item">
+        <div class="sense-item__number">
           {{ i + 1 }}
         </div>
-        <div class="senseItem-text">
-          <span *ngIf="sense.stagk" class="senseItem-notice">only {{ sense.stagk.join(', ')}}</span>
-          <span *ngIf="sense.stagr" class="senseItem-notice">only {{ sense.stagr.join(', ')}} reading</span>
+        <div class="sense-item__text">
+          <span *ngIf="sense.stagk" class="sense-item__notice">only {{ sense.stagk.join(', ')}}</span>
+          <span *ngIf="sense.stagr" class="sense-item__notice">only {{ sense.stagr.join(', ')}} reading</span>
           <span *ngFor="let gloss of sense.gloss">
             {{ gloss.$t }};
           </span>
@@ -43,14 +43,14 @@
     </div>
   </div>
 
-  <div class="separatorPad">
-    <div class="separatorPad-label">
+  <div class="separator-pad">
+    <div class="separator-pad__label">
       EXPLORE
     </div>
   </div>
 
-  <div *ngIf="sameKanjiSameReading.length > 0" class="detailRow">
-    <div class="detailRow-title">
+  <div *ngIf="sameKanjiSameReading.length > 0" class="detail-row">
+    <div class="detail-row__title">
       Alternative Definitions<br>
       (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
     </div>
@@ -60,8 +60,8 @@
       {{ row.meaning }}
     </div>
   </div>
-  <div *ngIf="sameKanji.length > 0" class="detailRow">
-    <div class="detailRow-title">
+  <div *ngIf="sameKanji.length > 0" class="detail-row">
+    <div class="detail-row__title">
       Same Writings<br>
       (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
     </div>

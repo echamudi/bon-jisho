@@ -12,14 +12,14 @@
   margin: auto;
 }
 
-.entryHead {
+.entry-head {
   margin-bottom: 20px;
 
-  &-kanji {
+  &__kanji {
     font-size: 100px;
   }
 
-  &-reading {
+  &__reading {
     font-size: 30px;
   }
 }
@@ -31,42 +31,42 @@
   padding: 5px;
 }
 
-.detailRow {
+.detail-row {
   background: #fff;
   margin-top: -1px;
   border-top: solid #C5C6C8 1px;
   border-bottom: solid #C5C6C8 1px;
   padding: 10px;
 
-  &-title {
+  &__title {
     color: #7E7F80;
     margin-bottom: 5px;
   }
 }
 
-.separatorPad {
+.separator-pad {
   margin-top: 20px;
   padding: 10px;
-  &-label {
+  &__label {
     color: #6C6D71;
   }
 }
 
-.senseItem {
+.sense-item {
   display: flex;
   margin: 5px 0;
 
-  &-text {
+  &__text {
     flex: 1;
   }
 
-  &-number {
+  &__number {
     width: 20px;
     font-weight: bold;
     display: flex;
   }
 
-  &-notice {
+  &__notice {
     display: inline-block;
     color: #856404;
     font-size: 83%;
