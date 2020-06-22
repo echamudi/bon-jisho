@@ -170,7 +170,7 @@ module.exports.getJMdictJsonsRows = (query) => {
 
 /**
  * @param {{entSeqs: number[]}} query
- * @returns # {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
+ * @returns {Promise<JapaneseDB.JMnedictJsonsRow[]>}
  */
 module.exports.getJMnedictJsonsRows = (query) => {
   const { entSeqs } = query;

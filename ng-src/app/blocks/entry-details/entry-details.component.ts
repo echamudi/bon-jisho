@@ -4,8 +4,8 @@ import { getAllKanjiReadingPairs } from 'lib/dict-processor';
 import { getEntity } from 'lib/dict-processor';
 import * as c from 'lib/const';
 
-import { JMdict, JapaneseDB } from 'japanese-db';
-import { getJMdictJsonsRows } from 'src/main/db';
+import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
+import { getJMdictJsonsRows, getJMnedictJsonsRows } from 'src/main/db';
 import { KanjiReadingPairs, DictSource } from 'types/bon-jisho';
 
 @Component({
@@ -17,9 +17,11 @@ export class EntryDetailsComponent implements OnInit {
 
   alternatives: KanjiReadingPairs = [];
   detailsString: string = '';
-  detailsObj: JMdict.entry = null;
   dictIndexRow: JapaneseDB.DictIndexRow = null;
   searchResult: JapaneseDB.DictIndexRow[] = [];
+
+  detailsObjJMdict: JMdict.entry = null;
+  detailsObjJMnedict: JMnedict.entry = null;
 
   sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
   sameKanji: JapaneseDB.DictIndexRow[] = [];
@@ -35,7 +37,8 @@ export class EntryDetailsComponent implements OnInit {
   resetDetails() {
     this.alternatives = [];
     this.detailsString = '';
-    this.detailsObj = null;
+    this.detailsObjJMdict = null;
+    this.detailsObjJMnedict = null;
     this.dictIndexRow = null;
     this.searchResult = [];
     this.sameKanjiSameReading = [];
@@ -59,23 +62,24 @@ export class EntryDetailsComponent implements OnInit {
       throw new Error('Wrong Dict Source');
     }
 
-    let dictDetails;
-
     if (this.dictSource === c.JMDICT) {
-      dictDetails = await this.electronService.ipcRenderer
+      this.dictSource = c.JMDICT;
+      const dictDetails = await (this.electronService.ipcRenderer
         .invoke('getJMdictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
-        ) as ReturnType<typeof getJMdictJsonsRows>;
+        ) as ReturnType<typeof getJMdictJsonsRows>);
 
+      this.detailsObjJMdict = dictDetails[0]?.json;
+      this.detailsString = JSON.stringify(this.detailsObjJMdict, null, 2);
+      this.alternatives = getAllKanjiReadingPairs(this.detailsObjJMdict.k_ele, this.detailsObjJMdict.r_ele);
     } else if (this.dictSource === c.JMNEDICT) {
-      dictDetails = await this.electronService.ipcRenderer
+      this.dictSource = c.JMNEDICT;
+      const dictDetails = await (this.electronService.ipcRenderer
         .invoke('getJMnedictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
-        ) as ReturnType<typeof getJMdictJsonsRows>;
-    }
+        ) as ReturnType<typeof getJMnedictJsonsRows>);
 
-    this.detailsObj = dictDetails[0]?.json;
-    this.detailsString = this.detailsObj ? JSON.stringify(this.detailsObj, null, 2) : '';
-    this.alternatives = this.detailsObj ? getAllKanjiReadingPairs(this.detailsObj.k_ele,
-      this.detailsObj.r_ele) : [];
+      this.detailsObjJMnedict = dictDetails[0]?.json;
+      this.detailsString = JSON.stringify(this.detailsObjJMnedict, null, 2);
+    }
 
     this.sameKanjiSameReading = this.searchResult.filter(
       (value) =>

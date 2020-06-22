@@ -1,4 +1,4 @@
-<div *ngIf="dictIndexRow && detailsObj" class="wrapper">
+<div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="wrapper">
   <div class="entry-head">
     <div class="entry-head__kanji">{{ dictIndexRow.kanji }}</div>
     <div class="entry-head__reading">{{ dictIndexRow.reading }}</div>
@@ -17,10 +17,11 @@
       TRANSLATION
     </div>
   </div>
-  <div class="detail-row">
-    <div *ngFor="let sense of detailsObj.sense; index as i">
-      <div *ngIf="sense.pos" class="detail-row__title">{{ sense.pos.join(', ')}}</div>
 
+  <!-- JMdict Translation -->
+  <div class="detail-row" *ngIf="dictSource === 1">
+    <div *ngFor="let sense of detailsObjJMdict.sense; index as i">
+      <div *ngIf="sense.pos" class="detail-row__title">{{ sense.pos.join(', ')}}</div>
       <div class="sense-item">
         <div class="sense-item__number">
           {{ i + 1 }}
@@ -37,6 +38,23 @@
           </span>
           <span *ngIf="sense.xref">
             See: {{ sense.xref.join(', ')}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JMnedict Translation -->
+  <div class="detail-row" *ngIf="dictSource === 2">
+    <div *ngFor="let trans of detailsObjJMnedict.trans; index as i">
+      <div *ngIf="trans.name_type" class="detail-row__title">{{ trans.name_type.join(', ')}}</div>
+      <div class="sense-item">
+        <div class="sense-item__number">
+          {{ i + 1 }}
+        </div>
+        <div class="sense-item__text">
+          <span *ngFor="let text of trans.trans_det">
+            {{ text }}
           </span>
         </div>
       </div>
