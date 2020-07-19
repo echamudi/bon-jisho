@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ezhmd/bon-jisho.git"
+    "url": "git://github.com/echamudi/bon-jisho.git"
   },
   "keywords": [],
   "author": {
     "name": "Ezzat Chamudi",
-    "email": "chamudi.git@outlook.com"
+    "email": "echamudi@outlook.com"
   },
   "private": true,
   "license": "UNLICENSED",
