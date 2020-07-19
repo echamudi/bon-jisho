@@ -136,7 +136,11 @@ module.exports.getDictIndexRows = (query) => {
     db.all(sql, {
       1: keyword,
     }, (err, rows) => {
-      resolve(rows);
+      const postProcessed = rows.map((row) => ({
+        ...row,
+        furigana: JSON.parse(row.furigana),
+      }));
+      resolve(postProcessed);
     });
   });
 };
