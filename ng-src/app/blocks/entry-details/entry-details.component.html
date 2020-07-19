@@ -1,7 +1,17 @@
 <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="wrapper">
   <div class="entry-head">
-    <div class="entry-head__kanji">{{ dictIndexRow.kanji }}</div>
-    <div class="entry-head__reading">{{ dictIndexRow.reading }}</div>
+    <div *ngIf="dictIndexRow.furigana" class="entry-head__kanji">
+      <ruby *ngFor="let furiganaChunk of dictIndexRow.furigana">
+        <rb>{{ furiganaChunk.w }}</rb>
+        <rt>{{ furiganaChunk.r }}</rt>
+      </ruby>
+    </div>
+    <div *ngIf="!dictIndexRow.furigana" class="entry-head__kanji">
+      <ruby>
+        <rb>{{ dictIndexRow.kanji }}</rb>
+        <rt>{{ dictIndexRow.reading }}</rt>
+      </ruby>
+    </div>
   </div>
   <div *ngIf="alternatives.length > 1">
     <div class="detail-row">
