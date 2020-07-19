@@ -1,4 +1,0 @@
-[submodule "submodules/japanese-db"]
-	path = submodules/japanese-db
-	url = git@github.com:echamudi/japanese-db.git
-	branch = develop
