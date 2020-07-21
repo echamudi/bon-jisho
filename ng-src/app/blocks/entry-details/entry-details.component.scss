@@ -16,7 +16,7 @@
   margin-bottom: 20px;
 
   &__kanji {
-    font-size: 100px;
+    font-size: 60px;
   }
 
   &__reading {
@@ -81,4 +81,8 @@
 
 .alternativeItem {
 
+}
+
+rt {
+  user-select: none;
 }
