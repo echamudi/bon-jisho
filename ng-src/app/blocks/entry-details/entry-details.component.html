@@ -3,10 +3,15 @@
     <div *ngIf="dictIndexRow.furigana" class="entry-head__kanji">
       <ruby *ngFor="let furiganaChunk of dictIndexRow.furigana">
         <rb>{{ furiganaChunk.w }}</rb>
-        <rt>{{ furiganaChunk.r }}</rt>
+        <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
       </ruby>
     </div>
-    <div *ngIf="!dictIndexRow.furigana" class="entry-head__kanji">
+    <div *ngIf="!dictIndexRow.furigana && !dictIndexRow.kanji" class="entry-head__kanji">
+      <ruby>
+        <rb>{{ dictIndexRow.reading }}</rb>
+      </ruby>
+    </div>
+    <div *ngIf="!dictIndexRow.furigana && dictIndexRow.kanji" class="entry-head__kanji">
       <ruby>
         <rb>{{ dictIndexRow.kanji }}</rb>
         <rt>{{ dictIndexRow.reading }}</rt>
