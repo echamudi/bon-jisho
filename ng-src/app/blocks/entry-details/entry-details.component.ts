@@ -71,58 +71,61 @@ export class EntryDetailsComponent implements OnInit {
 
     this.dictIndexRow = dictIndexRow;
 
-
-    if (this.dictIndexRow.source === 1) {
-      this.dictSource = c.JMDICT;
-    } else if (this.dictIndexRow.source === 2) {
-      this.dictSource = c.JMNEDICT;
-    } else {
-      throw new Error('Wrong Dict Source');
-    }
+    let searchKanjiResult: DictIndexRow[];
 
     // Get complete json depends on the source
-    if (this.dictSource === c.JMDICT) {
+    if (this.dictIndexRow.source === 1) {
       this.dictSource = c.JMDICT;
-      const dictDetails = await (this.electronService.ipcRenderer
-        .invoke('getJMdictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
-      ) as ReturnType<typeof getJMdictJsonsRows>);
+
+      let dictDetails;
+      [dictDetails, this.alternatives, searchKanjiResult] = await Promise.all([
+        // Get JSON of the current entry
+        (this.electronService.ipcRenderer
+          .invoke('getJMdictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
+        ) as ReturnType<typeof getJMdictJsonsRows>),
+
+        // Get all kanji and reading pairse for the selected id
+        (this.electronService.ipcRenderer
+          .invoke('getDictIndexRows', { column: 'id', keyword: this.dictIndexRow.id }
+        ) as ReturnType<typeof getDictIndexRows>),
+
+        // Search the entire kanji to see similar results
+        (this.electronService.ipcRenderer
+          .invoke('getDictIndexRows', { column: 'kanji', keyword: input.kanji }
+        ) as ReturnType<typeof getDictIndexRows>)
+      ]);
 
       this.detailsObjJMdict = dictDetails[0]?.json;
       this.detailsString = JSON.stringify(this.detailsObjJMdict, null, 2);
-      this.alternatives = await (this.electronService.ipcRenderer
-        .invoke('getDictIndexRows', { column: 'id', keyword: this.dictIndexRow.id }
-      ) as ReturnType<typeof getDictIndexRows>);
-    } else if (this.dictSource === c.JMNEDICT) {
+
+      // For explore section, filter similar results
+      if (input.kanji) {
+        this.sameKanjiSameReading = searchKanjiResult.filter(
+          (value) =>
+            value.kanji === this.dictIndexRow?.kanji
+            && value.reading === this.dictIndexRow.reading
+            && value.id !== this.dictIndexRow.id
+        );
+        this.sameKanji = searchKanjiResult.filter(
+          (value) =>
+            value.kanji === this.dictIndexRow?.kanji
+            && value.reading !== this.dictIndexRow.reading
+            && value.id !== this.dictIndexRow.id
+        );
+      } else {
+        // TODO: handle if it's reading only without kanji
+      }
+    } else if (this.dictIndexRow.source === 2) {
       this.dictSource = c.JMNEDICT;
+
       const dictDetails = await (this.electronService.ipcRenderer
         .invoke('getJMnedictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
         ) as ReturnType<typeof getJMnedictJsonsRows>);
 
       this.detailsObjJMnedict = dictDetails[0]?.json;
       this.detailsString = JSON.stringify(this.detailsObjJMnedict, null, 2);
-    }
-
-    // Search again to get same kanji and same readings only if kanji exists
-    if (input.kanji) {
-      const searchResult = await (this.electronService.ipcRenderer
-        .invoke('getDictIndexRows', { column: 'kanji', keyword: input.kanji }
-      ) as ReturnType<typeof getDictIndexRows>);
-
-      this.sameKanjiSameReading = searchResult.filter(
-        (value) =>
-          value.kanji === this.dictIndexRow?.kanji
-          && value.reading === this.dictIndexRow.reading
-          && value.id !== this.dictIndexRow.id
-      );
-
-      this.sameKanji = searchResult.filter(
-        (value) =>
-          value.kanji === this.dictIndexRow?.kanji
-          && value.reading !== this.dictIndexRow.reading
-          && value.id !== this.dictIndexRow.id
-      );
     } else {
-      // TODO: handle if it's reading only without kanji
+      // throw new Error('Wrong Dict Source');
     }
   }
 }
