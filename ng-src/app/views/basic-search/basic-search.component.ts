@@ -14,7 +14,6 @@ export class BasicSearchComponent implements OnInit {
 
   keyword: string = '';
   list: JapaneseDB.DictIndexRow[] = [];
-  selectedItem: JapaneseDB.DictIndexRow;
 
   @ViewChild('entryDetails', { static: false })
   entryDetails: EntryDetailsComponent;
@@ -62,8 +61,14 @@ export class BasicSearchComponent implements OnInit {
     }, 200);
   }
 
-  onSelectItem(item: JapaneseDB.DictIndexRow) {
-    this.selectedItem = item;
-    this.entryDetails.setDetails(item, this.list);
+  selectItem(item: JapaneseDB.DictIndexRow) {
+    const selectedItem = {
+      source: item.source,
+      id: item.id,
+      kanji: item.kanji ?? null,
+      reading: item.reading
+    };
+
+    this.entryDetails.set(selectedItem);
   }
 }

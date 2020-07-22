@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import { getAllKanjiReadingPairs } from 'lib/dict-processor';
 import { getEntity } from 'lib/dict-processor';
 import * as c from 'lib/const';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
-import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows } from 'src/main/db';
+import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
 import { DictSource } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 
@@ -17,17 +17,18 @@ import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 export class EntryDetailsComponent implements OnInit {
 
   alternatives: DictIndexRow[] = [];
-  detailsString: string = '';
-  dictIndexRow: JapaneseDB.DictIndexRow = null;
-  searchResult: JapaneseDB.DictIndexRow[] = [];
 
-  detailsObjJMdict: JMdict.entry = null;
-  detailsObjJMnedict: JMnedict.entry = null;
+  /** JMdict/JMnedict json string */
+  detailsString: string = '';
+  dictIndexRow: JapaneseDB.DictIndexRow | null = null;
+
+  detailsObjJMdict: JMdict.entry | null = null;
+  detailsObjJMnedict: JMnedict.entry | null = null;
 
   sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
   sameKanji: JapaneseDB.DictIndexRow[] = [];
 
-  dictSource: DictSource;
+  dictSource: DictSource | null;
 
   constructor(private electronService: ElectronService) { }
 
@@ -35,25 +36,38 @@ export class EntryDetailsComponent implements OnInit {
     console.log('entry-details > init');
   }
 
-  resetDetails() {
+  reset() {
     this.alternatives = [];
+
     this.detailsString = '';
+    this.dictIndexRow = null;
+
     this.detailsObjJMdict = null;
     this.detailsObjJMnedict = null;
-    this.dictIndexRow = null;
-    this.searchResult = [];
+
     this.sameKanjiSameReading = [];
     this.sameKanji = [];
+
+    this.dictSource = null;
   }
 
-  async setDetails(selectedItem: JapaneseDB.DictIndexRow, searchResult: JapaneseDB.DictIndexRow[]) {
-    this.resetDetails();
+  async set(input: {
+    source: number,
+    id: number,
+    kanji: string | null,
+    reading: string
+  } | null) {
+    this.reset();
 
-    this.dictIndexRow = selectedItem;
-    this.searchResult = searchResult;
+    if (input === null) return;
 
-    console.log('entry-details > dictIndexRow', this.dictIndexRow);
-    console.log('entry-details > searchResult', this.searchResult);
+    // Get dict index row from selection
+    const dictIndexRow = await (this.electronService.ipcRenderer
+      .invoke('getDictIndexRow', { ...input }
+    ) as ReturnType<typeof getDictIndexRow>);
+
+    this.dictIndexRow = dictIndexRow;
+
 
     if (this.dictIndexRow.source === 1) {
       this.dictSource = c.JMDICT;
@@ -63,6 +77,7 @@ export class EntryDetailsComponent implements OnInit {
       throw new Error('Wrong Dict Source');
     }
 
+    // Get complete json depends on the source
     if (this.dictSource === c.JMDICT) {
       this.dictSource = c.JMDICT;
       const dictDetails = await (this.electronService.ipcRenderer
@@ -84,18 +99,27 @@ export class EntryDetailsComponent implements OnInit {
       this.detailsString = JSON.stringify(this.detailsObjJMnedict, null, 2);
     }
 
-    this.sameKanjiSameReading = this.searchResult.filter(
-      (value) =>
-        value.kanji === this.dictIndexRow.kanji
-        && value.reading === this.dictIndexRow.reading
-        && value.id !== this.dictIndexRow.id
-    );
+    // Search again to get same kanji and same readings only if kanji exists
+    if (input.kanji) {
+      const searchResult = await (this.electronService.ipcRenderer
+        .invoke('getDictIndexRows', { column: 'kanji', keyword: input.kanji }
+      ) as ReturnType<typeof getDictIndexRows>);
 
-    this.sameKanji = this.searchResult.filter(
-      (value) =>
-        value.kanji === this.dictIndexRow.kanji
-        && value.reading !== this.dictIndexRow.reading
-        && value.id !== this.dictIndexRow.id
-    );
+      this.sameKanjiSameReading = searchResult.filter(
+        (value) =>
+          value.kanji === this.dictIndexRow?.kanji
+          && value.reading === this.dictIndexRow.reading
+          && value.id !== this.dictIndexRow.id
+      );
+
+      this.sameKanji = searchResult.filter(
+        (value) =>
+          value.kanji === this.dictIndexRow?.kanji
+          && value.reading !== this.dictIndexRow.reading
+          && value.id !== this.dictIndexRow.id
+      );
+    } else {
+      // TODO: handle if it's reading only without kanji
+    }
   }
 }

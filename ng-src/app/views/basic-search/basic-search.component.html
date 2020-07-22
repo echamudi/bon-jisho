@@ -6,7 +6,7 @@
   </div>
   <div class="basicSearch-areaResult">
     <div class="searchResult">
-        <div class="searchResult-item" *ngFor="let item of list" (click)="onSelectItem(item)">
+        <div class="searchResult-item" *ngFor="let item of list" (click)="selectItem(item)">
           <div class="searchResult-itemKanji">{{ item.kanji }}</div>
           <div class="searchResult-itemReading">{{ item.reading }}</div>
           <div class="searchResult-itemMeaning">

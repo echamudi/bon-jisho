@@ -154,6 +154,59 @@ module.exports.getDictIndexRows = (query) => {
 };
 
 /**
+ * @param { {
+    source: number,
+    id: number,
+    kanji: string | null,
+    reading: string
+  }} query
+ * @returns {Promise<JapaneseDB.DictIndexRow>}
+ */
+module.exports.getDictIndexRow = (query) => {
+  const {
+    source, id, kanji, reading,
+  } = query;
+
+  let sql;
+
+  if (kanji === null) {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        source = ?1
+        AND id = ?2
+        AND reading = ?4
+    `;
+  } else {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        source = ?1
+        AND id = ?2
+        AND kanji = ?3
+        AND reading = ?4
+    `;
+  }
+
+  return new Promise((resolve) => {
+    db.get(sql, {
+      1: source,
+      2: id,
+      3: kanji,
+      4: reading,
+    }, (err, row) => {
+      const postProcessed = {
+        ...row,
+        furigana: JSON.parse(row.furigana),
+      };
+      resolve(postProcessed);
+    });
+  });
+};
+
+/**
  * @param {{}} query
  * @returns # {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
  */
