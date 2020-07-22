@@ -18,6 +18,12 @@ import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 })
 export class EntryDetailsComponent implements OnInit {
 
+  /**
+   * Current keyword.
+   * If the row has kanji, it will use it. Otherwise, it will use the reading.
+   */
+  keyword: string = '';
+
   alternatives: DictIndexRow[] = [];
 
   /** JMdict/JMnedict json string */
@@ -41,6 +47,8 @@ export class EntryDetailsComponent implements OnInit {
   }
 
   reset() {
+    this.keyword = '';
+
     this.alternatives = [];
 
     this.detailsString = '';
@@ -64,6 +72,8 @@ export class EntryDetailsComponent implements OnInit {
     this.reset();
 
     if (input === null) return;
+
+    this.keyword = input.kanji ?? input.reading;
 
     // Get dict index row from selection
     // this call is shared for both JMdict and JMnedict
