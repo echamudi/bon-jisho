@@ -96,19 +96,17 @@ export class EntryDetailsComponent implements OnInit {
       // For explore section, filter similar results
       if (input.kanji !== null) {
         (this.electronService.ipcRenderer
-          .invoke('getDictIndexRows', { column: 'kanji', keyword: input.kanji }
+          .invoke('getDictIndexRows', { column: 'kanji-exact', keyword: input.kanji }
         ) as ReturnType<typeof getDictIndexRows>).then((searchKanjiResult) => {
           this.sameKanjiSameReading = searchKanjiResult.filter(
             (value) =>
-              value.kanji === this.dictIndexRow?.kanji
-              && value.reading === this.dictIndexRow.reading
+              value.reading === this.dictIndexRow?.reading
               && value.id !== this.dictIndexRow.id
           );
           this.sameKanji = searchKanjiResult.filter(
             (value) =>
-              value.kanji === this.dictIndexRow?.kanji
-              && value.reading !== this.dictIndexRow.reading
-              && value.id !== this.dictIndexRow.id
+              value.reading !== this.dictIndexRow?.reading
+              && value.id !== this.dictIndexRow?.id
           );
         });
       } else {
