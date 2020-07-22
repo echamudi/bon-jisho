@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
-import { getAllKanjiReadingPairs } from 'lib/dict-processor';
-import { getEntity } from 'lib/dict-processor';
 import * as c from 'lib/const';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
