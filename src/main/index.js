@@ -109,6 +109,8 @@ ipcMain.handle(
   'toggle-maximize',
   async () => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
+    if (focusedWindow === null) return;
+
     if (focusedWindow.isMaximized()) {
       focusedWindow.unmaximize();
     } else {
