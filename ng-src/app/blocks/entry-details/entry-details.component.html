@@ -1,4 +1,6 @@
 <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="wrapper">
+
+  <!-- Page Title -->
   <div class="entry-head">
     <div *ngIf="dictIndexRow.furigana" class="entry-head__kanji">
       <ruby *ngFor="let furiganaChunk of dictIndexRow.furigana">
@@ -18,6 +20,8 @@
       </ruby>
     </div>
   </div>
+
+  <!-- Alternatives -->
   <div *ngIf="alternatives.length > 1">
     <div class="detail-row">
       <div class="detail-row__title">Alternative Writings and Readings</div>
