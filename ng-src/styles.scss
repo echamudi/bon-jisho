@@ -18,6 +18,12 @@ body {
     background: #F6F6F6;
   }
 
+  &__header {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    height: 30px;
+  }
+
   &__separator {
     color: #808080;
     font-size: 11px;
