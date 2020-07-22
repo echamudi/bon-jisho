@@ -79,8 +79,16 @@
   }
 }
 
-.alternativeItem {
+.alternative {
+  display: flex;
+  margin: 0 -10px;
+  flex-wrap: wrap;
 
+  &__item {
+    margin: 0 10px;
+
+    font-size: 2em;
+  }
 }
 
 rt {

@@ -5,8 +5,9 @@ import { getEntity } from 'lib/dict-processor';
 import * as c from 'lib/const';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
-import { getJMdictJsonsRows, getJMnedictJsonsRows } from 'src/main/db';
-import { KanjiReadingPairs, DictSource } from 'types/bon-jisho';
+import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows } from 'src/main/db';
+import { DictSource } from 'types/bon-jisho';
+import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 
 @Component({
   selector: 'app-entry-details',
@@ -15,7 +16,7 @@ import { KanjiReadingPairs, DictSource } from 'types/bon-jisho';
 })
 export class EntryDetailsComponent implements OnInit {
 
-  alternatives: KanjiReadingPairs = [];
+  alternatives: DictIndexRow[] = [];
   detailsString: string = '';
   dictIndexRow: JapaneseDB.DictIndexRow = null;
   searchResult: JapaneseDB.DictIndexRow[] = [];
@@ -66,11 +67,13 @@ export class EntryDetailsComponent implements OnInit {
       this.dictSource = c.JMDICT;
       const dictDetails = await (this.electronService.ipcRenderer
         .invoke('getJMdictJsonsRows', { entSeqs: [this.dictIndexRow.id] }
-        ) as ReturnType<typeof getJMdictJsonsRows>);
+      ) as ReturnType<typeof getJMdictJsonsRows>);
 
       this.detailsObjJMdict = dictDetails[0]?.json;
       this.detailsString = JSON.stringify(this.detailsObjJMdict, null, 2);
-      this.alternatives = getAllKanjiReadingPairs(this.detailsObjJMdict.k_ele, this.detailsObjJMdict.r_ele);
+      this.alternatives = await (this.electronService.ipcRenderer
+        .invoke('getDictIndexRows', { column: 'id', keyword: this.dictIndexRow.id }
+      ) as ReturnType<typeof getDictIndexRows>);
     } else if (this.dictSource === c.JMNEDICT) {
       this.dictSource = c.JMNEDICT;
       const dictDetails = await (this.electronService.ipcRenderer

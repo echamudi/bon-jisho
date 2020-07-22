@@ -48,7 +48,7 @@ module.exports.getDetailsJson = (item) => {
 // New
 
 /**
- * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
+ * @param {{keyword: string, column: "kanji"|"reading"|"meaning"|"id"}} query
  * @returns {Promise<JapaneseDB.DictIndexRow[]>}
  */
 module.exports.getDictIndexRows = (query) => {
@@ -94,6 +94,14 @@ module.exports.getDictIndexRows = (query) => {
         END,
         pri_point ASC, reading ASC
       LIMIT 1000
+      ;
+    `;
+  } else if (column === 'id') {
+    sql = `
+      SELECT source, id, kanji, reading, furigana
+      FROM dict_index
+      WHERE
+        id = ?1
       ;
     `;
   } else {

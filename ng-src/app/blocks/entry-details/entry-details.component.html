@@ -25,8 +25,26 @@
   <div *ngIf="alternatives.length > 1">
     <div class="detail-row">
       <div class="detail-row__title">Alternative Writings and Readings</div>
-      <div *ngFor="let alternative of alternatives">
-        <strong>{{ alternative.kanji }}</strong> {{ alternative.reading }}
+      <div class="alternative">
+        <div *ngFor="let alternative of alternatives" class="alternative__item">
+          <div *ngIf="alternative.furigana">
+            <ruby *ngFor="let furiganaChunk of alternative.furigana">
+              <rb>{{ furiganaChunk.w }}</rb>
+              <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
+            </ruby>
+          </div>
+          <div *ngIf="!alternative.furigana && !alternative.kanji">
+            <ruby>
+              <rb>{{ alternative.reading }}</rb>
+            </ruby>
+          </div>
+          <div *ngIf="!alternative.furigana && alternative.kanji">
+            <ruby>
+              <rb>{{ alternative.kanji }}</rb>
+              <rt>{{ alternative.reading }}</rt>
+            </ruby>
+          </div>
+        </div>
       </div>
     </div>
   </div>
