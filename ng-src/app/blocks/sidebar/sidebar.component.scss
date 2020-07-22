@@ -5,14 +5,11 @@
   box-shadow: -1px 0px 0 0 #CDCDCD inset;
   user-select: none;
   padding: 20px 0;
+  font-size: 13px;
 
   @at-root :host-context(.body_blur) & {
     background: #F6F6F6;
   }
-}
-
-.list {
-  font-size: 13px;
 
   &__separator {
     color: #808080;
