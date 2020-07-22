@@ -9,6 +9,9 @@ import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictInde
 import { DictSource } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 
+/**
+ * JMdict or JMnedict entry viewer
+ */
 @Component({
   selector: 'app-entry-details',
   templateUrl: './entry-details.component.html',
