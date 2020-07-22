@@ -146,4 +146,9 @@ export class EntryDetailsComponent implements OnInit {
 
     return;
   }
+
+  openWebBroser(url: string): void {
+    this.electronService.ipcRenderer
+      .invoke('openURL', { url })
+  }
 }

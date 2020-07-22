@@ -126,8 +126,19 @@
       {{ row.meaning }}
     </div>
   </div>
-  <div>
-    Raw
+  <div class="detail-row">
+    <div class="detail-row__title">
+      Other Resources on the Internet
+    </div>
+    <button (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">Image of {{ keyword }} in DuckDuckGo.</button>
   </div>
-  <pre>{{ detailsString }}</pre>
+
+  <div class="separator-pad">
+    <div class="separator-pad__label">
+      RAW JSON
+    </div>
+  </div>
+  <div class="detail-row">
+    <pre>{{ detailsString }}</pre>
+  </div>
 </div>

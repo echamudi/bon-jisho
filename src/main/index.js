@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
@@ -112,6 +112,10 @@ ipcMain.handle(
     }
   },
 );
+
+ipcMain.handle('openURL', async (_event, message) => {
+  shell.openExternal(message.url);
+});
 
 // DB connection
 Object.keys(db).forEach((methodName) => {
