@@ -1,7 +1,11 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
+/* eslint-disable import/no-extraneous-dependencies */
+
 import * as path from 'path';
 import { format as formatUrl } from 'url';
+
+const {
+  app, BrowserWindow, ipcMain, shell,
+} = require('electron');
 
 const db = require('./db');
 
