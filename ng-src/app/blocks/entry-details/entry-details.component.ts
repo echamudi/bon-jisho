@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import * as c from 'lib/const';
+import { getEntities } from 'lib/entities';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
@@ -32,6 +33,8 @@ export class EntryDetailsComponent implements OnInit {
   dictSource: DictSource | null;
 
   constructor(private electronService: ElectronService) { }
+
+  getEntities = getEntities;
 
   ngOnInit() {
     console.log('entry-details > init');
