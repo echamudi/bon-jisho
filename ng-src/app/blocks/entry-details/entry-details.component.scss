@@ -26,6 +26,7 @@
   padding-top: (50 / 16) * 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-bottom: 2rem;
   display: flex;
   justify-content: center;
 }
@@ -53,12 +54,21 @@
   padding: 5px;
 }
 
+
+.detail-block {
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
 .detail-row {
   background: #fff;
-  margin-top: -1px;
-  border-top: solid #C5C6C8 1px;
   border-bottom: solid #C5C6C8 1px;
-  padding: 10px;
+  padding: 10px 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &__title {
     color: #7E7F80;
@@ -69,8 +79,10 @@
 .separator-pad {
   margin-top: 20px;
   padding: 10px;
+
   &__label {
     color: #6C6D71;
+    -webkit-user-select: none;
   }
 }
 

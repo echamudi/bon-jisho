@@ -26,7 +26,7 @@
       </div>
 
       <!-- Alternatives -->
-      <div *ngIf="alternatives.length > 1">
+      <div class="detail-block" *ngIf="alternatives.length > 1">
         <div class="detail-row">
           <div class="detail-row__title">Alternative Writings and Readings</div>
           <div class="alternative">
@@ -60,43 +60,48 @@
       </div>
 
       <!-- JMdict Translation -->
-      <div class="detail-row" *ngIf="dictSource === 1">
-        <div *ngFor="let sense of detailsObjJMdict.sense; index as i">
-          <div *ngIf="sense.pos" class="detail-row__title">{{ getEntities(sense.pos, 1).join(', ') }}</div>
-          <div class="sense-item">
-            <div class="sense-item__number">
-              {{ i + 1 }}
-            </div>
-            <div class="sense-item__text">
-              <span *ngIf="sense.stagk" class="sense-item__notice">only {{ sense.stagk.join(', ')}}</span>
-              <span *ngIf="sense.stagr" class="sense-item__notice">only {{ sense.stagr.join(', ')}} reading</span>
-              <span *ngFor="let gloss of sense.gloss">
-                {{ gloss.$t }};
-              </span>
-              <br>
-              <span *ngIf="sense.misc">
-                ({{ sense.misc.join(', ')}})
-              </span>
-              <span *ngIf="sense.xref">
-                See: {{ sense.xref.join(', ')}}
-              </span>
+      <div class="detail-block" *ngIf="dictSource === 1">
+        <div class="detail-row">
+          <div *ngFor="let sense of detailsObjJMdict.sense; index as i">
+            <div *ngIf="sense.pos" class="detail-row__title">{{ getEntities(sense.pos, 1).join(', ') }}</div>
+            <div class="sense-item">
+              <div class="sense-item__number">
+                {{ i + 1 }}
+              </div>
+              <div class="sense-item__text">
+                <span *ngIf="sense.stagk" class="sense-item__notice">only {{ sense.stagk.join(', ')}}</span>
+                <span *ngIf="sense.stagr" class="sense-item__notice">only {{ sense.stagr.join(', ')}} reading</span>
+                <span *ngFor="let gloss of sense.gloss">
+                  {{ gloss.$t }};
+                </span>
+                <br>
+                <span *ngIf="sense.misc">
+                  ({{ sense.misc.join(', ')}})
+                </span>
+                <span *ngIf="sense.xref">
+                  See: {{ sense.xref.join(', ')}}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- JMnedict Translation -->
-      <div class="detail-row" *ngIf="dictSource === 2">
-        <div *ngFor="let trans of detailsObjJMnedict.trans; index as i">
-          <div *ngIf="trans.name_type" class="detail-row__title">{{ getEntities(trans.name_type, 2).join(', ') }}</div>
-          <div class="sense-item">
-            <div class="sense-item__number">
-              {{ i + 1 }}
+      <div class="detail-block" *ngIf="dictSource === 2">
+        <div class="detail-row">
+          <div *ngFor="let trans of detailsObjJMnedict.trans; index as i">
+            <div *ngIf="trans.name_type" class="detail-row__title">{{ getEntities(trans.name_type, 2).join(', ') }}
             </div>
-            <div class="sense-item__text">
-              <span *ngFor="let text of trans.trans_det">
-                {{ text }}
-              </span>
+            <div class="sense-item">
+              <div class="sense-item__number">
+                {{ i + 1 }}
+              </div>
+              <div class="sense-item__text">
+                <span *ngFor="let text of trans.trans_det">
+                  {{ text }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -108,35 +113,37 @@
         </div>
       </div>
 
-      <div *ngIf="sameKanjiSameReading.length > 0" class="detail-row">
-        <div class="detail-row__title">
-          Alternative Definitions<br>
-          (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
+      <div class="detail-block">
+        <div *ngIf="sameKanjiSameReading.length > 0" class="detail-row">
+          <div class="detail-row__title">
+            Alternative Definitions<br>
+            (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
+          </div>
+          <div *ngFor="let row of sameKanjiSameReading">
+            {{ row.id }}<br>
+            {{ row.kanji }} {{ row.reading}}<br>
+            {{ row.meaning }}
+          </div>
         </div>
-        <div *ngFor="let row of sameKanjiSameReading">
-          {{ row.id }}<br>
-          {{ row.kanji }} {{ row.reading}}<br>
-          {{ row.meaning }}
+        <div *ngIf="sameKanji.length > 0" class="detail-row">
+          <div class="detail-row__title">
+            Same Writings<br>
+            (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
+          </div>
+          <div *ngFor="let row of sameKanji">
+            {{ row.id }}<br>
+            {{ row.kanji }} {{ row.reading}}<br>
+            {{ row.meaning }}
+          </div>
         </div>
-      </div>
-      <div *ngIf="sameKanji.length > 0" class="detail-row">
-        <div class="detail-row__title">
-          Same Writings<br>
-          (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
+        <div class="detail-row">
+          <div class="detail-row__title">
+            Other Resources on the Internet
+          </div>
+          <button
+            (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">Image
+            of {{ keyword }} in DuckDuckGo.</button>
         </div>
-        <div *ngFor="let row of sameKanji">
-          {{ row.id }}<br>
-          {{ row.kanji }} {{ row.reading}}<br>
-          {{ row.meaning }}
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-row__title">
-          Other Resources on the Internet
-        </div>
-        <button
-          (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">Image
-          of {{ keyword }} in DuckDuckGo.</button>
       </div>
 
       <div class="separator-pad" *ngIf="exploreClickCount > 10">
@@ -144,8 +151,10 @@
           RAW JSON
         </div>
       </div>
-      <div class="detail-row" *ngIf="exploreClickCount > 10">
-        <pre>{{ detailsString }}</pre>
+      <div class="detail-block"  *ngIf="exploreClickCount > 10">
+        <div class="detail-row">
+          <pre>{{ detailsString }}</pre>
+        </div>
       </div>
     </div>
   </div>

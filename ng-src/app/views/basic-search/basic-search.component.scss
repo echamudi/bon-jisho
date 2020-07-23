@@ -54,10 +54,13 @@
   height: 100%;
   width: 100%;
   background: #FFFDFD;
+
   &-item {
     box-shadow: 10px 0 0 #ffffff inset, 0 -1px 0 0 #CDCDCD inset;
     padding: 10px;
+    -webkit-user-select: none;
   }
+
   &-itemReading {
     padding-bottom: 3px;
   }
