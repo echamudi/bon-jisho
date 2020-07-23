@@ -77,7 +77,7 @@
                 </span>
                 <br>
                 <span *ngIf="sense.misc">
-                  ({{ sense.misc.join(', ')}})
+                  ({{ getEntities(sense.misc, 1).join(', ') }})
                 </span>
                 <span *ngIf="sense.xref">
                   See: {{ sense.xref.join(', ')}}
