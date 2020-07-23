@@ -38,6 +38,8 @@ export class EntryDetailsComponent implements OnInit {
 
   dictSource: DictSource | null;
 
+  exploreClickCount: number = 0;
+
   constructor(private electronService: ElectronService) { }
 
   getEntities = getEntities;
@@ -61,6 +63,8 @@ export class EntryDetailsComponent implements OnInit {
     this.sameKanji = [];
 
     this.dictSource = null;
+
+    this.exploreClickCount = 0;
   }
 
   async set(input: {
@@ -150,5 +154,9 @@ export class EntryDetailsComponent implements OnInit {
   openWebBroser(url: string): void {
     this.electronService.ipcRenderer
       .invoke('openURL', { url })
+  }
+
+  exploreClick(): void {
+    this.exploreClickCount += 1;
   }
 }

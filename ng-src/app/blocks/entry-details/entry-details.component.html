@@ -103,7 +103,7 @@
       </div>
 
       <div class="separator-pad">
-        <div class="separator-pad__label">
+        <div class="separator-pad__label" (click)="exploreClick()">
           EXPLORE
         </div>
       </div>
@@ -139,12 +139,12 @@
           of {{ keyword }} in DuckDuckGo.</button>
       </div>
 
-      <div class="separator-pad">
+      <div class="separator-pad" *ngIf="exploreClickCount > 10">
         <div class="separator-pad__label">
           RAW JSON
         </div>
       </div>
-      <div class="detail-row">
+      <div class="detail-row" *ngIf="exploreClickCount > 10">
         <pre>{{ detailsString }}</pre>
       </div>
     </div>
