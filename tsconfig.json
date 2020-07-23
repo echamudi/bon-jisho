@@ -12,6 +12,7 @@
     "module": "amd",
     "moduleResolution": "node",
     "importHelpers": true,
+    "strictNullChecks": true,
     "target": "es2015",
     "resolveJsonModule": true,
     "typeRoots": [
@@ -25,5 +26,8 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "exclude": [
+    "node_modules/**/*.*"
+  ]
 }

@@ -1,3 +1,5 @@
-export type KanjiReadingPair = {kanji: string, reading: string};
+import * as c from 'lib/const';
 
+export type KanjiReadingPair = {kanji: string, reading: string};
 export type KanjiReadingPairs = KanjiReadingPair[];
+export type DictSource = typeof c.JMDICT | typeof c.JMNEDICT;

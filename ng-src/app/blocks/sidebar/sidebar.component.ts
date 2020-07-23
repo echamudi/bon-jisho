@@ -12,4 +12,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  dblclick() {
+    (window as any).electron.ipcRenderer.invoke('toggle-maximize');
+  }
 }

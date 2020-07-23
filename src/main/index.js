@@ -1,7 +1,11 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { app, BrowserWindow, ipcMain } from 'electron';
+/* eslint-disable import/no-extraneous-dependencies */
+
 import * as path from 'path';
 import { format as formatUrl } from 'url';
+
+const {
+  app, BrowserWindow, ipcMain, shell,
+} = require('electron');
 
 const db = require('./db');
 
@@ -25,6 +29,8 @@ const createMainWindow = () => {
   const window = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 620,
+    minHeight: 350,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: false,
@@ -105,6 +111,8 @@ ipcMain.handle(
   'toggle-maximize',
   async () => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
+    if (focusedWindow === null) return;
+
     if (focusedWindow.isMaximized()) {
       focusedWindow.unmaximize();
     } else {
@@ -112,6 +120,10 @@ ipcMain.handle(
     }
   },
 );
+
+ipcMain.handle('openURL', async (_event, message) => {
+  shell.openExternal(message.url);
+});
 
 // DB connection
 Object.keys(db).forEach((methodName) => {

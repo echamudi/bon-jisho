@@ -48,7 +48,7 @@ module.exports.getDetailsJson = (item) => {
 // New
 
 /**
- * @param {{keyword: string, column: "kanji"|"reading"|"meaning"}} query
+ * @param {{keyword: string, column: "kanji-exact"|"kanji"|"reading"|"meaning"|"id"}} query
  * @returns {Promise<JapaneseDB.DictIndexRow[]>}
  */
 module.exports.getDictIndexRows = (query) => {
@@ -96,6 +96,22 @@ module.exports.getDictIndexRows = (query) => {
       LIMIT 1000
       ;
     `;
+  } else if (column === 'id') {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        id = ?1
+      ;
+    `;
+  } else if (column === 'kanji-exact') {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        kanji = ?1
+      ;
+    `;
   } else {
     sql = `
       SELECT *
@@ -136,7 +152,64 @@ module.exports.getDictIndexRows = (query) => {
     db.all(sql, {
       1: keyword,
     }, (err, rows) => {
-      resolve(rows);
+      const postProcessed = rows.map((row) => ({
+        ...row,
+        furigana: JSON.parse(row.furigana),
+      }));
+      resolve(postProcessed);
+    });
+  });
+};
+
+/**
+ * @param { {
+    source: number,
+    id: number,
+    kanji: string | null,
+    reading: string
+  }} query
+ * @returns {Promise<JapaneseDB.DictIndexRow>}
+ */
+module.exports.getDictIndexRow = (query) => {
+  const {
+    source, id, kanji, reading,
+  } = query;
+
+  let sql;
+
+  if (kanji === null) {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        source = ?1
+        AND id = ?2
+        AND reading = ?4
+    `;
+  } else {
+    sql = `
+      SELECT *
+      FROM dict_index
+      WHERE
+        source = ?1
+        AND id = ?2
+        AND kanji = ?3
+        AND reading = ?4
+    `;
+  }
+
+  return new Promise((resolve) => {
+    db.get(sql, {
+      1: source,
+      2: id,
+      3: kanji,
+      4: reading,
+    }, (err, row) => {
+      const postProcessed = {
+        ...row,
+        furigana: JSON.parse(row.furigana),
+      };
+      resolve(postProcessed);
     });
   });
 };
@@ -170,9 +243,24 @@ module.exports.getJMdictJsonsRows = (query) => {
 
 /**
  * @param {{entSeqs: number[]}} query
- * @returns # {Promise<JapaneseDB.JMnedictEntitiesRow[]>}
+ * @returns {Promise<JapaneseDB.JMnedictJsonsRow[]>}
  */
-module.exports.getJMnedictJsonsRows = (query) => { };
+module.exports.getJMnedictJsonsRows = (query) => {
+  const { entSeqs } = query;
+  const wildCards = Array(entSeqs.length).fill('?').join(',');
+
+  const sql = `SELECT * FROM jmnedict_jsons WHERE ent_seq IN (${wildCards})`;
+
+  return new Promise((resolve) => {
+    db.all(sql, entSeqs, (err, rows) => {
+      const postProcessed = rows.map((value) => ({
+        ent_seq: value.ent_seq,
+        json: JSON.parse(value.json),
+      }));
+      resolve(postProcessed);
+    });
+  });
+};
 
 /**
  *

@@ -1,14 +1,26 @@
 <div class="sidebar">
-  <div class="list">
-    <div class="list-item" routerLinkActive="list-item_active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
-      Home
-    </div>
-    <div class="list-separator">Search</div>
-    <div class="list-item" routerLinkActive="list-item_active" routerLink="/basic-search">
-      Basic Search
-    </div>
-    <div class="list-item" routerLinkActive="list-item_active" routerLink="/advanced-search">
-      Advanced Search
-    </div>
+  <div class="sidebar__header" (dblclick)="dblclick()"></div>
+
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+    Home
+  </div>
+
+  <div class="sidebar__separator">Search</div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/basic-search">
+    Word Search
+  </div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/advanced-search">
+    Kanji Search
+  </div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active">
+    Inspect Text
+  </div>
+
+  <div class="sidebar__separator">Collections</div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active">
+    Vocabulary Lists
+  </div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active">
+    Kanji Lists
   </div>
 </div>

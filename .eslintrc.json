@@ -17,5 +17,8 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {},
+  "ignorePatterns": [
+    "node_modules/**/*.*"
+  ]
 }

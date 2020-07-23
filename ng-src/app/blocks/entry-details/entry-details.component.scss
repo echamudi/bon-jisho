@@ -1,25 +1,48 @@
-:host {
+.entry-details {
+  padding: 0;
+  margin: auto;
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: auto;
   background: #F1F2F6;
+  box-sizing: border-box;
 }
 
-.wrapper {
-  padding: 20px;
-  max-width: 1024px;
-  margin: auto;
+.entry-details__toolbar {
+  position: fixed;
+  width: 100%;
+  height: (40 / 16) * 1rem;
+  background: white;
+  top: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px -1px 0 0 #CDCDCD inset;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 
-.entryHead {
+.entry-details__content {
+  padding-top: (50 / 16) * 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.entry-details__wrap {
+  width: 1024px;
+}
+
+.entry-head {
   margin-bottom: 20px;
 
-  &-kanji {
-    font-size: 100px;
+  &__kanji {
+    font-size: 60px;
   }
 
-  &-reading {
+  &__reading {
     font-size: 30px;
   }
 }
@@ -31,42 +54,53 @@
   padding: 5px;
 }
 
-.detailRow {
-  background: #fff;
-  margin-top: -1px;
-  border-top: solid #C5C6C8 1px;
-  border-bottom: solid #C5C6C8 1px;
-  padding: 10px;
 
-  &-title {
+.detail-block {
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.detail-row {
+  background: #fff;
+  border-bottom: solid #C5C6C8 1px;
+  padding: 10px 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__title {
     color: #7E7F80;
     margin-bottom: 5px;
   }
 }
 
-.separatorPad {
+.separator-pad {
   margin-top: 20px;
   padding: 10px;
-  &-label {
+
+  &__label {
     color: #6C6D71;
+    -webkit-user-select: none;
   }
 }
 
-.senseItem {
+.sense-item {
   display: flex;
   margin: 5px 0;
 
-  &-text {
+  &__text {
     flex: 1;
   }
 
-  &-number {
+  &__number {
     width: 20px;
     font-weight: bold;
     display: flex;
   }
 
-  &-notice {
+  &__notice {
     display: inline-block;
     color: #856404;
     font-size: 83%;
@@ -79,6 +113,19 @@
   }
 }
 
-.alternativeItem {
+.alternative {
+  display: flex;
+  margin: 0 -10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
 
+  &__item {
+    margin: 0 10px;
+
+    font-size: 2em;
+  }
+}
+
+rt {
+  user-select: none;
 }
