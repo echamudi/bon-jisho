@@ -103,9 +103,8 @@
                   {{ text }}
                 </span>
                 <span *ngIf="isPlace(trans.name_type)">
-                  <button
-                  (click)="openWebBroser('https://www.google.com/maps/search/' + keyword)">
-                  See location in Google Maps</button>
+                  <button (click)="openWebBroser('https://www.google.com/maps/search/' + keyword)">
+                    See location in Google Maps</button>
                 </span>
               </div>
             </div>
@@ -122,37 +121,44 @@
       <div class="detail-block">
         <div *ngIf="sameKanjiSameReading.length > 0" class="detail-row">
           <div class="detail-row__title">
-            Alternative Definitions<br>
-            (Other dictionary items with {{ dictIndexRow.kanji }} writing and {{ dictIndexRow.reading }} reading)
+            Alternative Definitions (Other dictionary items with {{ dictIndexRow.kanji }} writing and
+            {{ dictIndexRow.reading }} reading)
           </div>
-          <div *ngFor="let row of sameKanjiSameReading">
-            {{ row.id }}<br>
-            {{ row.kanji }} {{ row.reading}}<br>
-            {{ row.meaning }}
-          </div>
+          <table>
+            <tr *ngFor="let row of sameKanjiSameReading">
+              <td><b>{{ row.kanji }}</b></td>
+              <td>{{ row.reading }}</td>
+              <td>{{ row.meaning }}</td>
+            </tr>
+          </table>
         </div>
         <div *ngIf="sameKanji.length > 0" class="detail-row">
           <div class="detail-row__title">
-            Same Writings<br>
-            (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
+            Same Writings (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
           </div>
-          <div *ngFor="let row of sameKanji">
-            {{ row.id }}<br>
-            {{ row.kanji }} {{ row.reading}}<br>
-            {{ row.meaning }}
-          </div>
+          <table>
+            <tr *ngFor="let row of sameKanji">
+              <td><b>{{ row.kanji }}</b></td>
+              <td>{{ row.reading }}</td>
+              <td>{{ row.meaning }}</td>
+            </tr>
+          </table>
         </div>
         <div class="detail-row">
           <div class="detail-row__title">
             Other Resources on the Internet
           </div>
-          <button
-            (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">
-            Search for images in DuckDuckGo
-          </button><br>
-          <button
-            (click)="openWebBroser('https://ejje.weblio.jp/sentence/content/' + keyword)">
-            See sample sentences in Weblio</button>
+          <div style="display: flex; flex-direction: column;">
+            <button
+              (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')"
+              style="max-width: 300px; margin-bottom: 5px;">
+              Images in DuckDuckGo
+            </button>
+            <button
+              (click)="openWebBroser('https://ejje.weblio.jp/sentence/content/' + keyword)"
+              style="max-width: 300px;">
+              Sentences in Weblio</button>
+          </div>
         </div>
       </div>
 
@@ -161,7 +167,7 @@
           RAW JSON
         </div>
       </div>
-      <div class="detail-block"  *ngIf="exploreClickCount > 1">
+      <div class="detail-block" *ngIf="exploreClickCount > 1">
         <div class="detail-row">
           <pre>{{ detailsString }}</pre>
         </div>
