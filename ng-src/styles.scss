@@ -6,49 +6,60 @@ body {
 }
 
 .sidebar {
-  background: #E4E4E4;
+  background: #F5F0F0;
   width: 100%;
   height: 100%;
   box-shadow: -1px 0px 0 0 #CDCDCD inset;
   user-select: none;
-  padding: 20px 0;
   font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @at-root .body_blur & {
-    background: #F6F6F6;
+    background: #E8E8E8;
   }
 
   &__header {
     -webkit-user-select: none;
     -webkit-app-region: drag;
-    height: 30px;
+    height: 3rem;
+    width: 100%;
   }
 
   &__separator {
-    color: #808080;
+    color: #B5B0B0;
     font-size: 11px;
-    height: 25px;
+    height: (25 / 16) * 1rem;
+    width: calc(100% - #{(20 / 16)}rem);
     line-height: 30px;
     padding-left: 10px;
     font-weight: 600;
+
+    @at-root .body_blur & {
+      color: #B8B8B8;
+    }
   }
 
   &__item {
-    color: #1F1E1F;
-    height: 24px;
-    line-height: 24px;
+    color: #291E1F;
+    height: (28 / 16) * 1rem;
+    width: calc(100% - #{(20 / 16)}rem);
+    line-height: (28 / 16) * 1rem;
     outline: none;
-    padding-left: 18px;
+    padding: 0 (7.5 / 16) * 1em;
+    border-radius: (4 / 16) * 1rem;
+    box-sizing: border-box;
 
     @at-root .body_blur & {
       color: #787878;
     }
 
     &_active {
-      background: #CBCBCB;
+      background: #DCD1D2;
 
       @at-root .body_blur & {
-        background: #D2D2D2;
+        background: #DCDCDC;
       }
     }
   }
