@@ -102,6 +102,11 @@
                 <span *ngFor="let text of trans.trans_det">
                   {{ text }}
                 </span>
+                <span *ngIf="isPlace(trans.name_type)">
+                  <button
+                  (click)="openWebBroser('https://www.google.com/maps/search/' + keyword)">
+                  See location in Google Maps</button>
+                </span>
               </div>
             </div>
           </div>
@@ -142,8 +147,12 @@
             Other Resources on the Internet
           </div>
           <button
-            (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">Image
-            of {{ keyword }} in DuckDuckGo.</button>
+            (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">
+            Search for images in DuckDuckGo
+          </button><br>
+          <button
+            (click)="openWebBroser('https://ejje.weblio.jp/sentence/content/' + keyword)">
+            See sample sentences in Weblio</button>
         </div>
       </div>
 
