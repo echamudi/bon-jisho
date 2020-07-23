@@ -2950,6 +2950,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.5:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
 clean-css@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.3.tgz#507b5de7d97b48ee53d84adb0160ff6216380f78"
@@ -3333,7 +3338,7 @@ core-js@3.6.4:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
   integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
 
-core-js@^3.6.5:
+core-js@^3.1.3, core-js@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
@@ -4833,13 +4838,13 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-feather@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/feather/-/feather-0.0.6.tgz#248dcfd13d58efd991f829d1e373664539253c30"
-  integrity sha1-JI3P0T1Y79mR+CnR43NmRTklPDA=
+feather-icons@^4.28.0:
+  version "4.28.0"
+  resolved "https://registry.yarnpkg.com/feather-icons/-/feather-icons-4.28.0.tgz#e1892a401fe12c4559291770ff6e68b0168e760f"
+  integrity sha512-gRdqKESXRBUZn6Nl0VBq2wPHKRJgZz7yblrrc2lYsS6odkNFDnA4bqvrlEVRUPjE1tFax+0TdbJKZ31ziJuzjg==
   dependencies:
-    moment "1.3.0"
-    utest "0.0.2"
+    classnames "^2.2.5"
+    core-js "^3.1.3"
 
 figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -7281,11 +7286,6 @@ mocha@^7.1.2:
     yargs "13.3.2"
     yargs-parser "13.1.2"
     yargs-unparser "1.6.0"
-
-moment@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-1.3.0.tgz#ec5f0a272753d87349726f51f411c14a90d4189d"
-  integrity sha1-7F8KJydT2HNJcm9R9BHBSpDUGJ0=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -10812,11 +10812,6 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
-
-utest@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/utest/-/utest-0.0.2.tgz#3862e2975309ea5de0940444a6c6ee0179726a16"
-  integrity sha1-OGLil1MJ6l3glAREpsbuAXlyahY=
 
 utf8-byte-length@^1.0.1:
   version "1.0.4"
