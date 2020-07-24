@@ -7,6 +7,7 @@ import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
 import { DictSource } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
+import { WindowHelper } from 'ng-src/app/classes/window-helper';
 
 /**
  * JMdict or JMnedict entry viewer
@@ -47,6 +48,7 @@ export class EntryDetailsComponent implements OnInit {
 
   getEntities = getEntities;
   isPlace = isPlace;
+  toggleMaximize = WindowHelper.toggleMaximize;
 
   ngOnInit() {
     console.log('entry-details > init');

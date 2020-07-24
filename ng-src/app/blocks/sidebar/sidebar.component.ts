@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WindowHelper } from 'ng-src/app/classes/window-helper';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,10 +10,9 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  toggleMaximize = WindowHelper.toggleMaximize;
 
-  dblclick() {
-    (window as any).electron.ipcRenderer.invoke('toggle-maximize');
+  ngOnInit() {
+
   }
 }
