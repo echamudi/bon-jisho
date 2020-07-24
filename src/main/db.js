@@ -155,6 +155,7 @@ module.exports.getDictIndexRows = (query) => {
       const postProcessed = rows.map((row) => ({
         ...row,
         furigana: JSON.parse(row.furigana),
+        tags: JSON.parse(row.tags),
       }));
       resolve(postProcessed);
     });
@@ -208,6 +209,7 @@ module.exports.getDictIndexRow = (query) => {
       const postProcessed = {
         ...row,
         furigana: JSON.parse(row.furigana),
+        tags: JSON.parse(row.tags),
       };
       resolve(postProcessed);
     });

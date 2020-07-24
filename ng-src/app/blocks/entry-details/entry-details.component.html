@@ -54,6 +54,22 @@
         </div>
       </div>
 
+      <div *ngIf="dictIndexRow.tags !== null">
+        <div class="separator-pad">
+          <div class="separator-pad__label">
+            TAGS
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-row">
+            <div *ngFor="let tag of dictIndexRow.tags">
+              {{ tag }}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="separator-pad">
         <div class="separator-pad__label">
           TRANSLATION
