@@ -12,6 +12,7 @@ import { BasicSearchComponent } from './views/basic-search/basic-search.componen
 import { EntryDetailsComponent } from './blocks/entry-details/entry-details.component';
 
 import { ElectronService } from './services/electron.service';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ElectronService } from './services/electron.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    TooltipModule
   ],
   providers: [
     ElectronService

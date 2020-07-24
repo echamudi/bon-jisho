@@ -42,6 +42,7 @@
     "@angular/router": "~9.1.7",
     "@babel/core": "^7.9.6",
     "babel-loader": "^8.1.0",
+    "ng2-tooltip-directive": "^2.9.20",
     "rxjs": "~6.5.5",
     "source-map-support": "^0.5.19",
     "sqlite3": "^4.2.0",
