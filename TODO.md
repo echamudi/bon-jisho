@@ -2,6 +2,7 @@
 
 - [x] Fix entity codes (check ガンガン食べる page)
 - [x] Add weblio link
+- [x] Add tags to dict_index japanese-db
 - [ ] Display frequency tag in entry details
 - [ ] Add kanjialive table to japanese-db
 - [ ] Add kanjialive-audio table to japanese-db
