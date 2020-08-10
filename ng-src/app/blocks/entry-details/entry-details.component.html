@@ -63,8 +63,18 @@
 
         <div class="detail-block">
           <div class="detail-row">
-            <div *ngFor="let tag of dictIndexRow.tags">
-              {{ tag }}
+            <div class="tags">
+              <div
+                class="tags__item"
+                *ngFor="let tag of dictIndexRow.tags"
+                [tooltip]="tag"
+                [options]="{
+                  'placement': 'left',
+                  'show-delay': 10,
+                  'hide-delay': 10,
+                  'placement': 'top'}">
+                {{ tag }}
+              </div>
             </div>
           </div>
         </div>

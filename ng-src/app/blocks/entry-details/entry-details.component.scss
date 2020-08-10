@@ -129,3 +129,18 @@
 rt {
   user-select: none;
 }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: (-3 / 16) * 1rem;
+
+  &__item {
+    margin: (3 / 16) * 1rem;
+    padding: (5 / 16) * 1rem;
+    border-radius: (3 / 16) * 1rem;
+    background: #e4e5e8;
+    border: solid 1px #b7b7b7;
+    font-size: (14 / 16) * 1rem;
+  }
+}
