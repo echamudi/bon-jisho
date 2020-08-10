@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ElectronService } from 'ng-src/app/services/electron.service';
 import * as c from 'lib/const';
-import { getEntities, isPlace } from 'lib/entities';
+import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
@@ -48,6 +48,8 @@ export class EntryDetailsComponent implements OnInit {
 
   getEntities = getEntities;
   isPlace = isPlace;
+  getTagDescription = getTagDescription;
+
   toggleMaximize = WindowHelper.toggleMaximize;
 
   ngOnInit() {

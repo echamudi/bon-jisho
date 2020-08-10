@@ -67,7 +67,7 @@
               <div
                 class="tags__item"
                 *ngFor="let tag of dictIndexRow.tags"
-                [tooltip]="tag"
+                [tooltip]="getTagDescription(tag)"
                 [options]="{
                   'placement': 'left',
                   'show-delay': 10,
