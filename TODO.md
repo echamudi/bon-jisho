@@ -6,7 +6,7 @@
 - [x] Add kanjialive table to japanese-db
 <!-- - [ ] Add kanjialive-audio table to japanese-db -->
 - [x] Display frequency tag in entry details
-- [ ] Implement basic history in entry details.
+- [x] Implement basic history in entry details.
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
