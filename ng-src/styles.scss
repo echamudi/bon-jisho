@@ -6,6 +6,7 @@ body {
   font-family: sans-serif;
 }
 
+// BEM Block: sidebar
 .sidebar {
   background: #F5F0F0;
   width: 100%;
@@ -66,6 +67,23 @@ body {
   }
 }
 
+// BEM Block: toolbar
+.toolbar {
+  position: fixed;
+  width: 100%;
+  height: (40 / 16) * 1rem;
+  background: white;
+  top: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px -1px 0 0 #CDCDCD inset;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+}
+
+// BEM Block: toolbar-button
 .toolbar-button {
   margin: 0 0.1rem;
   width: 2.5rem;
@@ -96,20 +114,4 @@ body {
       background: none;
     }
   }
-}
-
-// BEM Block: toolbar
-.toolbar {
-  position: fixed;
-  width: 100%;
-  height: (40 / 16) * 1rem;
-  background: white;
-  top: 0;
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0px -1px 0 0 #CDCDCD inset;
-  -webkit-user-select: none;
-  -webkit-app-region: drag;
-  display: flex;
-  align-items: center;
 }
