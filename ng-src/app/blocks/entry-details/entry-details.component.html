@@ -1,7 +1,21 @@
 <div class="entry-details">
   <div class="entry-details__toolbar" (dblclick)="toggleMaximize()">
-    <img src="assets/icons/chevron-left.svg" (dblclick)="$event.stopPropagation()" (click)="back()">
-    <img src="assets/icons/chevron-right.svg" (dblclick)="$event.stopPropagation()" (click)="forward()">
+    <div class="toolbar-button"
+      [ngClass]="{'toolbar-button__disabled': history.pointer <= 1}"
+      (dblclick)="$event.stopPropagation()"
+      (click)="back()">
+      <img
+        class="toolbar-button__icon"
+        src="assets/icons/chevron-left.svg">
+    </div>
+    <div class="toolbar-button"
+      [ngClass]="{'toolbar-button__disabled': history.pointer + 1 == history.stack.length}"
+      (dblclick)="$event.stopPropagation()"
+      (click)="forward()">
+      <img
+        class="toolbar-button__icon"
+        src="assets/icons/chevron-right.svg">
+    </div>
   </div>
 
   <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="entry-details__content">

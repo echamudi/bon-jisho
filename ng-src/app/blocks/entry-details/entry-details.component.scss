@@ -1,3 +1,5 @@
+@import "../../../style/fill.scss";
+
 .entry-details {
   padding: 0;
   margin: auto;
@@ -20,6 +22,40 @@
   box-shadow: 0px -1px 0 0 #CDCDCD inset;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-button {
+  margin: 0 0.1rem;
+  width: 2.5rem;
+  height: 1.75rem;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #F0F0F0;
+  }
+
+  &:active {
+    background: #E1E1E1;
+  }
+}
+
+.toolbar-button__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  @include fill(#707070, 1);
+}
+
+.toolbar-button__disabled {
+  @include fill(#BCBCBC, 1);
+
+  &:hover, &:active {
+    background: none;
+  }
 }
 
 .entry-details__content {
