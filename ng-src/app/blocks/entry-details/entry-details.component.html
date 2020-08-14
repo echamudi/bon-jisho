@@ -1,5 +1,5 @@
 <div class="entry-details">
-  <div class="entry-details__toolbar" (dblclick)="toggleMaximize()">
+  <div class="toolbar" (dblclick)="toggleMaximize()">
     <div class="toolbar-button"
       [ngClass]="{'toolbar-button__disabled': history.pointer <= 1}"
       (dblclick)="$event.stopPropagation()"
