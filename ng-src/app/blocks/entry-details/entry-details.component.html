@@ -1,6 +1,7 @@
 <div class="entry-details">
   <div class="entry-details__toolbar" (dblclick)="toggleMaximize()">
-    <img src="assets/icons/chevron-left.svg"  (dblclick)="$event.stopPropagation()">
+    <img src="assets/icons/chevron-left.svg" (dblclick)="$event.stopPropagation()" (click)="back()">
+    <img src="assets/icons/chevron-right.svg" (dblclick)="$event.stopPropagation()" (click)="forward()">
   </div>
 
   <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="entry-details__content">

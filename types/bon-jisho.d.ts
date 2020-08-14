@@ -10,3 +10,8 @@ export type EntryDetailsQuery = {
   kanji: string | null,
   reading: string
 } | null;
+
+export type EntryDetailsHistory = {
+  stack: EntryDetailsQuery[],
+  pointer: number,
+};

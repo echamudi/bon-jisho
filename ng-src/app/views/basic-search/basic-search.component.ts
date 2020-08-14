@@ -69,6 +69,6 @@ export class BasicSearchComponent implements OnInit {
       reading: item.reading
     };
 
-    this.entryDetails.set(selectedItem);
+    this.entryDetails.open(selectedItem);
   }
 }

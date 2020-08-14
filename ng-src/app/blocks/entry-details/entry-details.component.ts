@@ -5,9 +5,10 @@ import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
-import { DictSource, EntryDetailsQuery } from 'types/bon-jisho';
+import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 import { WindowHelper } from 'ng-src/app/classes/window-helper';
+import { BonJishoService } from 'ng-src/app/services/bon-jisho.service';
 
 /**
  * JMdict or JMnedict entry viewer
@@ -18,6 +19,8 @@ import { WindowHelper } from 'ng-src/app/classes/window-helper';
   styleUrls: ['./entry-details.component.scss']
 })
 export class EntryDetailsComponent implements OnInit {
+
+  history: EntryDetailsHistory;
 
   /**
    * Current keyword.
@@ -44,7 +47,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService) { }
+  constructor(private electronService: ElectronService, private bonJishoService: BonJishoService) { }
 
   getEntities = getEntities;
   isPlace = isPlace;
@@ -54,6 +57,10 @@ export class EntryDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log('entry-details > init');
+    this.history = this.bonJishoService.entryDetailsHistory;
+
+    // Render the existing history
+    this.render(this.history.stack[this.history.pointer]);
   }
 
   reset() {
@@ -75,7 +82,43 @@ export class EntryDetailsComponent implements OnInit {
     this.exploreClickCount = 0;
   }
 
-  async set(input: EntryDetailsQuery) {
+  async open(input: EntryDetailsQuery) {
+    // Increment pointer
+    this.history.pointer += 1;
+
+    // Splice to the last selection
+    this.history.stack.splice(
+      this.history.pointer,
+      Infinity,
+      input,
+    );
+
+    this.render(this.history.stack[this.history.pointer]);
+    // console.log(this.history.pointer, this.history.stack);
+  }
+
+  async back() {
+    // If it's the last element, don't go back
+    if (this.history.pointer <= 1) return;
+
+    // Decrement pointer
+    this.history.pointer -= 1;
+
+    this.render(this.history.stack[this.history.pointer]);
+  }
+
+  async forward() {
+    // If it overflows, don't go forward
+    if (this.history.pointer + 1
+      === this.history.stack.length) return;
+
+    // Increment pointer
+    this.history.pointer += 1;
+
+    this.render(this.history.stack[this.history.pointer]);
+  }
+
+  async render(input: EntryDetailsQuery) {
     this.reset();
 
     if (input === null) return;
