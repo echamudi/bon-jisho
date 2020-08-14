@@ -4,9 +4,19 @@ List of tasks to be done by an actual user.
 
 ## Word Search
 
+- Typing search
+  - The search result MUST be displayed as the user types, no need to press enter.
+- Search for anything
+  - The user MUST see a link to DuckDuckGo image search.
 - Search for 家町江良
   - The user MUST see a button linking to Google Maps.
 - Search for 鳥取 とっとり
   - The user MUST see a button linking to Google Maps.
 - Search for 鳥取 ととり
   - The user MUST NOT see a button linking to Google Maps.
+- Going back to the word search screen
+  - The user MUST see the last visited entry details before the user left.
+
+## Entry Details
+- Back and forward buttons 
+  - Back and forward buttons MUST work as the user expected.
