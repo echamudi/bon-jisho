@@ -5,7 +5,7 @@
 - [x] Add tags to dict_index japanese-db
 - [x] Add kanjialive table to japanese-db
 <!-- - [ ] Add kanjialive-audio table to japanese-db -->
-- [ ] Display frequency tag in entry details
+- [x] Display frequency tag in entry details
 - [ ] Implement basic history in entry details.
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
