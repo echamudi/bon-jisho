@@ -8,6 +8,7 @@ List of tasks to be done by an actual user.
   - The search result MUST be displayed as the user types, no need to press enter.
 - Search for anything
   - The user MUST see a link to DuckDuckGo image search.
+  - Hovering over the tags MUST show the tooltip of the tag meaning.
 - Search for 家町江良
   - The user MUST see a button linking to Google Maps.
 - Search for 鳥取 とっとり
