@@ -18,7 +18,7 @@
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "echo \"No linting configured\"",
-    "main-test": "npx mocha ./test/test.js"
+    "main-test": "npx jest"
   },
   "repository": {
     "type": "git",
