@@ -1,17 +1,22 @@
-const assert = require('assert');
+const path = require('path');
+
+// Add __static property to match the electron env
+// @ts-ignore
+// eslint-disable-next-line no-underscore-dangle
+global.__static = path.join(__dirname, '../../static');
+
 const {
   getJMdictJsonsRows,
 } = require('./db');
 
-describe('Database Driver', () => {
-  it('getJMdictJsonsRows works', () => {
-    getJMdictJsonsRows({
-      entSeqs: [1639300, 1639360],
-    })
-      .then((res) => {
-        // @ts-ignore
-        assert.deepStrictEqual(
-          res,
+test('getJMdictJsonsRows', async () => {
+  getJMdictJsonsRows({
+    entSeqs: [1639300, 1639360],
+  })
+    .then((res) => {
+      // @ts-ignore
+      expect(res)
+        .toEqual(
           JSON.parse(
             `[{"ent_seq":1639300,"json":{"ent_seq":["1639300"],
             "k_ele":[{"keb":["世界の果て"]}],"r_ele":[{"reb":["せかいのはて"]}],
@@ -21,6 +26,5 @@ describe('Database Driver', () => {
             "gloss":[{"xml:lang":"eng","$t":"shale"}]}]}}]`,
           ),
         );
-      });
-  });
+    });
 });
