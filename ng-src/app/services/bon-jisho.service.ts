@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntryDetailsQuery } from 'types/bon-jisho';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BonJishoService {
 
   public entryDetailsHistory: {

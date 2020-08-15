@@ -13,6 +13,7 @@ import { EntryDetailsComponent } from './blocks/entry-details/entry-details.comp
 
 import { ElectronService } from './services/electron.service';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { BonJishoService } from './services/bon-jisho.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     TooltipModule
   ],
   providers: [
-    ElectronService
+    ElectronService,
+    BonJishoService
   ],
   bootstrap: [AppComponent]
 })
