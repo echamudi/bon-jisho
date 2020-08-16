@@ -1,9 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="app">
   <div class="app-areaSidebar">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (pageEmitter)="currentPage = $event"></app-sidebar>
   </div>
   <div class="app-areaContent">
-    <router-outlet></router-outlet>
+    <app-home [hidden]="currentPage !== 'Home'"></app-home>
+    <app-basic-search [hidden]="currentPage !== 'Word Search'"></app-basic-search>
+    <app-advanced-search [hidden]="currentPage !== 'Inspect Text'"></app-advanced-search>
+    <!-- <router-outlet></router-outlet> -->
   </div>
 </div>

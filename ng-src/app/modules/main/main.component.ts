@@ -8,6 +8,8 @@ import { OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  currentPage: string = 'Home';
+
   constructor() { }
 
   ngOnInit() {

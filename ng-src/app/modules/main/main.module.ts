@@ -33,7 +33,8 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [
     ElectronService,
-    BonJishoService
+    BonJishoService,
+    // MainService
   ],
   // bootstrap: [MainComponent]
 })

@@ -1,4 +1,4 @@
-<div class="sidebar">
+<!-- <div class="sidebar">
   <div class="sidebar__header" (dblclick)="toggleMaximize()"></div>
 
   <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/" [routerLinkActiveOptions]="{ exact: true }">
@@ -21,6 +21,30 @@
     Vocabulary Lists
   </div>
   <div class="sidebar__item" routerLinkActive="sidebar__item_active">
+    Kanji Lists
+  </div>
+</div> -->
+
+<div class="sidebar">
+  <div class="sidebar__header" (dblclick)="toggleMaximize()"></div>
+
+  <div class="sidebar__item" (click)="selectPage('Home')">
+    Home
+  </div>
+
+  <div class="sidebar__separator">Search</div>
+  <div class="sidebar__item" (click)="selectPage('Word Search')">
+    Word Search
+  </div>
+  <div class="sidebar__item" (click)="selectPage('Inspect Text')">
+    Inspect Text
+  </div>
+
+  <div class="sidebar__separator">Collections</div>
+  <div class="sidebar__item">
+    Vocabulary Lists
+  </div>
+  <div class="sidebar__item">
     Kanji Lists
   </div>
 </div>
