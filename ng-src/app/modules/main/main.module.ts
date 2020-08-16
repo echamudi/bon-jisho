@@ -7,12 +7,10 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InspectTextComponent } from './components/inspect-text/inspect-text.component';
 import { SearchComponent } from './components/search/search.component';
-import { EntryDetailsComponent } from './components/entry-details/entry-details.component';
 
-import { TooltipModule } from 'ng2-tooltip-directive';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { ElectronService } from '../shared/services/electron.service';
+import { EntryDetailsModule } from '../entry-details/entry-details.module';
 
 @NgModule({
   declarations: [
@@ -20,15 +18,14 @@ import { ElectronService } from '../shared/services/electron.service';
     HomeComponent,
     SidebarComponent,
     InspectTextComponent,
-    SearchComponent,
-    EntryDetailsComponent
+    SearchComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    TooltipModule,
-    SharedModule
+    SharedModule,
+    EntryDetailsModule
   ],
   providers: [
   ],

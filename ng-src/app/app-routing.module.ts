@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule)
   },
+  {
+    path: 'entry-details',
+    loadChildren: () => import('./modules/entry-details/entry-details.module').then(m => m.EntryDetailsModule)
+  }
 ];
 
 @NgModule({

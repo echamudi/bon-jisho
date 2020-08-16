@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EntryDetailsComponent } from '../entry-details/entry-details.component';
+import { EntryDetailsComponent } from '../../../entry-details/entry-details.component';
 import { ElectronService } from '../../../shared/services/electron.service';
 import { JapaneseDB } from 'japanese-db';
 

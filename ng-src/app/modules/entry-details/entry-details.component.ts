@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { ElectronService } from '../../../shared/services/electron.service';
+import { ElectronService } from '../shared/services/electron.service';
 import * as c from 'lib/const';
 import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 
@@ -7,7 +7,8 @@ import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
-import { WindowHelper } from '../../classes/window-helper';
+import { WindowHelper } from '../main/classes/window-helper';
+import { Router } from '@angular/router';
 
 /**
  * JMdict or JMnedict entry viewer
@@ -46,7 +47,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService) { }
+  constructor(private electronService: ElectronService, private router: Router) { }
 
   getEntities = getEntities;
   isPlace = isPlace;
@@ -63,6 +64,9 @@ export class EntryDetailsComponent implements OnInit {
 
     // Render the existing history
     this.render(this.history.stack[this.history.pointer]);
+
+    // const x = this.router.parseUrl(this.router.url);
+    // console.log(x);
   }
 
   reset() {
