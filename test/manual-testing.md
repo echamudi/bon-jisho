@@ -21,3 +21,6 @@ List of tasks to be done by an actual user.
 ## Entry Details
 - Back and forward buttons 
   - Back and forward buttons MUST work as the user expected.
+- Direct access
+  - Accessing direct URL /#/entry-details/?source=jmdict&id=1000310&kanji=馬酔木&reading=あせぶ MUST show the result
+  - Accessing direct URL /#/entry-details/?source=jmdict&id=1234563&kanji=馬酔木&reading=あせぶ MUST NOT produce error
