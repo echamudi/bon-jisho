@@ -1,35 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
-  currentPage: string = 'home';
+  currentPage: string = '';
+  routerEventsSubscribtions: Subscription;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
+    this.routerEventsSubscribtions = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd ) {
-        this.selectPage();
+        this.selectPage(event.url);
       }
     });
 
-    this.selectPage();
+    this.selectPage(this.router.url);
   }
 
-  selectPage() {
-    const selectedPage: string | undefined = this.activatedRoute.snapshot.children[0]?.routeConfig?.path;
+  ngOnDestroy() {
+    this.routerEventsSubscribtions.unsubscribe();
+  }
+
+  selectPage(url: string) {
+    // Get main page: e.g. home, search, inspect-text, dll.
+    const selectedPage: string | undefined =
+      this.router.parseUrl(url).root.children.primary.segments?.[1]?.path;
 
     if (selectedPage !== undefined) {
       this.currentPage = selectedPage;
     } else {
-      this.currentPage = 'home';
+      this.currentPage = '';
+      this.router.navigateByUrl('/main/home');
     }
   }
 }
