@@ -11,7 +11,6 @@ import { EntryDetailsComponent } from './components/entry-details/entry-details.
 
 import { ElectronService } from './services/electron.service';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import { BonJishoService } from './services/bon-jisho.service';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [
     ElectronService,
-    BonJishoService,
     // MainService
   ],
   // bootstrap: [MainComponent]
