@@ -8,18 +8,11 @@ import { WindowHelper } from '../../classes/window-helper';
 })
 export class SidebarComponent implements OnInit {
 
-  @Output()
-  pageEmitter: EventEmitter<any> = new EventEmitter<any>();
-
   constructor() { }
 
   toggleMaximize = WindowHelper.toggleMaximize;
 
   ngOnInit() {
 
-  }
-
-  selectPage(page: string) {
-    this.pageEmitter.emit(page);
   }
 }

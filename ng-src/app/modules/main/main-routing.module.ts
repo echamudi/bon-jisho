@@ -7,12 +7,12 @@ import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
-    path: '', component: MainComponent
-    // children: [
-    //   { path: '', component: HomeComponent},
-    //   { path: 'basic-search', component: BasicSearchComponent },
-    //   { path: 'advanced-search', component: AdvancedSearchComponent },
-    // ],
+    path: '', component: MainComponent,
+    children: [
+      { path: 'home', component: MainComponent},
+      { path: 'basic-search', component: MainComponent },
+      { path: 'advanced-search', component: MainComponent },
+    ],
   },
 ];
 
