@@ -63,8 +63,6 @@ export class EntryDetailsComponent implements OnInit {
 
     // Render the existing history
     this.render(this.history.stack[this.history.pointer]);
-
-    console.log(this.electronService);
   }
 
   reset() {
