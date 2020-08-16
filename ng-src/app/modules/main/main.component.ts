@@ -16,14 +16,20 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd ) {
-        const selectedPage: string | undefined = this.activatedRoute.snapshot.children[0]?.routeConfig?.path;
-
-        if (selectedPage !== undefined) {
-          this.currentPage = selectedPage;
-        } else {
-          this.currentPage = 'home';
-        }
+        this.selectPage();
       }
     });
+
+    this.selectPage();
+  }
+
+  selectPage() {
+    const selectedPage: string | undefined = this.activatedRoute.snapshot.children[0]?.routeConfig?.path;
+
+    if (selectedPage !== undefined) {
+      this.currentPage = selectedPage;
+    } else {
+      this.currentPage = 'home';
+    }
   }
 }
