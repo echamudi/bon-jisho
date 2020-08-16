@@ -169,7 +169,7 @@ module.exports.getDictIndexRows = (query) => {
     kanji: string | null,
     reading: string
   }} query
- * @returns {Promise<JapaneseDB.DictIndexRow>}
+ * @returns {Promise<JapaneseDB.DictIndexRow|null>}
  */
 module.exports.getDictIndexRow = (query) => {
   const {
@@ -206,6 +206,11 @@ module.exports.getDictIndexRow = (query) => {
       3: kanji,
       4: reading,
     }, (err, row) => {
+      if (row === undefined) {
+        resolve(null);
+        return;
+      }
+
       const postProcessed = {
         ...row,
         furigana: JSON.parse(row.furigana),
