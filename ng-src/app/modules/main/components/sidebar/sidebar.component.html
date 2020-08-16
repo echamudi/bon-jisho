@@ -1,15 +1,15 @@
 <div class="sidebar">
   <div class="sidebar__header" (dblclick)="toggleMaximize()"></div>
 
-  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/" [routerLinkActiveOptions]="{ exact: true }">
     Home
   </div>
 
   <div class="sidebar__separator">Search</div>
-  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/basic-search">
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/basic-search">
     Word Search
   </div>
-  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/advanced-search">
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/advanced-search">
     Kanji Search
   </div>
   <div class="sidebar__item" routerLinkActive="sidebar__item_active">

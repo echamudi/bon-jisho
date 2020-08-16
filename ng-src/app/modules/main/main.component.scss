@@ -1,0 +1,25 @@
+.app {
+  display: grid;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  grid-gap: 0;
+  grid-template-rows: 38px auto;
+  grid-template-columns: (135 / 16) * 1em auto;
+  grid-template-areas: "sidebar content" "sidebar content";
+
+  &-areaTopbar {
+    position: relative;
+    grid-area: topbar;
+}
+
+  &-areaSidebar {
+    position: relative;
+    grid-area: sidebar;
+  }
+
+  &-areaContent {
+    position: relative;
+    grid-area: content;
+  }
+}

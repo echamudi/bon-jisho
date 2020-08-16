@@ -19,8 +19,8 @@
           "options": {
             "fileReplacements": [
               {
-                "replace": "ng-src/app/services/electron.service.ts",
-                "with": "ng-src/app/services/electron.service.build.ts"
+                "replace": "ng-src/app/modules/main/services/electron.service.ts",
+                "with": "ng-src/app/modules/main/services/electron.service.build.ts"
               }
             ],
             "outputPath": "static/ng-dist/",
@@ -46,8 +46,8 @@
                   "with": "ng-src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "ng-src/app/services/electron.service.ts",
-                  "with": "ng-src/app/services/electron.service.build.ts"
+                  "replace": "ng-src/app/modules/main/services/electron.service.ts",
+                  "with": "ng-src/app/modules/main/services/electron.service.build.ts"
                 }
               ],
               "index": {

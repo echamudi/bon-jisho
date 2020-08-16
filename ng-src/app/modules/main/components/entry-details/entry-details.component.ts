@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { ElectronService } from 'ng-src/app/services/electron.service';
+import { ElectronService } from '../../services/electron.service';
 import * as c from 'lib/const';
 import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 
@@ -7,8 +7,8 @@ import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
-import { WindowHelper } from 'ng-src/app/classes/window-helper';
-import { BonJishoService } from 'ng-src/app/services/bon-jisho.service';
+import { WindowHelper } from '../../classes/window-helper';
+import { BonJishoService } from '../../services/bon-jisho.service';
 
 /**
  * JMdict or JMnedict entry viewer
@@ -61,6 +61,8 @@ export class EntryDetailsComponent implements OnInit {
 
     // Render the existing history
     this.render(this.history.stack[this.history.pointer]);
+
+    console.log(this.electronService);
   }
 
   reset() {
