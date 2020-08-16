@@ -9,9 +9,10 @@ import { InspectTextComponent } from './components/inspect-text/inspect-text.com
 import { SearchComponent } from './components/search/search.component';
 import { EntryDetailsComponent } from './components/entry-details/entry-details.component';
 
-import { ElectronService } from './services/electron.service';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
+import { ElectronService } from '../shared/services/electron.service';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,10 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    TooltipModule
+    TooltipModule,
+    SharedModule
   ],
   providers: [
-    ElectronService,
-    // MainService
   ],
-  // bootstrap: [MainComponent]
 })
 export class MainModule { }
