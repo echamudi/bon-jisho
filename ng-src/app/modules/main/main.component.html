@@ -4,8 +4,8 @@
     <app-sidebar></app-sidebar>
   </div>
   <div class="app-areaContent">
-    <app-home [hidden]="currentPage !== 'home'"></app-home>
-    <app-basic-search [hidden]="currentPage !== 'basic-search'"></app-basic-search>
-    <app-advanced-search [hidden]="currentPage !== 'advanced-search'"></app-advanced-search>
+    <app-main--home [hidden]="currentPage !== 'home'"></app-main--home>
+    <app-main--search [hidden]="currentPage !== 'search'"></app-main--search>
+    <app-main--inspect-text [hidden]="currentPage !== 'inspect-text'"></app-main--inspect-text>
   </div>
 </div>

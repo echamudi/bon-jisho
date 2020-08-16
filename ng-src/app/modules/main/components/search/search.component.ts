@@ -6,11 +6,11 @@ import { JapaneseDB } from 'japanese-db';
 import { getDictIndexRows } from 'src/main/db';
 
 @Component({
-  selector: 'app-basic-search',
-  templateUrl: './basic-search.component.html',
-  styleUrls: ['./basic-search.component.scss']
+  selector: 'app-main--search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class BasicSearchComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   keyword: string = '';
   list: JapaneseDB.DictIndexRow[] = [];

@@ -10,8 +10,8 @@ const routes: Routes = [
     path: '', component: MainComponent,
     children: [
       { path: 'home', component: MainComponent},
-      { path: 'basic-search', component: MainComponent },
-      { path: 'advanced-search', component: MainComponent },
+      { path: 'search', component: MainComponent },
+      { path: 'inspect-text', component: MainComponent },
     ],
   },
 ];

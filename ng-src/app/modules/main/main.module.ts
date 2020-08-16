@@ -5,9 +5,8 @@ import { MainComponent } from './main.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { BasicSearchComponent } from './components/basic-search/basic-search.component';
+import { InspectTextComponent } from './components/inspect-text/inspect-text.component';
+import { SearchComponent } from './components/search/search.component';
 import { EntryDetailsComponent } from './components/entry-details/entry-details.component';
 
 import { ElectronService } from './services/electron.service';
@@ -20,9 +19,8 @@ import { CommonModule } from '@angular/common';
     MainComponent,
     HomeComponent,
     SidebarComponent,
-    AdvancedSearchComponent,
-    ToolbarComponent,
-    BasicSearchComponent,
+    InspectTextComponent,
+    SearchComponent,
     EntryDetailsComponent
   ],
   imports: [
