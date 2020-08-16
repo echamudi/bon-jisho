@@ -8,7 +8,6 @@ import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictInde
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 import { WindowHelper } from '../../classes/window-helper';
-import { BonJishoService } from '../../services/bon-jisho.service';
 
 /**
  * JMdict or JMnedict entry viewer
@@ -47,7 +46,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService, private bonJishoService: BonJishoService) { }
+  constructor(private electronService: ElectronService) { }
 
   getEntities = getEntities;
   isPlace = isPlace;
@@ -57,7 +56,10 @@ export class EntryDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log('entry-details > init');
-    this.history = this.bonJishoService.entryDetailsHistory;
+    this.history = {
+      stack: [null],
+      pointer: 0,
+    };
 
     // Render the existing history
     this.render(this.history.stack[this.history.pointer]);
