@@ -7,6 +7,7 @@
 <!-- - [ ] Add kanjialive-audio table to japanese-db -->
 - [x] Display frequency tag in entry details
 - [x] Implement basic history in entry details.
+- [ ] Restructure folders, seperate entry-details to a new module, use router in entry-details
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
