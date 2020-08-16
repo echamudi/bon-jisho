@@ -65,8 +65,25 @@ export class EntryDetailsComponent implements OnInit {
     // Render the existing history
     this.render(this.history.stack[this.history.pointer]);
 
-    // const x = this.router.parseUrl(this.router.url);
-    // console.log(x);
+    const params = this.router.parseUrl(this.router.url).queryParams;
+
+    if (params.source) {
+      const source: string | undefined = params.source;
+      const id: string | undefined = params.id;
+      const kanji: string | undefined = params.kanji;
+      const reading: string | undefined = params.reading;
+
+      if (source === 'jmdict' && id && kanji && reading) {
+        const input: EntryDetailsQuery = {
+          source: c.JMDICT,
+          id: parseInt(id, 10),
+          kanji,
+          reading
+        }
+
+        this.open(input);
+      }
+    }
   }
 
   reset() {

@@ -4,7 +4,7 @@ import { EntryDetailsComponent } from './entry-details.component';
 
 const routes: Routes = [
   {
-    path: 'jmdict', component: EntryDetailsComponent,
+    path: '', component: EntryDetailsComponent,
   },
 ];
 
