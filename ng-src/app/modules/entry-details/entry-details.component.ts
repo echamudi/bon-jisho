@@ -8,7 +8,12 @@ import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictInde
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 import { WindowHelper } from '../main/classes/window-helper';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
+
+const enum Mode {
+  window, // The component is used using direct router, e.g. /#/entry-details/?source=...
+  other // The component is used in other ways
+}
 
 /**
  * JMdict or JMnedict entry viewer
@@ -40,14 +45,23 @@ export class EntryDetailsComponent implements OnInit {
   sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
   sameKanji: JapaneseDB.DictIndexRow[] = [];
 
-  dictSource: DictSource | null;
+  dictSource: DictSource | null = null;
+
+  /** Component usage mode */
+  mode: Mode | null = null;
 
   /**
    * For easter egg
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService, private router: Router) { }
+  constructor(private electronService: ElectronService, private router: Router) {
+    // Prepare history stack
+    this.history = {
+      stack: [null],
+      pointer: 0,
+    };
+  }
 
   getEntities = getEntities;
   isPlace = isPlace;
@@ -58,16 +72,16 @@ export class EntryDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log('entry-details > init');
 
-    // Prepare history stack
-    this.history = {
-      stack: [null],
-      pointer: 0,
-    };
-
     // Render the existing history
     // this.render(this.history.stack[this.history.pointer]);
 
-    const params = this.router.parseUrl(this.router.url).queryParams;
+    const routerSnapshot: ActivatedRouteSnapshot = this.router.routerState.snapshot.root.children[0];
+
+    const params: Params = routerSnapshot.queryParams;
+
+    if (routerSnapshot.routeConfig?.path === 'entry-details') {
+      this.mode = Mode.window;
+    }
 
     if (params.source) {
       const source: string | undefined = params.source;
@@ -231,8 +245,6 @@ export class EntryDetailsComponent implements OnInit {
 
       return;
     }
-
-    return;
   }
 
   openWebBroser(url: string): void {
