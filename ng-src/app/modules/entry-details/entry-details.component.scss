@@ -1,5 +1,6 @@
 @import "../../../style/fill.scss";
 
+// BEM Block: entry-details
 .entry-details {
   padding: 0;
   margin: auto;
@@ -9,21 +10,22 @@
   overflow: auto;
   background: #F1F2F6;
   box-sizing: border-box;
+
+  &__content {
+    padding-top: (50 / 16) * 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__wrap {
+    width: 1024px;
+  }
 }
 
-.entry-details__content {
-  padding-top: (50 / 16) * 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.entry-details__wrap {
-  width: 1024px;
-}
-
+// BEM Block: entry-head
 .entry-head {
   margin-bottom: 20px;
 
@@ -36,35 +38,7 @@
   }
 }
 
-.pill {
-  box-sizing: border-box;
-  background: rgba(0,0,0,0.05);
-  margin: 5px;
-  padding: 5px;
-}
-
-
-.detail-block {
-  padding: 10px 20px;
-  background: #ffffff;
-  border-radius: 4px;
-}
-
-.detail-row {
-  background: #fff;
-  border-bottom: solid #C5C6C8 1px;
-  padding: 10px 0;
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  &__title {
-    color: #7E7F80;
-    margin-bottom: 5px;
-  }
-}
-
+// BEM Block: separator-pad
 .separator-pad {
   margin-top: 20px;
   padding: 10px;
@@ -75,6 +49,7 @@
   }
 }
 
+// BEM Block: sense-item
 .sense-item {
   display: flex;
   margin: 5px 0;
@@ -102,6 +77,24 @@
   }
 }
 
+// BEM Block: tags
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: (-3 / 16) * 1rem;
+
+  &__item {
+    margin: (3 / 16) * 1rem;
+    padding: (5 / 16) * 1rem;
+    border-radius: (3 / 16) * 1rem;
+    background: #e4e5e8;
+    border: solid 1px #b7b7b7;
+    font-size: (14 / 16) * 1rem;
+  }
+}
+
+// Other Stylings
+
 .alternative {
   display: flex;
   margin: 0 -10px;
@@ -115,21 +108,34 @@
   }
 }
 
+.pill {
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.05);
+  margin: 5px;
+  padding: 5px;
+}
+
 rt {
   user-select: none;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: (-3 / 16) * 1rem;
+.detail-block {
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 4px;
+}
 
-  &__item {
-    margin: (3 / 16) * 1rem;
-    padding: (5 / 16) * 1rem;
-    border-radius: (3 / 16) * 1rem;
-    background: #e4e5e8;
-    border: solid 1px #b7b7b7;
-    font-size: (14 / 16) * 1rem;
+.detail-row {
+  background: #fff;
+  border-bottom: solid #C5C6C8 1px;
+  padding: 10px 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__title {
+    color: #7E7F80;
+    margin-bottom: 5px;
   }
 }
