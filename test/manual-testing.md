@@ -25,3 +25,4 @@ List of tasks to be done by an actual user.
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1000310&kanji=馬酔木&reading=あせぶ MUST show the entry details result
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1290160&kanji=根本&reading=こんぽん MUST show the entry details result
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1234563&kanji=馬酔木&reading=あせぶ MUST NOT produce error
+  - Accessing direct URL /#/entry-details/?source=jmnedict&id=5232311&kanji=九段下駅&reading=くだんしたえき MUST show the entry details result
