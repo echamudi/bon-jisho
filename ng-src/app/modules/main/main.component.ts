@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit, OnDestroy {
 
   currentPage: string = '';
-  routerEventsSubscribtions: Subscription;
+  routerEventsSubscribtions: Subscription | undefined;
 
   constructor(private router: Router) { }
 
@@ -26,7 +26,9 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routerEventsSubscribtions.unsubscribe();
+    if (this.routerEventsSubscribtions) {
+      this.routerEventsSubscribtions.unsubscribe();
+    }
   }
 
   selectPage(url: string) {

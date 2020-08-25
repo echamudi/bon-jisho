@@ -18,32 +18,32 @@ const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sql
 
 // Old
 
-/**
- * @param item row json from dict_index
- * @return entry object
- */
-module.exports.getDetailsJson = (item) => {
-  const sourceId = item.source;
-  const { id } = item;
+// /**
+//  * @param item row json from dict_index
+//  * @return entry object
+//  */
+// module.exports.getDetailsJson = (item) => {
+//   const sourceId = item.source;
+//   const { id } = item;
 
-  return new Promise((resolve, reject) => {
-    let query = '';
-    if (sourceId === 1) {
-      // JMdict
-      query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
-    } else if (sourceId === 2) {
-      // JMnedict
-      query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
-    } else {
-      reject();
-    }
+//   return new Promise((resolve, reject) => {
+//     let query = '';
+//     if (sourceId === 1) {
+//       // JMdict
+//       query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
+//     } else if (sourceId === 2) {
+//       // JMnedict
+//       query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
+//     } else {
+//       reject();
+//     }
 
-    db.get(query, id, (err, cell) => {
-      if (err) reject(err);
-      resolve(cell);
-    });
-  });
-};
+//     db.get(query, id, (err, cell) => {
+//       if (err) reject(err);
+//       resolve(cell);
+//     });
+//   });
+// };
 
 // New
 
@@ -54,6 +54,7 @@ module.exports.getDetailsJson = (item) => {
 module.exports.getDictIndexRows = (query) => {
   const { keyword, column } = query;
 
+  /** @type {string} */
   let sql;
 
   if (column === 'kanji') {
@@ -176,6 +177,7 @@ module.exports.getDictIndexRow = (query) => {
     source, id, kanji, reading,
   } = query;
 
+  /** @type {string} */
   let sql;
 
   if (kanji === null) {

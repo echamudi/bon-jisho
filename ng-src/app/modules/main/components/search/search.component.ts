@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   list: JapaneseDB.DictIndexRow[] = [];
 
   @ViewChild('entryDetails', { static: false })
-  entryDetails: EntryDetailsComponent;
+  entryDetails: EntryDetailsComponent | undefined;
 
   constructor(private electronService: ElectronService) { }
 
@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
     this.search(this.keyword);
   }
 
-  search($event) {
+  search($event: string) {
     const currentKeyword = $event;
     setTimeout(() => {
       if (currentKeyword.length === 0) {
@@ -68,6 +68,11 @@ export class SearchComponent implements OnInit {
       kanji: item.kanji ?? null,
       reading: item.reading
     };
+
+    if (this.entryDetails === undefined) {
+      console.log('Error: #entryDetails is not found')
+      return;
+    }
 
     this.entryDetails.open(selectedItem);
   }
