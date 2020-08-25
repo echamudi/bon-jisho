@@ -55,15 +55,17 @@ export class EntryDetailsComponent implements OnInit {
 
   toggleMaximize = WindowHelper.toggleMaximize;
 
-  ngOnInit() {
+  ngOnInit(): void {
     console.log('entry-details > init');
+
+    // Prepare history stack
     this.history = {
       stack: [null],
       pointer: 0,
     };
 
     // Render the existing history
-    this.render(this.history.stack[this.history.pointer]);
+    // this.render(this.history.stack[this.history.pointer]);
 
     const params = this.router.parseUrl(this.router.url).queryParams;
 
@@ -82,6 +84,19 @@ export class EntryDetailsComponent implements OnInit {
         }
 
         this.open(input);
+        return;
+      }
+
+      if (source === 'jmnedict' && id && kanji && reading) {
+        const input: EntryDetailsQuery = {
+          source: c.JMNEDICT,
+          id: parseInt(id, 10),
+          kanji,
+          reading
+        }
+
+        this.open(input);
+        return;
       }
     }
   }
