@@ -21,8 +21,12 @@ List of tasks to be done by an actual user.
 ## Entry Details
 - Back and forward buttons 
   - Back and forward buttons MUST work as the user expected.
-- Direct access
+- Direct URL
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1000310&kanji=馬酔木&reading=あせぶ MUST show the entry details result
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1290160&kanji=根本&reading=こんぽん MUST show the entry details result
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1234563&kanji=馬酔木&reading=あせぶ MUST NOT produce error
   - Accessing direct URL /#/entry-details/?source=jmnedict&id=5232311&kanji=九段下駅&reading=くだんしたえき MUST show the entry details result
+- UI (When used through direct URL)
+  - Toolbar MUST be padded correctly to avoid the OS window control button
+- UI (When used through component)
+  - Toolbar MUST NOT be padded when the component is not near OS window control button
