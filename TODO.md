@@ -9,9 +9,9 @@
 - [x] Implement basic history in entry details.
 - [x] Restructure folders, seperate entry-details to a new module, use router in entry-details
 - [x] Add jmnedict direct access to entry-details
-- [ ] Move classes from main module to shared module
+- [x] Move classes from main module to shared module
 - [ ] entry-details: Add open in new window button
-- [ ] entry-details: Fix back button styling
+- [x] entry-details: Fix back button styling
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
