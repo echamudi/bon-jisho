@@ -9,10 +9,9 @@ import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-ji
 import { WindowHelper } from '../shared/classes/window-helper';
 import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
 
-const enum Mode {
-  window, // The component is used using direct router, e.g. /#/entry-details/?source=...
-  other // The component is used in other ways
-}
+type Mode =
+  'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
+  | 'other'; // The component is used in other ways
 
 /**
  * JMdict or JMnedict entry viewer
@@ -79,7 +78,7 @@ export class EntryDetailsComponent implements OnInit {
     const params: Params = routerSnapshot.queryParams;
 
     if (routerSnapshot.routeConfig?.path === 'entry-details') {
-      this.mode = Mode.window;
+      this.mode = 'window';
     }
 
     if (params.source) {

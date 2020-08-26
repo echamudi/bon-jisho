@@ -81,6 +81,10 @@ body {
   -webkit-app-region: drag;
   display: flex;
   align-items: center;
+
+  &__window-buttons-pad {
+    width: 70px;
+  }
 }
 
 // BEM Block: toolbar-button

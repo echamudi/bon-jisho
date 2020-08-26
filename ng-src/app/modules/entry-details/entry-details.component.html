@@ -1,5 +1,6 @@
 <div class="entry-details">
   <div class="toolbar" (dblclick)="toggleMaximize()">
+    <div *ngIf="mode === 'window'" class="toolbar__window-buttons-pad"></div>
     <div class="toolbar-button"
       [ngClass]="{'toolbar-button__disabled': history.pointer <= 1}"
       (dblclick)="$event.stopPropagation()"
