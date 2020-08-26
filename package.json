@@ -69,7 +69,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "feather-icons": "^4.28.0",
-    "japanese-db": "0.17.0",
+    "japanese-db": "0.19.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.2",
     "jest": "^26.4.0",

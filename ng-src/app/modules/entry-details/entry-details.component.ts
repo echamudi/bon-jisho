@@ -6,7 +6,6 @@ import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
-import { DictIndexRow } from 'japanese-db/lib/types/japanesedb';
 import { WindowHelper } from '../main/classes/window-helper';
 import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
 
@@ -33,7 +32,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   keyword: string = '';
 
-  alternatives: DictIndexRow[] = [];
+  alternatives: JapaneseDB.DictIndexRow[] = [];
 
   /** JMdict/JMnedict json string */
   detailsString: string = '';
