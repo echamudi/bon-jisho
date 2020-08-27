@@ -33,3 +33,7 @@ List of tasks to be done by an actual user.
 - Explore Buttons
   - The search images button MUST be clickable.
   - The search sentences in weblio MUST be clickable.
+- Open popup button
+  - Open popup button in jmdict details MUST open the current details in popup.
+  - Open popup button in jmnedict details MUST open the current details in popup.
+  - Open popup button in empty page details MUST be disabled.
