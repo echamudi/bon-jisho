@@ -8,6 +8,7 @@ import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictInde
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'types/bon-jisho';
 import { WindowHelper } from '../shared/classes/window-helper';
 import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
+import { getEntryDetailsUrl } from 'lib/url-generator';
 
 type Mode =
   'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
@@ -252,5 +253,21 @@ export class EntryDetailsComponent implements OnInit {
 
   exploreClick(): void {
     this.exploreClickCount += 1;
+  }
+
+  popupCurrent(): void {
+    this.popup(this.history.stack[this.history.pointer]);
+  }
+
+  popup(edq: EntryDetailsQuery): void {
+    const url = getEntryDetailsUrl(edq);
+
+    console.log(url);
+
+    if (!(url ?? 0)) return;
+
+    (this.electronService.ipcRenderer
+      .invoke('open-url-electron', { url })).then(() => {
+    });
   }
 }

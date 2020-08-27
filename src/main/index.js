@@ -16,16 +16,16 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 /** @type {Electron.BrowserWindow | null} */
 let mainWindow;
 
+/** @type {string} */
+let preloadPath;
+
+if (isDevelopment) {
+  preloadPath = path.resolve(__static, '../src/preload/preload.js');
+} else {
+  preloadPath = path.join(__static, '/pre.asar/preload.js');
+}
+
 const createMainWindow = () => {
-  /** @type {string} */
-  let preloadPath;
-
-  if (isDevelopment) {
-    preloadPath = path.resolve(__static, '../src/preload/preload.js');
-  } else {
-    preloadPath = path.join(__static, '/pre.asar/preload.js');
-  }
-
   // Create the browser window.
   const window = new BrowserWindow({
     width: 800,
@@ -126,6 +126,39 @@ ipcMain.handle(
 ipcMain.handle('openURL', async (_event, message) => {
   shell.openExternal(message.url);
 });
+
+ipcMain.handle(
+  'open-url-electron',
+  async (_event, message) => {
+    const windowPop = new BrowserWindow({
+      width: 600,
+      height: 550,
+      minWidth: 300,
+      minHeight: 350,
+      titleBarStyle: 'hiddenInset',
+      frame: false,
+      webPreferences: {
+        nodeIntegration: false,
+        enableRemoteModule: false,
+        contextIsolation: true,
+        sandbox: true,
+        preload: preloadPath,
+      },
+    });
+
+    if (isDevelopment) {
+      const url = path.join('http://localhost:4200/', message.url);
+      windowPop.loadURL(url);
+    } else {
+      const url = path.join(__static, '/ng.asar/index.html', message.url);
+      windowPop.loadURL(formatUrl({
+        pathname: url,
+        protocol: 'file',
+        slashes: true,
+      }));
+    }
+  },
+);
 
 // DB connection
 Object.keys(db).forEach((methodName) => {

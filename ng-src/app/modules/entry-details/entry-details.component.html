@@ -17,6 +17,13 @@
         class="toolbar-button__icon"
         src="assets/icons/chevron-right.svg">
     </div>
+    <div *ngIf="mode !== 'window'"
+      class="toolbar-button"
+      (click)="popupCurrent()">
+      <img
+        class="toolbar-button__icon"
+        src="assets/icons/external-link.svg">
+    </div>
   </div>
 
   <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="entry-details__content">
