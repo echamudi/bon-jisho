@@ -70,31 +70,6 @@
         </div>
       </div>
 
-      <div *ngIf="dictIndexRow.tags !== null">
-        <div class="separator-pad">
-          <div class="separator-pad__label">
-            TAGS
-          </div>
-        </div>
-
-        <div class="detail-block">
-          <div class="detail-row">
-            <div class="tags">
-              <div
-                class="tags__item"
-                *ngFor="let tag of dictIndexRow.tags"
-                [tooltip]="getTagDescription(tag)"
-                [options]="{
-                  'show-delay': 10,
-                  'hide-delay': 10,
-                  'placement': 'top'}">
-                {{ tag }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="separator-pad">
         <div class="separator-pad__label">
           TRANSLATION
@@ -147,6 +122,31 @@
                   <button (click)="openWebBroser('https://www.google.com/maps/search/' + keyword)">
                     See location in Google Maps</button>
                 </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="dictIndexRow.tags !== null">
+        <div class="separator-pad">
+          <div class="separator-pad__label">
+            TAGS
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-row">
+            <div class="tags">
+              <div
+                class="tags__item"
+                *ngFor="let tag of dictIndexRow.tags"
+                [tooltip]="getTagDescription(tag)"
+                [options]="{
+                  'show-delay': 10,
+                  'hide-delay': 10,
+                  'placement': 'top'}">
+                {{ tag }}
               </div>
             </div>
           </div>
