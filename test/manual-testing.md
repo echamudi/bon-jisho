@@ -30,3 +30,6 @@ List of tasks to be done by an actual user.
   - Toolbar MUST be padded correctly to avoid the OS window control button
 - UI (When used through component)
   - Toolbar MUST NOT be padded when the component is not near OS window control button
+- Explore Buttons
+  - The search images button MUST be clickable.
+  - The search sentences in weblio MUST be clickable.
