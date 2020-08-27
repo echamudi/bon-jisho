@@ -33,6 +33,7 @@ const createMainWindow = () => {
     minWidth: 620,
     minHeight: 350,
     titleBarStyle: 'hiddenInset',
+    frame: false,
     webPreferences: {
       nodeIntegration: false,
       enableRemoteModule: false,
