@@ -10,8 +10,10 @@
 - [x] Restructure folders, seperate entry-details to a new module, use router in entry-details
 - [x] Add jmnedict direct access to entry-details
 - [x] Move classes from main module to shared module
-- [ ] entry-details: Add open in new window button
+- [x] entry-details: Add open in new window button
 - [x] entry-details: Fix back button styling
+- [ ] entry-details: relocate popup near currently open window.
+- [ ] convert everything to ts
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
