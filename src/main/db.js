@@ -51,7 +51,7 @@ const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sql
  * @param {{keyword: string, column: "kanji-exact"|"kanji"|"reading"|"meaning"|"id"}} query
  * @returns {Promise<JapaneseDB.DictIndexRow[]>}
  */
-module.exports.getDictIndexRows = (query) => {
+export function getDictIndexRows(query) {
   const { keyword, column } = query;
 
   /** @type {string} */
@@ -161,7 +161,7 @@ module.exports.getDictIndexRows = (query) => {
       resolve(postProcessed);
     });
   });
-};
+}
 
 /**
  * @param { {
@@ -172,7 +172,7 @@ module.exports.getDictIndexRows = (query) => {
   }} query
  * @returns {Promise<JapaneseDB.DictIndexRow|null>}
  */
-module.exports.getDictIndexRow = (query) => {
+export function getDictIndexRow(query) {
   const {
     source, id, kanji, reading,
   } = query;
@@ -221,19 +221,19 @@ module.exports.getDictIndexRow = (query) => {
       resolve(postProcessed);
     });
   });
-};
+}
 
 /**
  * @param {{}} query
  * @returns # {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
  */
-module.exports.getEntities = (query) => { };
+export function getEntities(query) { }
 
 /**
  * @param {{entSeqs: number[]}} query
  * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
  */
-module.exports.getJMdictJsonsRows = (query) => {
+export function getJMdictJsonsRows(query) {
   const { entSeqs } = query;
   const wildCards = Array(entSeqs.length).fill('?').join(',');
 
@@ -248,13 +248,13 @@ module.exports.getJMdictJsonsRows = (query) => {
       resolve(postProcessed);
     });
   });
-};
+}
 
 /**
  * @param {{entSeqs: number[]}} query
  * @returns {Promise<JapaneseDB.JMnedictJsonsRow[]>}
  */
-module.exports.getJMnedictJsonsRows = (query) => {
+export function getJMnedictJsonsRows(query) {
   const { entSeqs } = query;
   const wildCards = Array(entSeqs.length).fill('?').join(',');
 
@@ -269,11 +269,11 @@ module.exports.getJMnedictJsonsRows = (query) => {
       resolve(postProcessed);
     });
   });
-};
+}
 
 /**
  *
  * @param {{kanjiChars: string[]}} query
  * @returns # {Promise<JapaneseDB.KanjidicRow[]>}
  */
-module.exports.getKanjidicRows = (query) => { };
+export function getKanjidicRows(query) { }

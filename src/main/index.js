@@ -13,6 +13,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
+/** @type {Electron.BrowserWindow | null} */
 let mainWindow;
 
 const createMainWindow = () => {
@@ -129,6 +130,7 @@ ipcMain.handle('openURL', async (_event, message) => {
 Object.keys(db).forEach((methodName) => {
   ipcMain.handle(
     methodName,
+    // @ts-ignore
     async (event, message) => db[methodName](message),
   );
 });
