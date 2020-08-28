@@ -1,33 +1,11 @@
+// tsconfig for electron main process
 {
-  "compileOnSave": false,
+  "extends": "./node_modules/electron-webpack/tsconfig-base.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "allowJs": true,
-    "checkJs": true,
-    "outDir": "./src/ng-dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "amd",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "strict": true,
-    "target": "es2015",
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "baseUrl": "./src",
+    "skipLibCheck": true
   },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  },
-  "exclude": [
-    "node_modules/**/*.*"
+  "include": [
+    "src/**/*.ts",
   ]
 }
