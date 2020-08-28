@@ -2,10 +2,7 @@
 
 import * as path from 'path';
 import { format as formatUrl } from 'url';
-
-const {
-  app, BrowserWindow, ipcMain, shell,
-} = require('electron');
+import { app, BrowserWindow, ipcMain, shell} from 'electron';
 
 const db = require('./db');
 
@@ -13,11 +10,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-/** @type {Electron.BrowserWindow | null} */
-let mainWindow;
+let mainWindow: Electron.BrowserWindow | null;
 
-/** @type {string} */
-let preloadPath;
+let preloadPath: string;
 
 if (isDevelopment) {
   preloadPath = path.resolve(__static, '../src/preload/preload.js');
@@ -48,7 +43,6 @@ const createMainWindow = () => {
   }
 
   if (isDevelopment) {
-    // window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
     window.loadURL('http://localhost:4200');
   } else {
     window.loadURL(formatUrl({
@@ -97,11 +91,11 @@ app.on('ready', () => {
 
 app.allowRendererProcessReuse = true;
 
-app.on('browser-window-blur', (event, browserWindow) => {
+app.on('browser-window-blur', (_event, browserWindow: BrowserWindow) => {
   browserWindow.webContents.send('browser-window-blur', null);
 });
 
-app.on('browser-window-focus', (event, browserWindow) => {
+app.on('browser-window-focus', (_event, browserWindow) => {
   browserWindow.webContents.send('browser-window-focus', null);
 });
 
