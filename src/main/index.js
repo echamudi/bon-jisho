@@ -130,7 +130,12 @@ ipcMain.handle('openURL', async (_event, message) => {
 ipcMain.handle(
   'open-url-electron',
   async (_event, message) => {
+    const focusedWindow = BrowserWindow.getFocusedWindow();
+    const [x, y] = focusedWindow?.getPosition() ?? [100, 100];
+
     const windowPop = new BrowserWindow({
+      x: x + 40,
+      y: y + 40,
       width: 600,
       height: 550,
       minWidth: 300,
