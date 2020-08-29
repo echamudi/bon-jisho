@@ -3,8 +3,7 @@
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 import { app, BrowserWindow, ipcMain, shell} from 'electron';
-
-const db = require('./db');
+import * as db from './db';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
