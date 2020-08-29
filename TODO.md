@@ -12,8 +12,8 @@
 - [x] Move classes from main module to shared module
 - [x] entry-details: Add open in new window button
 - [x] entry-details: Fix back button styling
-- [ ] entry-details: relocate popup near currently open window.
-- [ ] convert everything to ts
+- [x] entry-details: relocate popup near currently open window.
+- [x] convert everything to ts
 - [ ] Link alternative, explore, and see also words in entry details.
 - [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
