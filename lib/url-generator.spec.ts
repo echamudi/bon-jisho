@@ -1,4 +1,4 @@
-const { getEntryDetailsUrl } = require('./url-generator');
+import { getEntryDetailsUrl } from './url-generator';
 
 test('getEntryDetailsUrl', () => {
   // Normal tests
@@ -9,7 +9,7 @@ test('getEntryDetailsUrl', () => {
       kanji: '色',
       reading: 'いろ',
     }),
-  ).toBe('/#/entry-details/?source=jmdict&id=123&kanji=%E8%89%B2&reading=%E3%81%84%E3%82%8D');
+  ).toBe('#/entry-details/?source=jmdict&id=123&kanji=%E8%89%B2&reading=%E3%81%84%E3%82%8D');
 
   expect(
     getEntryDetailsUrl({
@@ -18,7 +18,7 @@ test('getEntryDetailsUrl', () => {
       kanji: '色',
       reading: 'いろ',
     }),
-  ).toBe('/#/entry-details/?source=jmnedict&id=123&kanji=%E8%89%B2&reading=%E3%81%84%E3%82%8D');
+  ).toBe('#/entry-details/?source=jmnedict&id=123&kanji=%E8%89%B2&reading=%E3%81%84%E3%82%8D');
 
   // Null kanji tests
   expect(
@@ -28,7 +28,7 @@ test('getEntryDetailsUrl', () => {
       kanji: null,
       reading: 'いろ',
     }),
-  ).toBe('/#/entry-details/?source=jmdict&id=123&kanji=null&reading=%E3%81%84%E3%82%8D');
+  ).toBe('#/entry-details/?source=jmdict&id=123&kanji=null&reading=%E3%81%84%E3%82%8D');
 
   // Other tests
   expect(

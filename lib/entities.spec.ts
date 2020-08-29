@@ -1,4 +1,4 @@
-const { getTagDescription } = require('./entities');
+import { getTagDescription } from './entities';
 
 test('getTagDescription', () => {
   expect(
