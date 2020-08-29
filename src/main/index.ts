@@ -146,15 +146,15 @@ ipcMain.handle(
     });
 
     if (isDevelopment) {
-      const url = path.join('http://localhost:4200/', message.url);
+      const url = 'http://localhost:4200/' + message.url;
       windowPop.loadURL(url);
     } else {
-      const url = path.join(__static, '/ng.asar/index.html', message.url);
+      const url = __static + '/ng.asar/index.html';
       windowPop.loadURL(formatUrl({
         pathname: url,
         protocol: 'file',
         slashes: true,
-      }));
+      }) + message.url);
     }
   },
 );
