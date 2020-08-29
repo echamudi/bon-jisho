@@ -9,18 +9,13 @@ List of tasks to be done by an actual user.
 - Search for anything
   - The user MUST see a link to DuckDuckGo image search.
   - Hovering over the tags MUST show the tooltip of the tag meaning.
-- Search for 家町江良
-  - The user MUST see a button linking to Google Maps.
-- Search for 鳥取 とっとり
-  - The user MUST see a button linking to Google Maps.
-- Search for 鳥取 ととり
-  - The user MUST NOT see a button linking to Google Maps.
 - Going back to the word search screen
   - The user MUST see the last visited entry details before the user left.
 
 ## Entry Details
-- Back and forward buttons 
-  - Back and forward buttons MUST work as the user expected.
+
+### All Pages
+
 - Direct URL
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1000310&kanji=馬酔木&reading=あせぶ MUST show the entry details result
   - Accessing direct URL /#/entry-details/?source=jmdict&id=1290160&kanji=根本&reading=こんぽん MUST show the entry details result
@@ -30,18 +25,26 @@ List of tasks to be done by an actual user.
   - Toolbar MUST be padded correctly to avoid the OS window control button
 - UI (When used through component)
   - Toolbar MUST NOT be padded when the component is not near OS window control button
-- Explore Buttons
-  - The search images button MUST be clickable.
-  - The search sentences in weblio MUST be clickable.
 - Open popup button
   - Open popup button in jmdict details MUST open the current details in popup.
   - Open popup button in jmnedict details MUST open the current details in popup.
   - Open popup button in empty page details MUST be disabled.
-
-## Sample Entries
+- Behaviour
+  - Back and forward buttons 
+    - Back and forward buttons MUST work as the user expected.
+  - Explore Buttons
+    - The search images button MUST be clickable.
+    - The search sentences in weblio MUST be clickable.
+### Special Features on Some Pages
 - 星鴉
   - The alternative reading and writing links MUST redirect to the corresponding pages.
 - 阿呆陀羅
   - The page must show "type of fast-paced humorous..." as only あほだら reading
 - 憐れむ
   - The page must show "to enjoy the beauty of; to appreciate..." as only 哀れむ writing
+- 家町江良
+  - The user MUST see a button linking to Google Maps.
+- 鳥取 とっとり
+  - The user MUST see a button linking to Google Maps.
+- 鳥取 ととり
+  - The user MUST NOT see a button linking to Google Maps.
