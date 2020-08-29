@@ -4,6 +4,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": "./",
+    "paths": {
+      "Main/*": [ "src/main/*" ],
+      "App/*": [ "ng-src/app/*" ],
+      "Lib/*": [ "lib/*" ],
+    },
     "allowJs": true,
     "checkJs": true,
 
@@ -19,7 +24,9 @@
       "dom"
     ],
 
-    "skipLibCheck": true
+    // Other rules for Electron
+
+    "skipLibCheck": true,
   },
   "exclude": [
     "node_modules/**/*.*"

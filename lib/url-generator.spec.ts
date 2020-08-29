@@ -1,4 +1,4 @@
-import { getEntryDetailsUrl } from './url-generator';
+import { getEntryDetailsUrl } from 'Lib/url-generator';
 
 test('getEntryDetailsUrl', () => {
   // Normal tests

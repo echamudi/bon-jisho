@@ -1,4 +1,4 @@
-import { getTagDescription } from './entities';
+import { getTagDescription } from 'Lib/entities';
 
 test('getTagDescription', () => {
   expect(

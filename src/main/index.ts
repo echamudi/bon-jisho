@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 import { app, BrowserWindow, ipcMain, shell} from 'electron';
-import * as db from './db';
+import * as db from 'Main/db';
 
 declare const __static: string;
 

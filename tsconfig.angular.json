@@ -2,23 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2015",
-    "module": "amd",
-    "moduleResolution": "node",
-
-    "strict": true,
-    "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-
-    "sourceMap": true,
-
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-
-    "newLine": "lf",
-
     "baseUrl": "./",
+    "rootDir": "./",
+    "paths": {
+      "Main/*": [ "src/main/*" ],
+      "App/*": [ "ng-src/app/*" ],
+      "Lib/*": [ "lib/*" ],
+    },
     "allowJs": true,
     "checkJs": true,
 
@@ -34,7 +24,25 @@
       "dom"
     ],
 
-    "outDir": "./out-tsc"
+    // Other rules for angular
+
+    "outDir": "./out-tsc",
+
+    "target": "es2015",
+    "module": "amd",
+    "moduleResolution": "node",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+
+    "sourceMap": true,
+
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+
+    "newLine": "lf",
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -5,4 +5,5 @@ module.exports = {
     '**/src/main/**/?(*.)+(spec|test).[jt]s?(x)',
   ],
   verbose: true,
+  transform: { '^.+\\.[jt]s$': '<rootDir>/jest-preprocess.js' },
 };

@@ -1,4 +1,4 @@
-import { getJMdictJsonsRows } from './db';
+import { getJMdictJsonsRows } from 'Main/db';
 
 test('getJMdictJsonsRows', async () => {
   getJMdictJsonsRows({

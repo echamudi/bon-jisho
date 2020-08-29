@@ -3,6 +3,11 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "Main/*": [ "../src/main/*" ],
+      "App/*": [ "../ng-src/app/*" ],
+      "Lib/*": [ "./*" ],
+    },
   },
   "include": [
     "./**/*.ts",
