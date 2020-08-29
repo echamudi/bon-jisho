@@ -1,13 +1,7 @@
-/**
- * @typedef { import("types/bon-jisho").DictSource } DictSource
- */
-
-/** */
-
 import * as c from './const';
+import { DictSource } from '../types/bon-jisho';
 
-/** @type {Record<string, string>} */
-export const JMdictEntities = JSON.parse(`
+export const JMdictEntities: Record<string, string> = JSON.parse(`
 {
   "X": "rude or X-rated term (not displayed in educational software)",
   "MA": "martial arts term",
@@ -185,8 +179,7 @@ export const JMdictEntities = JSON.parse(`
 }
 `);
 
-/** @type {Record<string, string>} */
-export const JMnedictEntitites = JSON.parse(`
+export const JMnedictEntitites: Record<string, string> = JSON.parse(`
 {
   "surname": "family or surname",
   "place": "place name",
@@ -222,8 +215,8 @@ export const JMnedictEntitites = JSON.parse(`
  * to the second, and so on. (The entries with news1, ichi1, spec1, spec2
  * and gai1 values are marked with a "(P)" in the EDICT and EDICT2
  * files.)
- * @type {Record<string, string>} */
-export const Priorities = JSON.parse(`
+ */
+export const Priorities: Record<string, string> = JSON.parse(`
 {
   "news1": "This word appears in the first 12,000 words out of 24,000 words from Mainichi Shimbun frequency list.",
   "news2": "This word appears in the second 12,000 words out of 24,000 words from Mainichi Shimbun frequency list.",
@@ -236,10 +229,8 @@ export const Priorities = JSON.parse(`
 
 /**
  * Get tag description
- * @param {string} tag
- * @returns {string}
  */
-export function getTagDescription(tag) {
+export function getTagDescription(tag: string): string {
   if (Priorities[tag] !== undefined) {
     return Priorities[tag];
   }
@@ -257,31 +248,16 @@ export function getTagDescription(tag) {
   return '';
 }
 
-/**
- * @param {string} key
- * @param {DictSource} dict
- * @returns {string}
- */
-export function getEntity(key, dict) {
+export function getEntity(key: string, dict: DictSource): string {
   if (dict === c.JMNEDICT) return JMnedictEntitites[key];
   if (dict === c.JMDICT) return JMdictEntities[key];
   return key;
 }
 
-/**
- * @param {string[]} keys
- * @param {DictSource} dict
- * @returns {string[]}
- */
-export function getEntities(keys, dict) {
+export function getEntities(keys: string[], dict: DictSource): string[] {
   return keys.map((key) => getEntity(key, dict));
 }
 
-/**
- * Check if an array of entities contains keywords indicating a place name.
- * @param {string[]} keys
- * @returns {boolean}
- */
-export function isPlace(keys) {
+export function isPlace(keys: string[]): boolean {
   return keys.some((key) => key === 'place' || key === 'station');
 }

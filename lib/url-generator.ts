@@ -1,15 +1,7 @@
 import * as c from './const';
+import { EntryDetailsQuery } from '../types/bon-jisho';
 
-/* eslint-disable import/prefer-default-export */
-/**
- * @typedef { import("types/bon-jisho").EntryDetailsQuery } EntryDetailsQuery
- */
-
-/**
- * @param {EntryDetailsQuery} query
- * @returns {string | null}
- */
-export function getEntryDetailsUrl(query) {
+export function getEntryDetailsUrl(query: EntryDetailsQuery): string | null {
   if (!query) {
     return null;
   }
