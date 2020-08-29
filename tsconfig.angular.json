@@ -8,6 +8,7 @@
       "Main/*": [ "src/main/*" ],
       "App/*": [ "ng-src/app/*" ],
       "Lib/*": [ "lib/*" ],
+      "Types/*": [ "types/*" ],
     },
     "allowJs": true,
     "checkJs": true,
