@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WindowHelper } from '../../../shared/classes/window-helper';
+import { WindowHelper } from 'App/modules/shared/classes/window-helper';
 
 @Component({
   selector: 'app-sidebar',

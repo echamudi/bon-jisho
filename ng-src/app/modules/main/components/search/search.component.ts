@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EntryDetailsComponent } from '../../../entry-details/entry-details.component';
-import { ElectronService } from '../../../shared/services/electron.service';
+import { EntryDetailsComponent } from 'App/modules/entry-details/entry-details.component';
+import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { JapaneseDB } from 'japanese-db';
 
-import { getDictIndexRows } from 'src/main/db';
+import { getDictIndexRows } from 'Main/db';
 
 @Component({
   selector: 'app-main--search',

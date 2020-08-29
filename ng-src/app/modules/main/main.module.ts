@@ -9,8 +9,8 @@ import { InspectTextComponent } from './components/inspect-text/inspect-text.com
 import { SearchComponent } from './components/search/search.component';
 
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
-import { EntryDetailsModule } from '../entry-details/entry-details.module';
+import { SharedModule } from 'App/modules/shared/shared.module';
+import { EntryDetailsModule } from 'App/modules/entry-details/entry-details.module';
 
 @NgModule({
   declarations: [
