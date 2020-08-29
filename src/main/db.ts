@@ -1,18 +1,12 @@
-/**
- * @typedef {import('japanese-db').JapaneseDB.DictIndexRow} JapaneseDB.DictIndexRow
- * @typedef {import('japanese-db').JapaneseDB.JMdictEntitiesRow} JapaneseDB.JMdictEntitiesRow
- * @typedef {import('japanese-db').JapaneseDB.JMnedictEntitiesRow} JapaneseDB.JMnedictEntitiesRow
- * @typedef {import('japanese-db').JapaneseDB.JMdictJsonsRow} JapaneseDB.JMdictJsonsRow
- * @typedef {import('japanese-db').JapaneseDB.JMnedictJsonsRow} JapaneseDB.JMnedictJsonsRow
- * @typedef {import('japanese-db').JapaneseDB.KanjidicRow} JapaneseDB.KanjidicRow
- * */
+import { JapaneseDB } from 'japanese-db';
 
-// eslint-disable-next-line spaced-comment
-/// <reference types="./main" />
-
-/** */
 const sqlite3 = require('sqlite3');
 const path = require('path');
+
+if (process.env.JEST_WORKER_ID) {
+  // tslint:disable-next-line
+  var __static = path.join(__dirname, '../../static');
+}
 
 const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
 
@@ -47,15 +41,15 @@ const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sql
 
 // New
 
-/**
- * @param {{keyword: string, column: "kanji-exact"|"kanji"|"reading"|"meaning"|"id"}} query
- * @returns {Promise<JapaneseDB.DictIndexRow[]>}
- */
-export function getDictIndexRows(query) {
+export function getDictIndexRows(
+  query: {
+    keyword: string,
+    column: 'kanji-exact' | 'kanji' | 'reading' | 'meaning' | 'id'
+  }): Promise<JapaneseDB.DictIndexRow[]> {
+
   const { keyword, column } = query;
 
-  /** @type {string} */
-  let sql;
+  let sql: string;
 
   if (column === 'kanji') {
     sql = `
@@ -152,7 +146,7 @@ export function getDictIndexRows(query) {
   return new Promise((resolve) => {
     db.all(sql, {
       1: keyword,
-    }, (err, rows) => {
+    }, (_err: any, rows: any[]) => {
       const postProcessed = rows.map((row) => ({
         ...row,
         furigana: JSON.parse(row.furigana),
@@ -163,22 +157,17 @@ export function getDictIndexRows(query) {
   });
 }
 
-/**
- * @param { {
+export function getDictIndexRow(
+  query: {
     source: number,
     id: number,
     kanji: string | null,
     reading: string
-  }} query
- * @returns {Promise<JapaneseDB.DictIndexRow|null>}
- */
-export function getDictIndexRow(query) {
-  const {
-    source, id, kanji, reading,
-  } = query;
+  }): Promise<JapaneseDB.DictIndexRow|null> {
 
-  /** @type {string} */
-  let sql;
+  const { source, id, kanji, reading } = query;
+
+  let sql: string;
 
   if (kanji === null) {
     sql = `
@@ -207,7 +196,7 @@ export function getDictIndexRow(query) {
       2: id,
       3: kanji,
       4: reading,
-    }, (err, row) => {
+    }, (err: any, row: any) => {
       if (row === undefined) {
         resolve(null);
         return;
@@ -223,24 +212,16 @@ export function getDictIndexRow(query) {
   });
 }
 
-/**
- * @param {{}} query
- * @returns # {Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}>}
- */
-export function getEntities(query) { }
+// export function getEntities(query: {}): Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}> { }
 
-/**
- * @param {{entSeqs: number[]}} query
- * @returns {Promise<JapaneseDB.JMdictJsonsRow[]>}
- */
-export function getJMdictJsonsRows(query) {
+export function getJMdictJsonsRows(query: {entSeqs: number[]}): Promise<JapaneseDB.JMdictJsonsRow[]> {
   const { entSeqs } = query;
   const wildCards = Array(entSeqs.length).fill('?').join(',');
 
   const sql = `SELECT * FROM jmdict_jsons WHERE ent_seq IN (${wildCards})`;
 
   return new Promise((resolve) => {
-    db.all(sql, entSeqs, (err, rows) => {
+    db.all(sql, entSeqs, (err: any, rows: any[]) => {
       const postProcessed = rows.map((value) => ({
         ent_seq: value.ent_seq,
         json: JSON.parse(value.json),
@@ -250,18 +231,14 @@ export function getJMdictJsonsRows(query) {
   });
 }
 
-/**
- * @param {{entSeqs: number[]}} query
- * @returns {Promise<JapaneseDB.JMnedictJsonsRow[]>}
- */
-export function getJMnedictJsonsRows(query) {
+export function getJMnedictJsonsRows(query: { entSeqs: number[] }): Promise<JapaneseDB.JMnedictJsonsRow[]> {
   const { entSeqs } = query;
   const wildCards = Array(entSeqs.length).fill('?').join(',');
 
   const sql = `SELECT * FROM jmnedict_jsons WHERE ent_seq IN (${wildCards})`;
 
   return new Promise((resolve) => {
-    db.all(sql, entSeqs, (err, rows) => {
+    db.all(sql, entSeqs, (err: any, rows: any[]) => {
       const postProcessed = rows.map((value) => ({
         ent_seq: value.ent_seq,
         json: JSON.parse(value.json),
@@ -271,9 +248,4 @@ export function getJMnedictJsonsRows(query) {
   });
 }
 
-/**
- *
- * @param {{kanjiChars: string[]}} query
- * @returns # {Promise<JapaneseDB.KanjidicRow[]>}
- */
-export function getKanjidicRows(query) { }
+// export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjidicRow[]> { }
