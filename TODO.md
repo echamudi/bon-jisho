@@ -15,7 +15,8 @@
 - [x] entry-details: relocate popup near currently open window.
 - [x] convert everything to ts
 - [ ] Link alternative, explore, and see also words in entry details.
-- [ ] Add kanjidic details in entry details.
 - [ ] Add kanji breakdown
+- [ ] Add single kanji search result in search
+- [ ] Add kanjidic details in entry details.
 - [ ] Link kanji breakdown
 - [ ] Design kanji search look
