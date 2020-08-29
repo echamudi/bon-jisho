@@ -10,37 +10,6 @@ if (process.env.JEST_WORKER_ID) {
 
 const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
 
-// Old
-
-// /**
-//  * @param item row json from dict_index
-//  * @return entry object
-//  */
-// module.exports.getDetailsJson = (item) => {
-//   const sourceId = item.source;
-//   const { id } = item;
-
-//   return new Promise((resolve, reject) => {
-//     let query = '';
-//     if (sourceId === 1) {
-//       // JMdict
-//       query = 'SELECT json FROM jmdict_jsons WHERE ent_seq = ?';
-//     } else if (sourceId === 2) {
-//       // JMnedict
-//       query = 'SELECT json FROM jmnedict_jsons WHERE ent_seq = ?';
-//     } else {
-//       reject();
-//     }
-
-//     db.get(query, id, (err, cell) => {
-//       if (err) reject(err);
-//       resolve(cell);
-//     });
-//   });
-// };
-
-// New
-
 export function getDictIndexRows(
   query: {
     keyword: string,
