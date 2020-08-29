@@ -2,19 +2,29 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "target": "es2015",
+    "module": "amd",
+    "moduleResolution": "node",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+
+    "sourceMap": true,
+
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+
+    "newLine": "lf",
+
     "baseUrl": "./",
     "allowJs": true,
     "checkJs": true,
-    "outDir": "./out-tsc",
-    "sourceMap": true,
+
     "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "amd",
-    "moduleResolution": "node",
     "importHelpers": true,
-    "strict": true,
-    "target": "es2015",
     "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
@@ -22,7 +32,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+
+    "outDir": "./out-tsc"
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
