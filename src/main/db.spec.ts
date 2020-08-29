@@ -1,10 +1,3 @@
-import * as path from 'path';
-
-// Add __static property to match the electron env
-// @ts-ignore
-// eslint-disable-next-line no-underscore-dangle
-global.__static = path.join(__dirname, '../../static');
-
 import { getJMdictJsonsRows } from './db';
 
 test('getJMdictJsonsRows', async () => {

@@ -1,3 +1,4 @@
+// tsconfig for angular app
 {
   "extends": "./tsconfig.angular.json",
   "compilerOptions": {

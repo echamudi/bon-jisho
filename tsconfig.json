@@ -3,6 +3,7 @@
   "extends": "./node_modules/electron-webpack/tsconfig-base.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "rootDir": "./",
     "allowJs": true,
     "checkJs": true,
 
@@ -23,7 +24,7 @@
   "exclude": [
     "node_modules/**/*.*"
   ],
-  // "include": [
-  //   "src/**/*.ts",
-  // ]
+  "include": [
+    "src/**/*.ts",
+  ]
 }

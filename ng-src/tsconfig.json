@@ -1,0 +1,7 @@
+// tsconfig for vscode IDE linter only
+{
+  "extends": "../tsconfig.angular.json",
+  "include": [
+    "./**/*.ts",
+  ]
+}

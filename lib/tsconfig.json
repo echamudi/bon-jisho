@@ -1,0 +1,10 @@
+// tsconfig for vscode IDE linter only
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+  },
+  "include": [
+    "./**/*.ts",
+  ]
+}
