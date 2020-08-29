@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
+import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
+
+import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'Main/db';
+
 import { ElectronService } from 'App/modules/shared/services/electron.service';
+import { WindowHelper } from 'App/modules/shared/classes/window-helper';
+
 import { c } from 'Lib/const';
 import { getEntities, isPlace, getTagDescription } from 'Lib/entities';
-
-import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
-import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'src/main/db';
-import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-jisho';
-import { WindowHelper } from 'App/modules/shared/classes/window-helper';
-import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
 import { getEntryDetailsUrl } from 'Lib/url-generator';
+
+import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-jisho';
 
 type Mode =
   'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
