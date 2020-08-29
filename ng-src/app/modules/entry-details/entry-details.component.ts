@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../shared/services/electron.service';
 import { c } from 'lib/const';
 import { getEntities, isPlace, getTagDescription } from 'lib/entities';

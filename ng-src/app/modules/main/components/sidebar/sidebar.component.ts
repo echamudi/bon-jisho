@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WindowHelper } from '../../../shared/classes/window-helper';
 
 @Component({
