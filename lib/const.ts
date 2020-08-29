@@ -1,2 +1,4 @@
-export const JMDICT = 1;
-export const JMNEDICT = 2;
+export const enum c {
+  JMDICT = 1,
+  JMNEDICT = 2
+}

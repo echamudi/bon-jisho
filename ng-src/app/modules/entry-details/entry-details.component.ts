@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ElectronService } from '../shared/services/electron.service';
-import * as c from 'lib/const';
+import { c } from 'lib/const';
 import { getEntities, isPlace, getTagDescription } from 'lib/entities';
 
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';

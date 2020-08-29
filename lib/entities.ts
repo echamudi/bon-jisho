@@ -1,4 +1,4 @@
-import * as c from './const';
+import { c } from './const';
 import { DictSource } from '../types/bon-jisho';
 
 export const JMdictEntities: Record<string, string> = JSON.parse(`

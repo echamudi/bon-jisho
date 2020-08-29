@@ -1,7 +1,8 @@
 import { JapaneseDB } from 'japanese-db';
+import * as sqlite3 from 'sqlite3';
+import * as path from 'path';
 
-const sqlite3 = require('sqlite3');
-const path = require('path');
+declare const __static: string;
 
 const db = (() => {
   if (process.env.JEST_WORKER_ID) {

@@ -1,4 +1,4 @@
-import * as c from './const';
+import { c } from './const';
 import { EntryDetailsQuery } from '../types/bon-jisho';
 
 export function getEntryDetailsUrl(query: EntryDetailsQuery): string | null {
