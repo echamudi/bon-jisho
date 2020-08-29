@@ -3,12 +3,13 @@ import { JapaneseDB } from 'japanese-db';
 const sqlite3 = require('sqlite3');
 const path = require('path');
 
-if (process.env.JEST_WORKER_ID) {
-  // tslint:disable-next-line
-  var __static = path.join(__dirname, '../../static');
-}
-
-const db = new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
+const db = (() => {
+  if (process.env.JEST_WORKER_ID) {
+    return new sqlite3.Database(path.join(__dirname, '../../static/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
+  } else {
+    return new sqlite3.Database(path.join(__static, '/db-dist/japanese.db'), sqlite3.OPEN_READONLY);
+  }
+})();
 
 export function getDictIndexRows(
   query: {
