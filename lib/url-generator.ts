@@ -1,5 +1,5 @@
 import { c } from './const';
-import { EntryDetailsQuery } from '../types/bon-jisho';
+import { EntryDetailsQuery } from 'Types/bon-jisho';
 
 export function getEntryDetailsUrl(query: EntryDetailsQuery): string | null {
   if (!query) {

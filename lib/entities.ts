@@ -1,5 +1,5 @@
 import { c } from './const';
-import { DictSource } from '../types/bon-jisho';
+import { DictSource } from 'Types/bon-jisho';
 
 export const JMdictEntities: Record<string, string> = JSON.parse(`
 {
