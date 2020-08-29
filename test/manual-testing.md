@@ -37,3 +37,11 @@ List of tasks to be done by an actual user.
   - Open popup button in jmdict details MUST open the current details in popup.
   - Open popup button in jmnedict details MUST open the current details in popup.
   - Open popup button in empty page details MUST be disabled.
+
+## Sample Entries
+- 星鴉
+  - The alternative reading and writing links MUST redirect to the corresponding pages.
+- 阿呆陀羅
+  - The page must show "type of fast-paced humorous..." as only あほだら reading
+- 憐れむ
+  - The page must show "to enjoy the beauty of; to appreciate..." as only 哀れむ writing
