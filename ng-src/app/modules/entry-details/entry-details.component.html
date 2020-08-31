@@ -204,7 +204,8 @@
               {{ dictIndexRow.reading }} reading)
             </div>
             <table>
-              <tr *ngFor="let row of sameKanjiSameReading">
+              <tr *ngFor="let row of sameKanjiSameReading"
+                (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
                 <td><b>{{ row.kanji }}</b></td>
                 <td>{{ row.reading }}</td>
                 <td>{{ row.meaning }}</td>
@@ -216,7 +217,8 @@
               Same Writings (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
             </div>
             <table>
-              <tr *ngFor="let row of sameKanji">
+              <tr *ngFor="let row of sameKanji"
+                (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
                 <td><b>{{ row.kanji }}</b></td>
                 <td>{{ row.reading }}</td>
                 <td>{{ row.meaning }}</td>
