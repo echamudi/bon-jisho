@@ -222,8 +222,6 @@ export class EntryDetailsComponent implements OnInit {
               value.id !== input.id
           );
         });
-      } else {
-        // TODO: handle if it's reading only without kanji
       }
 
       return;
