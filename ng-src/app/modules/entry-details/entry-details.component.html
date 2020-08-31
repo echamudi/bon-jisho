@@ -49,7 +49,7 @@
             </ruby>
           </ng-container>
           <!-- If it's a kana only word -->
-          <ng-container *ngIf="!dictIndexRow.furigana && !dictIndexRow.kanji">
+          <ng-container *ngIf="!dictIndexRow.kanji">
             <ruby>
               <rb>{{ dictIndexRow.reading }}</rb>
             </ruby>
@@ -70,24 +70,24 @@
                 class="alternative__item"
                 *ngIf="!(alternative.kanji === dictIndexRow.kanji && alternative.reading === dictIndexRow.reading)"
                 (click)="open({source: alternative.source, id: alternative.id, kanji: alternative.kanji, reading: alternative.reading})">
-                <!-- If it has furigana array -->
+                <!-- If it's a kanji word and has furigana breakdown -->
                 <ng-container *ngIf="alternative.furigana">
                   <ruby *ngFor="let furiganaChunk of alternative.furigana">
                     <rb>{{ furiganaChunk.w }}</rb>
                     <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
                   </ruby>
                 </ng-container>
-                <!-- If it doesn't furigana array and it's a hiragana only word -->
-                <ng-container *ngIf="!alternative.furigana && !alternative.kanji">
-                  <ruby>
-                    <rb>{{ alternative.reading }}</rb>
-                  </ruby>
-                </ng-container>
-                <!-- If it doesn't furigana array and it has kanji writing -->
-                <ng-container *ngIf="!alternative.furigana && alternative.kanji">
+                <!-- If it's a kanji word but doesn't have furigana breakdown -->
+                <ng-container *ngIf="alternative.kanji && !alternative.furigana">
                   <ruby>
                     <rb>{{ alternative.kanji }}</rb>
                     <rt>{{ alternative.reading }}</rt>
+                  </ruby>
+                </ng-container>
+                <!-- If it's a kana only word -->
+                <ng-container *ngIf="!alternative.kanji">
+                  <ruby>
+                    <rb>{{ alternative.reading }}</rb>
                   </ruby>
                 </ng-container>
               </div>

@@ -58,3 +58,8 @@ List of tasks to be done by an actual user.
   - It MUST only show one alternative, which is 絵入根本 えいりねほん
 - 絵入根本
   - It MUST only show one alternative, which is 絵入り根本 えいりねほん
+- 馬珂貝 ばかがい
+  - Alternative Writings and Readings MUST show these items only:
+    - バカ貝
+    - 馬鹿貝
+    - バカガイ
