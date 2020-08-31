@@ -36,6 +36,8 @@ List of tasks to be done by an actual user.
     - The search images button MUST be clickable.
     - The search sentences in weblio MUST be clickable.
 ### Special Features on Some Pages
+- 根本
+  - Explore other definitions (same writings) MUST be clickable.
 - 星鴉
   - The alternative reading and writing links MUST redirect to the corresponding pages.
 - 阿呆陀羅
