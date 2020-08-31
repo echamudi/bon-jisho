@@ -101,9 +101,18 @@
   &__item {
     width: 12em;
     margin: 0.25rem;
-    border-radius: (3 / 16) * 1rem;
-    background: #f7f7f7;
-    border: solid 1px #b7b7b7;
+    background: #f5f5f5;
+    user-select: none;
+    transition: 0.075s ease-in-out;
+
+    &:hover {
+      background: darken(#f5f5f5, 2%);
+    }
+
+    &:active {
+      background: darken(#f5f5f5, 4%);
+      transform: scale(0.99);
+    }
   }
 
   &__word {
