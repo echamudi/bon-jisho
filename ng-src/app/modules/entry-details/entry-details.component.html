@@ -209,14 +209,12 @@
             </div>
             <table>
               <!-- Same writing -->
-              <ng-container>
-                <tr *ngFor="let row of sameKanji"
-                (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
-                  <td><b>{{ row.kanji }}</b></td>
-                  <td>{{ row.reading }}</td>
-                  <td>{{ row.meaning }}</td>
-                </tr>
-              </ng-container>
+              <tr *ngFor="let row of sameKanji"
+              (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
+                <td><b>{{ row.kanji }}</b></td>
+                <td>{{ row.reading }}</td>
+                <td>{{ row.meaning }}</td>
+              </tr>
             </table>
           </div>
           <div class="detail-row">
