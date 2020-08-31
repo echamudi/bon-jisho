@@ -54,10 +54,12 @@
         <div class="detail-row">
           <div class="detail-row__title">Alternative Writings and Readings</div>
           <div class="alternative">
-            <div *ngFor="let alternative of alternatives" class="alternative__item"
-              (click)="open({source: alternative.source, id: alternative.id, kanji: alternative.kanji, reading: alternative.reading})">
+            <ng-container *ngFor="let alternative of alternatives">
               <!-- Only show alternative that different from the currently displayed -->
-              <ng-container *ngIf="!(alternative.kanji === dictIndexRow.kanji && alternative.reading === dictIndexRow.reading)">
+              <div
+                class="alternative__item"
+                *ngIf="!(alternative.kanji === dictIndexRow.kanji && alternative.reading === dictIndexRow.reading)"
+                (click)="open({source: alternative.source, id: alternative.id, kanji: alternative.kanji, reading: alternative.reading})">
                 <!-- If it has furigana array -->
                 <div *ngIf="alternative.furigana">
                   <ruby *ngFor="let furiganaChunk of alternative.furigana">
@@ -78,8 +80,8 @@
                     <rt>{{ alternative.reading }}</rt>
                   </ruby>
                 </div>
-              </ng-container>
-            </div>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>
