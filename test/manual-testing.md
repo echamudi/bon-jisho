@@ -36,8 +36,12 @@ List of tasks to be done by an actual user.
     - The search images button MUST be clickable.
     - The search sentences in weblio MUST be clickable.
 ### Special Features on Some Pages
-- 根本
+- 根本 ねもと　1290160
   - Explore other definitions (same writings) MUST be clickable.
+  - The "other dictionary items" MUST show only:
+    - 根本 ねもと Nemoto;
+    - 根本 ねほん kabuki script; illustrated kabuki script;
+    - 根本 めもと Memoto;
 - 星鴉
   - The alternative reading and writing links MUST redirect to the corresponding pages.
 - 阿呆陀羅

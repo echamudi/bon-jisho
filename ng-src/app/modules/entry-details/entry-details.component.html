@@ -198,31 +198,30 @@
           </div>
         </div>
         <div class="detail-block">
-          <div *ngIf="sameKanjiSameReading.length > 0" class="detail-row">
+          <div class="detail-row">
             <div class="detail-row__title">
-              Alternative Definitions (Other dictionary items with {{ dictIndexRow.kanji }} writing and
-              {{ dictIndexRow.reading }} reading)
+              Other dictionary items with {{ dictIndexRow.kanji }} word.
             </div>
             <table>
-              <tr *ngFor="let row of sameKanjiSameReading"
+              <!-- Same writing, same reading -->
+              <ng-container *ngIf="sameKanjiSameReading.length > 0">
+                <tr *ngFor="let row of sameKanjiSameReading"
+                  (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
+                  <td><b>{{ row.kanji }}</b></td>
+                  <td>{{ row.reading }}</td>
+                  <td>{{ row.meaning }}</td>
+                </tr>
+              </ng-container>
+
+              <!-- Same writing, different reading -->
+              <ng-container  *ngIf="sameKanji.length > 0">
+                <tr *ngFor="let row of sameKanji"
                 (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
-                <td><b>{{ row.kanji }}</b></td>
-                <td>{{ row.reading }}</td>
-                <td>{{ row.meaning }}</td>
-              </tr>
-            </table>
-          </div>
-          <div *ngIf="sameKanji.length > 0" class="detail-row">
-            <div class="detail-row__title">
-              Same Writings (Other dictionary items with {{ dictIndexRow.kanji }} writing, but with other readings)
-            </div>
-            <table>
-              <tr *ngFor="let row of sameKanji"
-                (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
-                <td><b>{{ row.kanji }}</b></td>
-                <td>{{ row.reading }}</td>
-                <td>{{ row.meaning }}</td>
-              </tr>
+                  <td><b>{{ row.kanji }}</b></td>
+                  <td>{{ row.reading }}</td>
+                  <td>{{ row.meaning }}</td>
+                </tr>
+              </ng-container>
             </table>
           </div>
           <div class="detail-row">
