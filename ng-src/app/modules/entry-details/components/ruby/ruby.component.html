@@ -1,0 +1,20 @@
+<!-- If it's a kanji word and has furigana breakdown -->
+<ng-container *ngIf="furigana">
+  <ruby *ngFor="let furiganaChunk of furigana">
+    <rb>{{ furiganaChunk.w }}</rb>
+    <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
+  </ruby>
+</ng-container>
+<!-- If it's a kanji word but doesn't have furigana breakdown -->
+<ng-container *ngIf="kanji && !furigana">
+  <ruby>
+    <rb>{{ kanji }}</rb>
+    <rt>{{ reading }}</rt>
+  </ruby>
+</ng-container>
+<!-- If it's a kana only word -->
+<ng-container *ngIf="!kanji">
+  <ruby>
+    <rb>{{ reading }}</rb>
+  </ruby>
+</ng-container>
