@@ -48,3 +48,7 @@ List of tasks to be done by an actual user.
   - The user MUST see a button linking to Google Maps.
 - 鳥取 ととり
   - The user MUST NOT see a button linking to Google Maps.
+- 絵入り根本
+  - It MUST only show one alternative, which is 絵入根本 えいりねほん
+- 絵入根本
+  - It MUST only show one alternative, which is 絵入り根本 えいりねほん
