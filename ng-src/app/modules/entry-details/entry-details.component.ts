@@ -35,7 +35,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   keyword: string = '';
 
-  alternatives: JapaneseDB.DictIndexRow[] = [];
+  alternatives: JapaneseDB.DictIndexRow[] | null = null;
 
   /** JMdict/JMnedict json string */
   detailsString: string = '';
@@ -44,8 +44,7 @@ export class EntryDetailsComponent implements OnInit {
   detailsObjJMdict: JMdict.entry | null = null;
   detailsObjJMnedict: JMnedict.entry | null = null;
 
-  sameKanjiSameReading: JapaneseDB.DictIndexRow[] = [];
-  sameKanji: JapaneseDB.DictIndexRow[] = [];
+  sameKanji: JapaneseDB.DictIndexRow[] | null  = [];
 
   dictSource: DictSource | null = null;
 
@@ -122,7 +121,7 @@ export class EntryDetailsComponent implements OnInit {
   reset() {
     this.keyword = '';
 
-    this.alternatives = [];
+    this.alternatives = null;
 
     this.detailsString = '';
     this.dictIndexRow = null;
@@ -130,8 +129,7 @@ export class EntryDetailsComponent implements OnInit {
     this.detailsObjJMdict = null;
     this.detailsObjJMnedict = null;
 
-    this.sameKanjiSameReading = [];
-    this.sameKanji = [];
+    this.sameKanji = null;
 
     this.dictSource = null;
 
@@ -175,8 +173,6 @@ export class EntryDetailsComponent implements OnInit {
   }
 
   async render(input: EntryDetailsQuery) {
-    // this.rendering = true;
-
     this.reset();
 
     if (input === null) return;
@@ -217,7 +213,7 @@ export class EntryDetailsComponent implements OnInit {
         (this.electronService.ipcRenderer
           .invoke('getDictIndexRows', { column: 'kanji-exact', keyword: input.kanji }
         ) as ReturnType<typeof getDictIndexRows>).then((searchKanjiResult) => {
-          this.sameKanjiSameReading = searchKanjiResult.filter(
+          this.sameKanji = searchKanjiResult.filter(
             (value) =>
               value.id !== input.id
           );

@@ -26,7 +26,12 @@
     </div>
   </div>
 
-  <div *ngIf="dictIndexRow && (detailsObjJMdict || detailsObjJMnedict)" class="entry-details__content">
+  <!-- ngIf = only show when all JMdict data is loaded OR all JMnedict data is loaded -->
+  <div
+    *ngIf="
+      dictIndexRow && detailsObjJMdict && alternatives && sameKanji
+      || dictIndexRow && detailsObjJMnedict"
+    class="entry-details__content">
     <div class="entry-details__wrap">
 
       <!-- **
@@ -60,7 +65,7 @@
       <!-- **
       * Alternatives
       * -->
-      <div class="detail-block" *ngIf="alternatives.length > 1">
+      <div class="detail-block" *ngIf="alternatives?.length > 1">
         <div class="detail-row">
           <div class="detail-row__title">Alternative Writings and Readings</div>
           <div class="alternative">
@@ -198,23 +203,13 @@
           </div>
         </div>
         <div class="detail-block">
-          <div class="detail-row" *ngIf="sameKanjiSameReading.length > 0 || sameKanji.length > 0">
+          <div class="detail-row" *ngIf="sameKanji?.length > 0">
             <div class="detail-row__title">
               Other dictionary items with {{ dictIndexRow.kanji }} word.
             </div>
             <table>
-              <!-- Same writing, same reading -->
-              <ng-container *ngIf="sameKanjiSameReading.length > 0">
-                <tr *ngFor="let row of sameKanjiSameReading"
-                  (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
-                  <td><b>{{ row.kanji }}</b></td>
-                  <td>{{ row.reading }}</td>
-                  <td>{{ row.meaning }}</td>
-                </tr>
-              </ng-container>
-
-              <!-- Same writing, different reading -->
-              <ng-container  *ngIf="sameKanji.length > 0">
+              <!-- Same writing -->
+              <ng-container>
                 <tr *ngFor="let row of sameKanji"
                 (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
                   <td><b>{{ row.kanji }}</b></td>
