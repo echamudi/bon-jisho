@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="detail-block">
-          <div class="detail-row">
+          <div class="detail-row" *ngIf="sameKanjiSameReading.length > 0 || sameKanji.length > 0">
             <div class="detail-row__title">
               Other dictionary items with {{ dictIndexRow.kanji }} word.
             </div>
