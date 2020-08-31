@@ -87,9 +87,15 @@
     margin: (3 / 16) * 1rem;
     padding: (5 / 16) * 1rem;
     border-radius: (3 / 16) * 1rem;
-    background: #e4e5e8;
-    border: solid 1px #b7b7b7;
+    background: #E1ECF4;
+    color: #39739D;
     font-size: (14 / 16) * 1rem;
+    user-select: none;
+
+    &:hover {
+      background: #D1E5F1;
+      color: #2C5777;
+    }
   }
 }
 
