@@ -177,20 +177,20 @@
             <div class="detail-row__title">
               Other dictionary items with {{ dictIndexRow.kanji }} word.
             </div>
-            <table>
-              <!-- Same writing -->
-              <tr *ngFor="let row of sameKanji"
-              (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})">
-                <td>
-                  <app-entry-details--ruby
-                    [kanji]="row.kanji"
-                    [reading]="row.reading"
-                    [furigana]="row.furigana">
-                  </app-entry-details--ruby>
-                </td>
-                <td>{{ row.meaning }}</td>
-              </tr>
-            </table>
+            <!-- Same writing -->
+            <div class="alternative-entries">
+              <div
+              *ngFor="let row of sameKanji"
+              (click)="open({source: row.source, id: row.id, kanji: row.kanji, reading: row.reading})"
+              class="alternative-entries__item">
+                <app-entry-details--ruby class="alternative-entries__word"
+                  [kanji]="row.kanji"
+                  [reading]="row.reading"
+                  [furigana]="row.furigana">
+                </app-entry-details--ruby>
+                <div class="alternative-entries__meaning">{{ row.meaning }}</div>
+              </div>
+            </div>
           </div>
           <div class="detail-row">
             <div class="detail-row__title">

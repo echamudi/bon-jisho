@@ -93,6 +93,30 @@
   }
 }
 
+.alternative-entries {
+  display: flex;
+  margin: -0.25rem;
+  flex-wrap: wrap;
+
+  &__item {
+    width: 12em;
+    margin: 0.25rem;
+    border-radius: (3 / 16) * 1rem;
+    background: #f7f7f7;
+    border: solid 1px #b7b7b7;
+  }
+
+  &__word {
+    font-size: 2rem;
+    margin: 0.5rem;
+    display: block;
+  }
+
+  &__meaning {
+    margin: 0.5rem;
+  }
+}
+
 // Other Stylings
 
 .alternative {
