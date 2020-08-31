@@ -42,6 +42,8 @@ List of tasks to be done by an actual user.
     - 根本 ねもと Nemoto;
     - 根本 ねほん kabuki script; illustrated kabuki script;
     - 根本 めもと Memoto;
+- 根本 ねほん
+  - The 絵入根本 text in "illustrated kabuki script; (abbreviation) See: 絵入根本" MUST be clickable.
 - 星鴉
   - The alternative reading and writing links MUST redirect to the corresponding pages.
 - 阿呆陀羅
