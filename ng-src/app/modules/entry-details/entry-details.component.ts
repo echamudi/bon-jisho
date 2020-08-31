@@ -219,13 +219,7 @@ export class EntryDetailsComponent implements OnInit {
         ) as ReturnType<typeof getDictIndexRows>).then((searchKanjiResult) => {
           this.sameKanjiSameReading = searchKanjiResult.filter(
             (value) =>
-              value.reading === input.reading
-              && value.id !== input.id
-          );
-          this.sameKanji = searchKanjiResult.filter(
-            (value) =>
-              value.reading !== input.reading
-              && value.id !== input.id
+              value.id !== input.id
           );
         });
       } else {
