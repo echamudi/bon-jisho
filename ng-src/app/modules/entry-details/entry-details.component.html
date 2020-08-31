@@ -71,25 +71,25 @@
                 *ngIf="!(alternative.kanji === dictIndexRow.kanji && alternative.reading === dictIndexRow.reading)"
                 (click)="open({source: alternative.source, id: alternative.id, kanji: alternative.kanji, reading: alternative.reading})">
                 <!-- If it has furigana array -->
-                <div *ngIf="alternative.furigana">
+                <ng-container *ngIf="alternative.furigana">
                   <ruby *ngFor="let furiganaChunk of alternative.furigana">
                     <rb>{{ furiganaChunk.w }}</rb>
                     <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
                   </ruby>
-                </div>
+                </ng-container>
                 <!-- If it doesn't furigana array and it's a hiragana only word -->
-                <div *ngIf="!alternative.furigana && !alternative.kanji">
+                <ng-container *ngIf="!alternative.furigana && !alternative.kanji">
                   <ruby>
                     <rb>{{ alternative.reading }}</rb>
                   </ruby>
-                </div>
+                </ng-container>
                 <!-- If it doesn't furigana array and it has kanji writing -->
-                <div *ngIf="!alternative.furigana && alternative.kanji">
+                <ng-container *ngIf="!alternative.furigana && alternative.kanji">
                   <ruby>
                     <rb>{{ alternative.kanji }}</rb>
                     <rt>{{ alternative.reading }}</rt>
                   </ruby>
-                </div>
+                </ng-container>
               </div>
             </ng-container>
           </div>
