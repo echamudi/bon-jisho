@@ -49,6 +49,8 @@ export class EntryDetailsComponent implements OnInit {
 
   dictSource: DictSource | null = null;
 
+  rendering: boolean = false;
+
   /** Component usage mode */
   mode: Mode | null = null;
 
@@ -173,6 +175,8 @@ export class EntryDetailsComponent implements OnInit {
   }
 
   async render(input: EntryDetailsQuery) {
+    // this.rendering = true;
+
     this.reset();
 
     if (input === null) return;
@@ -215,13 +219,13 @@ export class EntryDetailsComponent implements OnInit {
         ) as ReturnType<typeof getDictIndexRows>).then((searchKanjiResult) => {
           this.sameKanjiSameReading = searchKanjiResult.filter(
             (value) =>
-              value.reading === this.dictIndexRow?.reading
-              && value.id !== this.dictIndexRow.id
+              value.reading === input.reading
+              && value.id !== input.id
           );
           this.sameKanji = searchKanjiResult.filter(
             (value) =>
-              value.reading !== this.dictIndexRow?.reading
-              && value.id !== this.dictIndexRow?.id
+              value.reading !== input.reading
+              && value.id !== input.id
           );
         });
       } else {
