@@ -218,6 +218,8 @@ export class EntryDetailsComponent implements OnInit {
               value.id !== input.id
           );
         });
+      } else {
+        this.sameKanji = [];
       }
 
       return;

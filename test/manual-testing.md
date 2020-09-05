@@ -65,3 +65,5 @@ List of tasks to be done by an actual user.
     - バカ貝
     - 馬鹿貝
     - バカガイ
+- ありがとうさん
+  - MUST show the page
