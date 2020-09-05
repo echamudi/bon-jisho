@@ -16,6 +16,7 @@
 - [x] convert everything to ts
 - [x] Link alternative and explore in entry details.
 - [x] Fix gai1 tag
+- [ ] Update copy button styling
 - [ ] Create pipes
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
