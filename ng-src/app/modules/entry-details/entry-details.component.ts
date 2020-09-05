@@ -267,4 +267,23 @@ export class EntryDetailsComponent implements OnInit {
       .invoke('open-url-electron', { url })).then(() => {
     });
   }
+
+  /**
+   * Returns true if copying the title is executed successfully
+   */
+  async copyTitle(): Promise<boolean> {
+    const text = this.dictIndexRow?.kanji ?? this.dictIndexRow?.reading ?? null;
+
+    if (text !== null) {
+      return new Promise((resolve) => {
+        navigator.clipboard.writeText(text).then(() => {
+          resolve(true);
+        }, () => {
+          resolve(false);
+        });
+      })
+    } else {
+      return Promise.resolve(false);
+    }
+  }
 }
