@@ -245,6 +245,10 @@ export function getTagDescription(tag: string): string {
     return `This word is ranked between ${nf * 500 - 499}-${nf * 500} in the Mainichi Shimbun frequency list.`;
   }
 
+  if (tag === 'gai1' || tag === 'gai2') {
+    return Priorities.gai;
+  }
+
   return '';
 }
 
