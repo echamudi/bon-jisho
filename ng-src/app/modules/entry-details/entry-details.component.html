@@ -197,16 +197,21 @@
             <div class="detail-row__title">
               Resources on the Internet
             </div>
-            <div style="display: flex; flex-direction: column;">
-              <button
-                (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')"
-                style="max-width: 300px; margin-bottom: 5px;">
-                Images in DuckDuckGo
-              </button>
-              <button
-                (click)="openWebBroser('https://ejje.weblio.jp/sentence/content/' + keyword)"
-                style="max-width: 300px;">
-                Sentences in Weblio</button>
+            <div class="internet-resources">
+              <div class="internet-resources__item"
+                (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">
+                <img
+                  class="internet-resources__icon"
+                  src="assets/icons/image.svg">
+                <div class="internet-resources__label">Images in DuckDuckGo</div>
+              </div>
+              <div class="internet-resources__item"
+                (click)="openWebBroser('https://duckduckgo.com/?q=' + keyword + '&iar=images&iax=images&ia=images&kl=jp-jp&kp=1')">
+                <img
+                  class="internet-resources__icon"
+                  src="assets/icons/file-text.svg">
+                <div class="internet-resources__label">Sample Sentences in Weblio</div>
+              </div>
             </div>
           </div>
         </div>

@@ -138,13 +138,15 @@
   display: flex;
   margin: -0.25rem;
   flex-wrap: wrap;
-  align-items: flex-end;
 
   &__item {
     margin: 0.25rem;
     background: #f5f5f5;
     user-select: none;
     transition: 0.075s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background: darken(#f5f5f5, 2%);
@@ -160,6 +162,40 @@
     margin: 0.5rem;
     font-size: 2rem;
     display: block;
+  }
+}
+
+.internet-resources {
+  display: flex;
+  margin: -0.25rem;
+  flex-wrap: wrap;
+
+  &__item {
+    margin: 0.25rem;
+    background: #f5f5f5;
+    user-select: none;
+    transition: 0.075s ease-in-out;
+    width: 12em;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background: darken(#f5f5f5, 2%);
+    }
+
+    &:active {
+      background: darken(#f5f5f5, 4%);
+      transform: scale(0.99);
+    }
+  }
+
+  &__icon {
+    margin: 0.5rem;
+    // @include fill(#39739D, 1);
+  }
+
+  &__label {
+    margin: 0.5rem;
   }
 }
 
