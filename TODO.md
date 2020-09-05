@@ -15,7 +15,7 @@
 - [x] entry-details: relocate popup near currently open window.
 - [x] convert everything to ts
 - [x] Link alternative and explore in entry details.
-- [ ] Fix gai1 tag
+- [x] Fix gai1 tag
 - [ ] Create pipes
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
