@@ -1,5 +1,5 @@
 <!-- If it's a kanji word and has furigana breakdown -->
-<ng-container *ngIf="furigana">
+<ng-container *ngIf="kanji && furigana">
   <ruby *ngFor="let furiganaChunk of furigana">
     <rb>{{ furiganaChunk.w }}</rb>
     <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
