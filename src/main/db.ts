@@ -138,28 +138,12 @@ export function getDictIndexRow(
 
   const { source, id, kanji, reading } = query;
 
-  let sql: string;
+  let sql: string = ' SELECT * FROM dict_index WHERE TRUE ';
 
-  if (kanji === null) {
-    sql = `
-      SELECT *
-      FROM dict_index
-      WHERE
-        source = ?1
-        AND id = ?2
-        AND reading = ?4
-    `;
-  } else {
-    sql = `
-      SELECT *
-      FROM dict_index
-      WHERE
-        source = ?1
-        AND id = ?2
-        AND kanji = ?3
-        AND reading = ?4
-    `;
-  }
+  if (source !== undefined && source !== null) sql += ' AND source = ?1 ';
+  if (id !== undefined && id !== null) sql += ' AND id = ?2 ';
+  if (kanji !== undefined && kanji !== null) sql += ' AND kanji = ?3 ';
+  if (reading !== undefined && reading !== null) sql += ' AND reading = ?4 ';
 
   return new Promise((resolve) => {
     db.get(sql, {
