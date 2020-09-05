@@ -18,9 +18,11 @@
 - [x] Fix gai1 tag
 - [ ] Update copy button styling
 - [ ] Create pipes
+- [ ] Show selected items
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
 - [ ] Add kanjidic details in entry details.
+- [ ] Show link to internet if search result doesn't show anything
 - [ ] Link kanji breakdown
 - [ ] Design kanji search look
 - [ ] Link see also words in entry details
