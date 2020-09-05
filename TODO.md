@@ -14,9 +14,12 @@
 - [x] entry-details: Fix back button styling
 - [x] entry-details: relocate popup near currently open window.
 - [x] convert everything to ts
-- [ ] Link alternative, explore, and see also words in entry details.
+- [x] Link alternative and explore in entry details.
+- [ ] Fix gai1 tag
+- [ ] Create pipes
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
 - [ ] Add kanjidic details in entry details.
 - [ ] Link kanji breakdown
 - [ ] Design kanji search look
+- [ ] Link see also words in entry details
