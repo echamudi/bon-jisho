@@ -85,7 +85,7 @@
           <!-- JMdict Translation -->
           <ng-container *ngIf="dictSource === 1 && detailsObjJMdict !== null">
             <div class="detail-row">
-              <div *ngFor="let sense of detailsObjJMdict.sense; index as i">
+              <div *ngFor="let sense of detailsObjJMdict?.sense; index as i">
                 <div *ngIf="sense.pos" class="detail-row__title">{{ getEntities(sense.pos, 1).join(', ') }}</div>
                 <div class="sense-item">
                   <div class="sense-item__number">
@@ -101,9 +101,18 @@
                     <span *ngIf="sense.misc">
                       ({{ getEntities(sense.misc, 1).join(', ') }})
                     </span>
-                    <span *ngIf="sense.xref">
-                      See: {{ sense.xref.join(', ')}}
-                    </span>
+
+                    <!-- XREF
+                    Examples:
+                      ありがとうさん entry
+                      さん entry
+                    -->
+                    <ng-container *ngIf="sense.xref">
+                      <span>See also : </span>
+                      <span class="xref" *ngFor="let xref of sense.xref">
+                        {{ xref }}
+                      </span>
+                    </ng-container>
                   </div>
                 </div>
               </div>
