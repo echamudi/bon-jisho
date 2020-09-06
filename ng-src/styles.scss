@@ -101,6 +101,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-app-region: none;
 
   &:hover {
     background: #F0F0F0;
