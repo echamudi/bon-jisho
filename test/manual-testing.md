@@ -30,6 +30,7 @@ List of tasks to be done by an actual user.
   - Open popup button in jmnedict details MUST open the current details in popup.
   - Open popup button in empty page details MUST be disabled.
 - Behaviour
+  - Entry details head text MUST be selectable
   - Back and forward buttons 
     - Back and forward buttons MUST work as the user expected.
   - Explore Buttons
