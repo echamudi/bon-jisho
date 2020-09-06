@@ -28,6 +28,9 @@
 // BEM Block: entry-head
 .entry-head {
   margin-bottom: 20px;
+  display: flex;
+  flex-flow: wrap;
+  place-items: flex-end;
 
   &__kanji {
     font-size: 60px;
@@ -35,6 +38,30 @@
 
   &__reading {
     font-size: 30px;
+  }
+}
+
+.light-button {
+  margin: 5px;
+  display: flex;
+  color: #007AFF;
+  align-items: center;
+
+  &:hover {
+    background: rgba(0,0,0,0.05);
+  }
+
+  &:active {
+    background: rgba(0,0,0,0.075);
+  }
+
+  &__icon {
+    @include fill(#007AFF, 1);
+    margin: 2.5px;
+  }
+
+  &__label {
+    margin: 2.5px;
   }
 }
 
