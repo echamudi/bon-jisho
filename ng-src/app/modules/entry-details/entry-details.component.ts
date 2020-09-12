@@ -8,7 +8,7 @@ import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { WindowHelper } from 'App/modules/shared/classes/window-helper';
 
 import { c } from 'Lib/const';
-import { getEntities, isPlace, getTagDescription } from 'Lib/entities';
+import { isPlace, getTagDescription } from 'Lib/entities';
 import { getEntryDetailsUrl } from 'Lib/url-generator';
 
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-jisho';
@@ -66,7 +66,6 @@ export class EntryDetailsComponent implements OnInit {
     };
   }
 
-  getEntities = getEntities;
   isPlace = isPlace;
   getTagDescription = getTagDescription;
 
