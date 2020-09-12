@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 
@@ -15,6 +15,7 @@ import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-ji
 
 type Mode =
   'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
+  | 'word-search' // opened in word search menu
   | 'other'; // The component is used in other ways
 
 /**
@@ -50,6 +51,9 @@ export class EntryDetailsComponent implements OnInit {
 
   rendering: boolean = false;
 
+  @Input()
+  compMode: string | undefined;
+
   /** Component usage mode */
   mode: Mode | null = null;
 
@@ -81,8 +85,13 @@ export class EntryDetailsComponent implements OnInit {
 
     const params: Params = routerSnapshot.queryParams;
 
+    // Get entry details mode
     if (routerSnapshot.routeConfig?.path === 'entry-details') {
       this.mode = 'window';
+    } else if (this.compMode === 'word-search') {
+      this.mode = 'word-search';
+    } else {
+      this.mode = 'other'
     }
 
     if (params.source) {
