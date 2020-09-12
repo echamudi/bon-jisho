@@ -4,6 +4,7 @@ import { ElectronService } from './services/electron.service';
 import { JoinPipe } from './pipes/join.pipe';
 import { GetEntitiesPipe } from './pipes/get-entities.pipe';
 import { UnderscoreService } from './services/underscore.service';
+import { StatesService } from './services/states.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UnderscoreService } from './services/underscore.service';
   providers: [
     ElectronService,
     UnderscoreService,
+    StatesService,
   ],
 })
 export class SharedModule { }
