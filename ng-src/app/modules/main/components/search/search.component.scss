@@ -57,6 +57,11 @@
   &__item {
     box-shadow: 10px 0 0 #ffffff inset, 0 -1px 0 0 #CDCDCD inset;
     padding: 10px;
+
+    &_selected {
+      box-shadow: 10px 0 0 #ffffff inset, 0 -1px 0 0 #c9c9c9 inset;
+      background: #0063E1;
+    }
   }
 
   &__item-reading {

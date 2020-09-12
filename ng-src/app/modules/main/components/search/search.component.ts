@@ -6,6 +6,7 @@ import { JapaneseDB } from 'japanese-db';
 import { getDictIndexRows } from 'Main/db';
 import { UnderscoreService } from 'App/modules/shared/services/underscore.service';
 import { EntryDetailsQuery } from 'Types/bon-jisho';
+import { StatesService } from 'App/modules/shared/services/states.service';
 
 @Component({
   selector: 'app-main--search',
@@ -20,9 +21,16 @@ export class SearchComponent implements OnInit {
   @ViewChild('entryDetails', { static: false })
   entryDetails: EntryDetailsComponent | undefined;
 
-  lastSelectedItem: EntryDetailsQuery = null;
+  selectedItem: EntryDetailsQuery = null;
 
-  constructor(private electronService: ElectronService, private _: UnderscoreService) { }
+  isEqual: UnderscoreService['isEqual'];
+
+  constructor(private electronService: ElectronService, private _: UnderscoreService, private statesService: StatesService) {
+    this.isEqual = this._.isEqual;
+    this.statesService.wordSearchSelectionObs.subscribe(el => {
+      this.selectedItem = el;
+    });
+  }
 
   ngOnInit() {
     // For testing purpose;
@@ -66,15 +74,10 @@ export class SearchComponent implements OnInit {
   }
 
   selectItem(item: JapaneseDB.DictIndexRow): void {
-    const selectedItem: EntryDetailsQuery = {
-      source: item.source,
-      id: item.id,
-      kanji: item.kanji ?? null,
-      reading: item.reading
-    };
+    const selectedItem: EntryDetailsQuery = this.entryDetailsQueryMaker(item);
 
     // Disable reclick on the same item
-    if (this._.isEqual(selectedItem, this.lastSelectedItem)) {
+    if (this._.isEqual(selectedItem, this.selectedItem)) {
       return;
     }
 
@@ -84,6 +87,17 @@ export class SearchComponent implements OnInit {
     }
 
     this.entryDetails.open(selectedItem);
-    this.lastSelectedItem = selectedItem;
+
+    // Propagate selection
+    this.statesService.wordSearchSelection.next(selectedItem);
+  }
+
+  entryDetailsQueryMaker(src: JapaneseDB.DictIndexRow): EntryDetailsQuery {
+    return {
+      source: src.source,
+      id: src.id,
+      kanji: src.kanji ?? null,
+      reading: src.reading
+    };
   }
 }

@@ -12,6 +12,7 @@ import { isPlace, getTagDescription } from 'Lib/entities';
 import { getEntryDetailsUrl } from 'Lib/url-generator';
 
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-jisho';
+import { StatesService } from '../shared/services/states.service';
 
 type Mode =
   'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
@@ -62,7 +63,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService, private router: Router) {
+  constructor(private electronService: ElectronService, private router: Router, private statesService: StatesService) {
     // Prepare history stack
     this.history = {
       stack: [null],
@@ -157,6 +158,10 @@ export class EntryDetailsComponent implements OnInit {
 
     this.render(this.history.stack[this.history.pointer]);
     // console.log(this.history.pointer, this.history.stack);
+
+    if (this.mode === 'word-search') {
+      this.statesService.wordSearchSelection.next(input);
+    }
   }
 
   async back() {

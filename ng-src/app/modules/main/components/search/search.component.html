@@ -6,7 +6,10 @@
   </div>
   <div class="basic-search__area-result">
     <div class="search-result">
-        <div class="search-result__item" *ngFor="let item of list" (click)="selectItem(item)">
+        <div
+          *ngFor="let item of list" (click)="selectItem(item)"
+          class="search-result__item"
+          [ngClass]="{'search-result__item_selected': isEqual(entryDetailsQueryMaker(item), selectedItem) }">
           <div class="search-result__item-kanji">{{ item.kanji }}</div>
           <div class="search-result__item-reading">{{ item.reading }}</div>
           <div class="search-result__item-meaning">
