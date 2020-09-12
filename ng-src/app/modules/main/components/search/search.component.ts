@@ -4,6 +4,8 @@ import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { JapaneseDB } from 'japanese-db';
 
 import { getDictIndexRows } from 'Main/db';
+import { UnderscoreService } from 'App/modules/shared/services/underscore.service';
+import { EntryDetailsQuery } from 'Types/bon-jisho';
 
 @Component({
   selector: 'app-main--search',
@@ -18,7 +20,9 @@ export class SearchComponent implements OnInit {
   @ViewChild('entryDetails', { static: false })
   entryDetails: EntryDetailsComponent | undefined;
 
-  constructor(private electronService: ElectronService) { }
+  lastSelectedItem: EntryDetailsQuery = null;
+
+  constructor(private electronService: ElectronService, private _: UnderscoreService) { }
 
   ngOnInit() {
     // For testing purpose;
@@ -62,18 +66,24 @@ export class SearchComponent implements OnInit {
   }
 
   selectItem(item: JapaneseDB.DictIndexRow): void {
-    const selectedItem = {
+    const selectedItem: EntryDetailsQuery = {
       source: item.source,
       id: item.id,
       kanji: item.kanji ?? null,
       reading: item.reading
     };
 
+    // Disable reclick on the same item
+    if (this._.isEqual(selectedItem, this.lastSelectedItem)) {
+      return;
+    }
+
     if (this.entryDetails === undefined) {
-      console.log('Error: #entryDetails is not found')
+      console.log('Error: #entryDetails component is not found')
       return;
     }
 
     this.entryDetails.open(selectedItem);
+    this.lastSelectedItem = selectedItem;
   }
 }
