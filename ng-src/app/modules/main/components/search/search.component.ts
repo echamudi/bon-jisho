@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
     this.search(this.keyword);
   }
 
-  search($event: string) {
+  search($event: string): void {
     const currentKeyword = $event;
     setTimeout(() => {
       if (currentKeyword.length === 0) {
@@ -61,7 +61,7 @@ export class SearchComponent implements OnInit {
     }, 200);
   }
 
-  selectItem(item: JapaneseDB.DictIndexRow) {
+  selectItem(item: JapaneseDB.DictIndexRow): void {
     const selectedItem = {
       source: item.source,
       id: item.id,
