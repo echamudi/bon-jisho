@@ -1,22 +1,22 @@
-<div class="basicSearch">
-  <div class="basicSearch-areaField">
-    <div class="searchField">
-        <input class="searchField-input" type="text" placeholder="Search" [(ngModel)]="keyword" (ngModelChange)="search($event)">
+<div class="basic-search">
+  <div class="basic-search__area-field">
+    <div class="search-field">
+        <input class="search-field__input" type="text" placeholder="Search" [(ngModel)]="keyword" (ngModelChange)="search($event)">
     </div>
   </div>
-  <div class="basicSearch-areaResult">
-    <div class="searchResult">
-        <div class="searchResult-item" *ngFor="let item of list" (click)="selectItem(item)">
-          <div class="searchResult-itemKanji">{{ item.kanji }}</div>
-          <div class="searchResult-itemReading">{{ item.reading }}</div>
-          <div class="searchResult-itemMeaning">
+  <div class="basic-search__area-result">
+    <div class="search-result">
+        <div class="search-result__item" *ngFor="let item of list" (click)="selectItem(item)">
+          <div class="search-result__item-kanji">{{ item.kanji }}</div>
+          <div class="search-result__item-reading">{{ item.reading }}</div>
+          <div class="search-result__item-meaning">
               {{ item.meaning | slice:0:200 }}
               {{ item.meaning.length > 200 ? '...' : ''}}
           </div>
         </div>
     </div>
   </div>
-  <div class="basicSearch-areaContent">
+  <div class="basic-search__area-content">
     <app-entry-details #entryDetails></app-entry-details>
   </div>
 </div>
