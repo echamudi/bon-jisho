@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, Params, ActivatedRouteSnapshot } from '@angular/router';
 import { JMdict, JapaneseDB, JMnedict } from 'japanese-db';
 
-import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'Main/db';
-
 import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { WindowHelper } from 'App/modules/shared/classes/window-helper';
 
@@ -206,11 +204,11 @@ export class EntryDetailsComponent implements OnInit {
 
     // Get dict index row from selection
     // this call is shared for both JMdict and JMnedict
-    (this.electronService.ipcRenderer
-      .invoke('getDictIndexRow', { ...input }
-    ) as ReturnType<typeof getDictIndexRow>).then((dictIndexRow) => {
-      this.dictIndexRow = dictIndexRow;
-    });
+    this.electronService.ipcRenderer
+      .invoke('getDictIndexRow', { ...input })
+      .then((dictIndexRow) => {
+        this.dictIndexRow = dictIndexRow;
+      });
 
     /**
      * If it's JMDICT
@@ -219,30 +217,27 @@ export class EntryDetailsComponent implements OnInit {
       this.dictSource = c.JMDICT;
 
       // Get JMdict json for the current id
-      (this.electronService.ipcRenderer
-        .invoke('getJMdictJsonsRows', { entSeqs: [input.id] }
-      ) as ReturnType<typeof getJMdictJsonsRows>).then((dictDetails) => {
-        this.detailsObjJMdict = dictDetails[0]?.json;
-        this.detailsString = JSON.stringify(this.detailsObjJMdict, null, 2);
-      });
+      this.electronService.ipcRenderer
+        .invoke('getJMdictJsonsRows', { entSeqs: [input.id] })
+        .then((dictDetails) => {
+          this.detailsObjJMdict = dictDetails[0]?.json;
+          this.detailsString = JSON.stringify(this.detailsObjJMdict, null, 2);
+        });
 
       // Get alternatives
-      (this.electronService.ipcRenderer
-        .invoke('getDictIndexRows', { column: 'id', keyword: input.id }
-      ) as ReturnType<typeof getDictIndexRows>).then((alternatives) => {
-        this.alternatives = alternatives;
-      });
+      this.electronService.ipcRenderer
+        .invoke('getDictIndexRows', { column: 'id', keyword: input.id.toString() })
+        .then((alternatives) => {
+          this.alternatives = alternatives;
+        });
 
       // For explore section, filter similar results
       if (input.kanji !== null) {
-        (this.electronService.ipcRenderer
-          .invoke('getDictIndexRows', { column: 'kanji-exact', keyword: input.kanji }
-        ) as ReturnType<typeof getDictIndexRows>).then((searchKanjiResult) => {
-          this.sameKanji = searchKanjiResult.filter(
-            (value) =>
-              value.id !== input.id
-          );
-        });
+        this.electronService.ipcRenderer
+          .invoke('getDictIndexRows', { column: 'kanji-exact', keyword: input.kanji })
+          .then((searchKanjiResult) => {
+            this.sameKanji = searchKanjiResult.filter((value) => value.id !== input.id);
+          });
       } else {
         this.sameKanji = [];
       }
@@ -257,12 +252,12 @@ export class EntryDetailsComponent implements OnInit {
       this.dictSource = c.JMNEDICT;
 
       // Get JMnedict json for the current id
-      (this.electronService.ipcRenderer
-        .invoke('getJMnedictJsonsRows', { entSeqs: [input.id] }
-      ) as ReturnType<typeof getJMnedictJsonsRows>).then((dictDetails) => {
-        this.detailsObjJMnedict = dictDetails[0]?.json;
-        this.detailsString = JSON.stringify(this.detailsObjJMnedict, null, 2);
-      });
+      this.electronService.ipcRenderer
+        .invoke('getJMnedictJsonsRows', { entSeqs: [input.id] })
+        .then((dictDetails) => {
+          this.detailsObjJMnedict = dictDetails[0]?.json;
+          this.detailsString = JSON.stringify(this.detailsObjJMnedict, null, 2);
+        });
 
       return;
     }
@@ -286,11 +281,11 @@ export class EntryDetailsComponent implements OnInit {
 
     console.log(url);
 
-    if (!(url ?? 0)) return;
+    if (url === null) return;
 
-    (this.electronService.ipcRenderer
-      .invoke('open-url-electron', { url })).then(() => {
-    });
+    this.electronService.ipcRenderer
+      .invoke('open-url-electron', { url })
+      .then(() => { });
   }
 
   /**

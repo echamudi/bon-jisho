@@ -3,7 +3,6 @@ import { EntryDetailsComponent } from 'App/modules/entry-details/entry-details.c
 import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { JapaneseDB } from 'japanese-db';
 
-import { getDictIndexRows } from 'Main/db';
 import { UnderscoreService } from 'App/modules/shared/services/underscore.service';
 import { EntryDetailsQuery } from 'Types/bon-jisho';
 import { StatesService } from 'App/modules/shared/services/states.service';
@@ -54,22 +53,15 @@ export class SearchComponent implements OnInit {
         const isKanji = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
         const isKana = currentKeyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
 
-        let column: string;
+        let column: 'kanji' | 'reading' | 'meaning';
         if (isKanji) column = 'kanji';
         else if (isKana) column = 'reading';
         else column = 'meaning';
 
-        (this.electronService.ipcRenderer
-          .invoke(
-            'getDictIndexRows',
-            {
-              keyword: currentKeyword,
-              column,
-            }
-          ) as ReturnType<typeof getDictIndexRows>
-        ).then((res) => {
-          this.list = res;
-        });
+        this.electronService.ipcRenderer
+          .invoke('getDictIndexRows', { keyword: currentKeyword, column }).then((res) => {
+            this.list = res;
+          });
       }
     }, 200);
   }
