@@ -19,7 +19,7 @@
 <!-- - [ ] Update copy button styling -->
 - [x] Create pipes
 - [x] Show currently selected item
-- [ ] Update currently selected item styling
+- [x] Update currently selected item styling
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
 - [ ] Add kanjidic details in entry details.
