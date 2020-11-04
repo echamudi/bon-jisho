@@ -89,7 +89,8 @@ export class SearchComponent implements OnInit {
     this.entryDetails.open(selectedItem);
 
     // Propagate selection
-    this.statesService.wordSearchSelection.next(selectedItem);
+    // # commented to avoid double selection
+    // this.statesService.wordSearchSelection.next(selectedItem);
   }
 
   entryDetailsQueryMaker(src: JapaneseDB.DictIndexRow): EntryDetailsQuery {
