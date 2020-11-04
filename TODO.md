@@ -18,7 +18,8 @@
 - [x] Fix gai1 tag
 <!-- - [ ] Update copy button styling -->
 - [x] Create pipes
-- [ ] Show currently selected item
+- [x] Show currently selected item
+- [ ] Update currently selected item styling
 - [ ] Add kanji breakdown
 - [ ] Add single kanji search result in search
 - [ ] Add kanjidic details in entry details.
