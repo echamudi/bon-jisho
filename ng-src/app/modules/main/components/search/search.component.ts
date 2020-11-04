@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
   constructor(private electronService: ElectronService, private _: UnderscoreService, private statesService: StatesService) {
     this.isEqual = this._.isEqual;
     this.statesService.wordSearchSelectionObs.subscribe(el => {
+      console.log('now selected', el);
       this.selectedItem = el;
     });
   }
