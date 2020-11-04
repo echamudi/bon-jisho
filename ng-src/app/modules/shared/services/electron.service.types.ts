@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow } from 'Main/db';
 
-export type _ipcRenderer = typeof ipcRenderer;
+type _ipcRenderer = typeof ipcRenderer;
 
 export interface BonIpcRenderer extends _ipcRenderer {
   invoke(channel: 'getDictIndexRows', query: Parameters<typeof getDictIndexRows>[0]): ReturnType<typeof getDictIndexRows>;
