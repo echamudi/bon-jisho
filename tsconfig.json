@@ -24,10 +24,8 @@
       "es2018",
       "dom"
     ],
-
-    // Other rules for Electron
-
     "skipLibCheck": true,
+
   },
   "exclude": [
     "node_modules/**/*.*"
