@@ -171,7 +171,13 @@ export class EntryDetailsComponent implements OnInit {
     // Decrement pointer
     this.history.pointer -= 1;
 
-    this.render(this.history.stack[this.history.pointer]);
+    const selectedQuery: EntryDetailsQuery = this.history.stack[this.history.pointer];
+
+    this.render(selectedQuery);
+
+    if (this.mode === 'word-search') {
+      this.statesService.wordSearchSelection.next(selectedQuery);
+    }
   }
 
   async forward() {
@@ -182,7 +188,13 @@ export class EntryDetailsComponent implements OnInit {
     // Increment pointer
     this.history.pointer += 1;
 
-    this.render(this.history.stack[this.history.pointer]);
+    const selectedQuery: EntryDetailsQuery = this.history.stack[this.history.pointer];
+
+    this.render(selectedQuery);
+
+    if (this.mode === 'word-search') {
+      this.statesService.wordSearchSelection.next(selectedQuery);
+    }
   }
 
   async render(input: EntryDetailsQuery) {
