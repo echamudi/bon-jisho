@@ -125,3 +125,66 @@ img {
     }
   }
 }
+
+// BEM Block: search-result
+.search-result {
+  box-shadow: -1px 0 0 0 #CDCDCD inset;
+  position: absolute;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  background: #FFFDFD;
+
+  &__item {
+    box-shadow: 10px 0 0 #ffffff inset, 0 -1px 0 0 #CDCDCD inset;
+    padding: 10px;
+
+    &_selected {
+      box-shadow: 10px 0 0 #0063E1 inset, -10px -1px 0 0 #0063E1, 10px -1px 0 0 #0063E1;
+      background: #0063E1;
+
+      body.body_blur & {
+        box-shadow: 10px 0 0 #DCDCDC inset, -10px -1px 0 0 #DCDCDC, 10px -1px 0 0 #DCDCDC;
+        background: #DCDCDC;
+      }
+    }
+  }
+
+  &__item-reading {
+    padding-bottom: 3px;
+
+    .search-result__item_selected & {
+      color: #fff;
+
+      body.body_blur & {
+        color: #000;
+      }
+    }
+  }
+
+  &__item-kanji {
+    font-weight: 600;
+
+    .search-result__item_selected & {
+      color: #fff;
+
+      body.body_blur & {
+        color: #000;
+      }
+    }
+  }
+
+  &__item-meaning {
+    color: #808080;
+    padding-left: 5px;
+    word-break: break-word;
+
+    .search-result__item_selected & {
+      color: #80B0F0;
+
+      body.body_blur & {
+        color: #797979;
+      }
+    }
+  }
+}
