@@ -17,12 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "fileReplacements": [
-              {
-                "replace": "ng-src/app/modules/shared/services/electron.service.ts",
-                "with": "ng-src/app/modules/shared/services/electron.service.build.ts"
-              }
-            ],
+            "fileReplacements": [],
             "outputPath": "static/ng-dist/",
             "index": "ng-src/index.html",
             "main": "ng-src/main.ts",
@@ -44,10 +39,6 @@
                 {
                   "replace": "ng-src/environments/environment.ts",
                   "with": "ng-src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "ng-src/app/modules/shared/services/electron.service.ts",
-                  "with": "ng-src/app/modules/shared/services/electron.service.build.ts"
                 }
               ],
               "index": {
