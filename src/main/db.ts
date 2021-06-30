@@ -204,3 +204,20 @@ export function getJMnedictJsonsRows(query: { entSeqs: number[] }): Promise<Japa
 }
 
 // export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjidicRow[]> { }
+
+export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjivgTreeRow[]> {
+  const { kanjiChars } = query;
+  const wildCards = Array(kanjiChars.length).fill('?').join(',');
+
+  const sql = `SELECT * FROM kanjivg_tree WHERE kanji IN (${wildCards})`;
+
+  return new Promise((resolve) => {
+    db.all(sql, kanjiChars, (err: any, rows: any[]) => {
+      // const postProcessed = rows.map((value) => ({
+      //   ent_seq: value.ent_seq,
+      //   json: JSON.parse(value.json),
+      // }));
+      resolve(rows);
+    });
+  });
+}
