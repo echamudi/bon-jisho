@@ -1,8 +1,6 @@
 # Bon Jisho
 
-A free Japanese dictionary based on electron.
-
-(This app is still under initial development)
+An open source Japanese dictionary desktop app based on electron.
 
 ## Development
 
@@ -20,11 +18,17 @@ npx electron-builder install-app-deps
 Before compiling the app, we need to build the database.
 This project uses [Japanese DB](https://github.com/ezhmd/japanese-db) tool to build the database. 
 
-1. Put all the required materials (JMdict_e, JMnedict.xml, etc) inside `db-src` folder.
+1. Download the required materials from the following sources:
+  - JMdict_e: http://ftp.edrdg.org/pub/Nihongo/JMdict_e.gz
+  - JMnedict.xml: http://ftp.edrdg.org/pub/Nihongo/JMnedict.xml.gz
+  - kanjidic2.xml: http://www.edrdg.org/kanjidic/kanjidic2.xml.gz
+  - ka_data.csv: https://raw.githubusercontent.com/echamudi/kanji-data-media/master/language-data/ka_data.csv
+
+1. Extract and put all the required materials inside `db-src` folder. Make sure the file names are exactly `JMdict_e`, `JMnedict.xml`, `kanjidic2.xml`, and `ka_data.csv` respectively.
 
 1. Run following script:
     ```sh
-    npm run db-build
+    yarn db-build
     ```
 
 ### Watch
