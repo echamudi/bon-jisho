@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WindowHelper } from 'App/modules/shared/classes/window-helper';
 
 @Component({
   selector: 'app-main--inspect-text',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class InspectTextComponent implements OnInit {
 
   constructor() { }
+
+  toggleMaximize = WindowHelper.toggleMaximize;
 
   ngOnInit() {
   }
