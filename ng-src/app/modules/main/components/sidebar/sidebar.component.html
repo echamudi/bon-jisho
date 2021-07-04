@@ -1,9 +1,9 @@
 <div class="sidebar">
   <div class="sidebar__header" (dblclick)="toggleMaximize()"></div>
 
-  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/home" [routerLinkActiveOptions]="{ exact: true }">
+  <!-- <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/home" [routerLinkActiveOptions]="{ exact: true }">
     Home
-  </div>
+  </div> -->
 
   <div class="sidebar__separator">Search</div>
   <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/search">
@@ -19,5 +19,10 @@
   </div>
   <div class="sidebar__item" routerLinkActive="sidebar__item_active">
     Kanji Lists
+  </div>
+
+  <div class="sidebar__separator">Other</div>
+  <div class="sidebar__item" routerLinkActive="sidebar__item_active" routerLink="/main/about">
+    About
   </div>
 </div>

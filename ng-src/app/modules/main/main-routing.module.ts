@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: 'home', component: MainComponent},
       { path: 'search', component: MainComponent },
       { path: 'inspect-text', component: MainComponent },
+      { path: 'about', component: MainComponent },
     ],
   },
 ];

@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InspectTextComponent } from './components/inspect-text/inspect-text.component';
 import { SearchComponent } from './components/search/search.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'App/modules/shared/shared.module';
@@ -18,7 +19,8 @@ import { EntryDetailsModule } from 'App/modules/entry-details/entry-details.modu
     HomeComponent,
     SidebarComponent,
     InspectTextComponent,
-    SearchComponent
+    SearchComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
