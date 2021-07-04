@@ -1,5 +1,7 @@
 # Bon Jisho
 
+<img src="https://raw.githubusercontent.com/echamudi/bon-jisho/master/static/bon-jisho-logo.svg" alt="Bon Jisho Logo" height="100" width="100">
+
 An open source Japanese dictionary desktop app based on electron.
 
 ## Development
