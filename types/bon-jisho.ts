@@ -10,7 +10,7 @@ export type DictSource = c;
 export type DictSourceT = 'jmdict' | 'jmnedict';
 
 export type EntryDetailsQuery = {
-  source: number,
+  source: c.JMDICT | c.JMNEDICT,
   id: number,
   kanji: string | null,
   reading: string

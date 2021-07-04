@@ -82,8 +82,6 @@ export class EntryDetailsComponent implements OnInit {
 
     const routerSnapshot: ActivatedRouteSnapshot = this.router.routerState.snapshot.root.children[0];
 
-    const params: Params = routerSnapshot.queryParams;
-
     // Get entry details mode
     if (routerSnapshot.routeConfig?.path === 'entry-details') {
       this.mode = 'window';
@@ -93,7 +91,10 @@ export class EntryDetailsComponent implements OnInit {
       this.mode = 'other'
     }
 
-    if (params.source) {
+    // In windowed mode, parse URL parameters and open it
+    if (this.mode === 'window') {
+      const params: Params = routerSnapshot.queryParams;
+
       const source: string | undefined = params.source;
       const id: string | undefined = params.id;
       const kanji: string | undefined = params.kanji;
