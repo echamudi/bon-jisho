@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectronService } from 'App/modules/shared/services/electron.service';
 
 @Component({
   selector: 'app-main--about',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private electronService: ElectronService) { }
 
   ngOnInit(): void {
   }
 
+  openWebBroser(url: string): void {
+    this.electronService.ipcRenderer
+      .invoke('openURL', { url })
+  }
 }
