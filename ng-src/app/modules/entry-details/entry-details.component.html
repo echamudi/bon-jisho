@@ -18,6 +18,7 @@
         src="assets/icons/chevron-right.svg">
     </div>
     <div
+      *ngIf="mode === 'word-search'"
       class="toolbar-button"
       (click)="popupCurrent()">
       <img
