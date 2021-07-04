@@ -11,12 +11,12 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit, OnDestroy {
 
   currentPage: string = '';
-  routerEventsSubscribtions: Subscription | undefined;
+  routerEventsSubscriptions: Subscription | undefined;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.routerEventsSubscribtions = this.router.events.subscribe(event => {
+    this.routerEventsSubscriptions = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd ) {
         this.selectPage(event.url);
       }
@@ -26,8 +26,8 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.routerEventsSubscribtions) {
-      this.routerEventsSubscribtions.unsubscribe();
+    if (this.routerEventsSubscriptions) {
+      this.routerEventsSubscriptions.unsubscribe();
     }
   }
 
