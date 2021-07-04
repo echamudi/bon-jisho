@@ -82,13 +82,18 @@ img {
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0px -1px 0 0 #CDCDCD inset;
-  -webkit-user-select: none;
+  user-select: none;
   -webkit-app-region: drag;
   display: flex;
   align-items: center;
 
   &__window-buttons-pad {
     width: 70px;
+  }
+
+  &_invisible {
+    background: none;
+    box-shadow: none;
   }
 }
 
@@ -447,4 +452,10 @@ img {
     color: #7E7F80;
     margin-bottom: 5px;
   }
+}
+
+// Helpers
+
+.mb-10 {
+  margin-bottom: 10px;
 }

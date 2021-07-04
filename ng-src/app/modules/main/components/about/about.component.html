@@ -1,14 +1,22 @@
 <div class="entry-details">
+  <div class="toolbar toolbar_invisible" (dblclick)="toggleMaximize()"></div>
   <div class="entry-details__content">
     <div class="entry-details__wrap">
       <div class="detail-block">
-        <img src="assets/bon-jisho-logo.svg">
-        <h1>Bon Jisho</h1>
-        <div>An open source offline Japanese dictionary desktop app.</div><br>
-        <div>Made with ❤️ by Ezzat Chamudi</div><br>
-        <button (click)="openWebBroser('https://github.com/echamudi/bon-jisho')">Open Github Repo</button>
-        &nbsp;
-        <button href="#" (click)="openWebBroser('https://github.com/echamudi/bon-jisho/issues')">Report Issues</button>
+        <div class="about">
+          <div class="about__content">
+            <img src="assets/bon-jisho-logo.svg">
+            <h1>Bon Jisho</h1>
+            <div class="mb-10">An open source offline Japanese dictionary desktop app for everyone.</div>
+            <div class="mb-10">Made with ❤️ by Ezzat Chamudi ©</div>
+            <div class="mb-10">Licensed under AGPL-3.0</div>
+            <div>
+              <button (click)="openWebBroser('https://github.com/echamudi/bon-jisho')">Open Github Repo</button>
+              &nbsp;
+              <button href="#" (click)="openWebBroser('https://github.com/echamudi/bon-jisho/issues')">Report Issues</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
