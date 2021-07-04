@@ -57,7 +57,7 @@ export class EntryDetailsComponent implements OnInit {
   mode: Mode | null = null;
 
   /**
-   * For easter egg
+   * For easter egg, showing raw json
    */
   exploreClickCount: number = 0;
 
