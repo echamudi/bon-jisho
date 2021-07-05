@@ -79,7 +79,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.4",
-    "ng2-tooltip-directive": "2.8.17",
+    "ng2-tooltip-directive": "2.9.20",
     "protractor": "~7.0.0",
     "rxjs": "~6.5.5",
     "ts-node": "~10.0.0",
