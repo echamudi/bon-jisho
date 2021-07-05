@@ -6,10 +6,14 @@
   </div>
   <div class="basic-search__area-result">
     <div class="search-result">
-      <div class="search-result__section-header search-result__section-header_no-border-top">
+      <div
+        *ngIf="isKanji"
+        class="search-result__section-header">
         Kanji
       </div>
-      <div class="search-result__kanji-area">
+      <div
+        *ngIf="isKanji"
+        class="search-result__kanji-area">
         <div
           *ngFor="let kanjiChar of kanjiChars"
           class="search-result__kanji-item"
@@ -18,7 +22,9 @@
           {{ kanjiChar }}
         </div>
       </div>
-      <div class="search-result__section-header">
+      <div
+        *ngIf="list.length > 0"
+        class="search-result__section-header">
         Words
       </div>
       <div

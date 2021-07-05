@@ -14,7 +14,9 @@ List of tasks to be done by an actual user.
 - Kanji
   - The kanji result MUST not show duplicate kanji
   - Selected kanji MUST show blue bg
-
+- Search result list
+  - The kanji section header MUST NOT be shown if there's no kanji in search
+  - The words section header MUST NOT be shown if there's no word in search
 ## Entry Details
 
 ### All Pages

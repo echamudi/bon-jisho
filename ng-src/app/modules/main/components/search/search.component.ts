@@ -18,6 +18,9 @@ export class SearchComponent implements OnInit {
 
   keyword: string = '';
 
+  /** Inputted text contains at least one kanji? */
+  isKanji: boolean = false;
+
   /**
    * All letters in keyword that are kanji
    */
@@ -60,6 +63,8 @@ export class SearchComponent implements OnInit {
 
         /** Contains at least one kanji? */
         const isKanji = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
+        this.isKanji = isKanji;
+
         /** Contains at least one kana? */
         const isKana = currentKeyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
 
