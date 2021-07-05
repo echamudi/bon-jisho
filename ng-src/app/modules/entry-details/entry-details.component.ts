@@ -147,6 +147,7 @@ export class EntryDetailsComponent implements OnInit {
 
     this.detailsObjJMdict = null;
     this.detailsObjJMnedict = null;
+    this.detailsObjKanjidic = null;
 
     this.sameKanji = null;
 
@@ -293,6 +294,8 @@ export class EntryDetailsComponent implements OnInit {
           this.detailsObjKanjidic = kanjidicDetails[0];
           this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
         });
+
+      return;
     }
   }
 
