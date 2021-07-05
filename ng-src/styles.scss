@@ -212,7 +212,7 @@ img {
     box-shadow: -1px -1px 0 0 #CDCDCD inset;
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5px;
+    padding: 0 5px 1px 5px;
   }
 
   &__kanji-item {
@@ -234,7 +234,7 @@ img {
       background: rgba(0,0,0,0.1);
     }
 
-    &_active {
+    &_selected {
       background: #0063E1;
       color: #fff;
 

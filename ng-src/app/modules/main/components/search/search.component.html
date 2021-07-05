@@ -10,7 +10,11 @@
         Kanji
       </div>
       <div class="search-result__kanji-area">
-        <div *ngFor="let kanjiChar of kanjiChars" class="search-result__kanji-item">
+        <div
+          *ngFor="let kanjiChar of kanjiChars"
+          class="search-result__kanji-item"
+          (click)="selectItem(kanjiChar)"
+          [ngClass]="{'search-result__kanji-item_selected': isEqual({source: 3, kanji: kanjiChar}, selectedItem)}">
           {{ kanjiChar }}
         </div>
       </div>

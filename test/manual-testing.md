@@ -11,6 +11,9 @@ List of tasks to be done by an actual user.
   - Hovering over the tags MUST show the tooltip of the tag meaning.
 - Going back to the word search screen
   - The user MUST see the last visited entry details before the user left.
+- Kanji
+  - The kanji result MUST not show duplicate kanji
+  - Selected kanji MUST show blue bg
 
 ## Entry Details
 

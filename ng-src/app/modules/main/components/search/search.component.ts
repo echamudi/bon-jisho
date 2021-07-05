@@ -4,8 +4,9 @@ import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { JapaneseDB } from 'japanese-db';
 
 import { UnderscoreService } from 'App/modules/shared/services/underscore.service';
-import { EntryDetailsQuery } from 'Types/bon-jisho';
+import { EntryDetailsQuery, JMDetailsQuery } from 'Types/bon-jisho';
 import { StatesService } from 'App/modules/shared/services/states.service';
+import { c } from 'Lib/const';
 // import { c } from 'Lib/const';
 
 @Component({
@@ -65,7 +66,7 @@ export class SearchComponent implements OnInit {
         // Get all kanjis
 
         const kanjiChars = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/g)?.map((val) => val) ?? [];
-        this.kanjiChars = kanjiChars;
+        this.kanjiChars = [...new Set(kanjiChars)];
 
         // Define which column
 
@@ -82,8 +83,25 @@ export class SearchComponent implements OnInit {
     }, 200);
   }
 
-  selectItem(item: JapaneseDB.DictIndexRow): void {
-    const selectedItem: EntryDetailsQuery = this.entryDetailsQueryMaker(item);
+  selectItem(item: JapaneseDB.DictIndexRow | string): void {
+    let selectedItem: EntryDetailsQuery;
+
+    // If the user selects kanji search result
+    if (typeof item === 'string') {
+      selectedItem = {
+        source: c.KANJIDIC,
+        kanji: item,
+      };
+
+    // If the user selects word search result
+    } else {
+      selectedItem = {
+        source: item.source,
+        id: item.id,
+        kanji: item.kanji ?? null,
+        reading: item.reading
+      };
+    }
 
     // Disable reclick on the same item
     if (this._.isEqual(selectedItem, this.selectedItem)) {
@@ -95,12 +113,6 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    // const debugSelector: KanjidicQuery = {
-    //   source: c.KANJIDIC,
-    //   kanji: '夢',
-    // }
-    // this.entryDetails.open(debugSelector);
-
     this.entryDetails.open(selectedItem);
 
     // Propagate selection
@@ -108,7 +120,7 @@ export class SearchComponent implements OnInit {
     // this.statesService.wordSearchSelection.next(selectedItem);
   }
 
-  entryDetailsQueryMaker(src: JapaneseDB.DictIndexRow): EntryDetailsQuery {
+  entryDetailsQueryMaker(src: JapaneseDB.DictIndexRow): JMDetailsQuery {
     return {
       source: src.source,
       id: src.id,
