@@ -6,7 +6,48 @@
   </div>
   <div class="basic-search__area-result">
     <div class="search-result">
-        <div
+      <div class="search-result__section-header search-result__section-header_no-border-top">
+        Kanji
+      </div>
+      <div class="search-result__kanji-area">
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item search-result__kanji-item_active">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+        <div class="search-result__kanji-item">
+          本
+        </div>
+      </div>
+      <div class="search-result__section-header">
+        Words
+      </div>
+      <div
           *ngFor="let item of list" (click)="selectItem(item)"
           class="search-result__item"
           [ngClass]="{'search-result__item_selected': isEqual(entryDetailsQueryMaker(item), selectedItem) }">

@@ -192,6 +192,61 @@ img {
       }
     }
   }
+
+  &__section-header {
+    background-color: #F8F8FA;
+    box-shadow: -1px -1px 0 0 #CDCDCD inset;
+    color: #878788;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    height: 22px;
+    padding: 0 8px;
+    position: sticky;
+    top: 0;
+  }
+
+  // Kanji
+
+  &__kanji-area {
+    box-shadow: -1px -1px 0 0 #CDCDCD inset;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5px;
+  }
+
+  &__kanji-item {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 25px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 2.5px;
+
+    &:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    &:active {
+      background: rgba(0,0,0,0.1);
+    }
+
+    &_active {
+      background: #0063E1;
+      color: #fff;
+
+      &:hover {
+        background: darken(#0063E1, 5%);
+      }
+
+      &:active {
+        background: darken(#0063E1, 10%);
+      }
+    }
+  }
 }
 
 // BEM Block: entry-details
