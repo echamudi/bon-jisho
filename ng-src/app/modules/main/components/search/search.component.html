@@ -10,38 +10,8 @@
         Kanji
       </div>
       <div class="search-result__kanji-area">
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item search-result__kanji-item_active">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
-        </div>
-        <div class="search-result__kanji-item">
-          本
+        <div *ngFor="let kanjiChar of kanjiChars" class="search-result__kanji-item">
+          {{ kanjiChar }}
         </div>
       </div>
       <div class="search-result__section-header">

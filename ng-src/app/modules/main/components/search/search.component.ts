@@ -16,6 +16,12 @@ import { StatesService } from 'App/modules/shared/services/states.service';
 export class SearchComponent implements OnInit {
 
   keyword: string = '';
+
+  /**
+   * All letters in keyword that are kanji
+   */
+  kanjiChars: string[] = [];
+
   list: JapaneseDB.DictIndexRow[] = [];
 
   @ViewChild('entryDetails', { static: false })
@@ -51,8 +57,17 @@ export class SearchComponent implements OnInit {
       if (currentKeyword === this.keyword) {
         console.log('queried for', currentKeyword);
 
+        /** Contains at least one kanji? */
         const isKanji = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
+        /** Contains at least one kana? */
         const isKana = currentKeyword.match(/[\u3040-\u309f\u30a0-\u30ff]/) !== null;
+
+        // Get all kanjis
+
+        const kanjiChars = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/g)?.map((val) => val) ?? [];
+        this.kanjiChars = kanjiChars;
+
+        // Define which column
 
         let column: 'kanji' | 'reading' | 'meaning';
         if (isKanji) column = 'kanji';
