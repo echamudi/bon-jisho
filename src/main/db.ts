@@ -211,7 +211,14 @@ export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<Japanese
 
   return new Promise((resolve) => {
     db.all(sql, kanjiChars, (err: any, rows: any[]) => {
-      const postProcessed = rows;
+      const postProcessed = rows.map((value) => ({
+        ...value,
+        variant: JSON.parse(value.variant),
+        dic_number: JSON.parse(value.dic_number),
+        query_code: JSON.parse(value.query_code),
+        reading: JSON.parse(value.reading),
+        meaning: JSON.parse(value.meaning),
+      })) as any;
       resolve(postProcessed);
     });
   });
