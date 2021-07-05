@@ -7,14 +7,21 @@ export type DictSource = c;
 /**
  * Similar to DictSource, but using text
  */
-export type DictSourceT = 'jmdict' | 'jmnedict';
+export type DictSourceT = 'jmdict' | 'jmnedict' | 'kanjidic';
 
-export type EntryDetailsQuery = {
+export type EntryDetailsQuery = JMDetailsQuery | KanjidicQuery | null;
+
+export type JMDetailsQuery = {
   source: c.JMDICT | c.JMNEDICT,
   id: number,
   kanji: string | null,
   reading: string
-} | null;
+};
+
+export type KanjidicQuery = {
+  source: c.KANJIDIC,
+  kanji: string
+};
 
 export type EntryDetailsHistory = {
   stack: EntryDetailsQuery[],

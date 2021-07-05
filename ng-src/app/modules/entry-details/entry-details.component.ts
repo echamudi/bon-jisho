@@ -9,7 +9,7 @@ import { c } from 'Lib/const';
 import { isPlace, getTagDescription } from 'Lib/entities';
 import { getEntryDetailsUrl } from 'Lib/url-generator';
 
-import { DictSource, EntryDetailsQuery, EntryDetailsHistory } from 'Types/bon-jisho';
+import { DictSource, EntryDetailsQuery, EntryDetailsHistory, JMDetailsQuery, KanjidicQuery } from 'Types/bon-jisho';
 import { StatesService } from '../shared/services/states.service';
 
 type Mode =
@@ -37,12 +37,13 @@ export class EntryDetailsComponent implements OnInit {
 
   alternatives: JapaneseDB.DictIndexRow[] | null = null;
 
-  /** JMdict/JMnedict json string */
+  /** JMdict/JMnedict/kanjidic json string */
   detailsString: string = '';
   dictIndexRow: JapaneseDB.DictIndexRow | null = null;
 
   detailsObjJMdict: JMdict.entry | null = null;
   detailsObjJMnedict: JMnedict.entry | null = null;
+  detailsObjKanjidic: JapaneseDB.KanjidicRow | null = null;
 
   sameKanji: JapaneseDB.DictIndexRow[] | null  = [];
 
@@ -101,7 +102,7 @@ export class EntryDetailsComponent implements OnInit {
       const reading: string | undefined = params.reading;
 
       if (source === 'jmdict' && id && kanji && reading) {
-        const input: EntryDetailsQuery = {
+        const input: JMDetailsQuery = {
           source: c.JMDICT,
           id: parseInt(id, 10),
           kanji,
@@ -113,11 +114,21 @@ export class EntryDetailsComponent implements OnInit {
       }
 
       if (source === 'jmnedict' && id && kanji && reading) {
-        const input: EntryDetailsQuery = {
+        const input: JMDetailsQuery = {
           source: c.JMNEDICT,
           id: parseInt(id, 10),
           kanji,
           reading
+        }
+
+        this.open(input);
+        return;
+      }
+
+      if (source === 'kanjidic' && kanji) {
+        const input: KanjidicQuery = {
+          source: c.KANJIDIC,
+          kanji
         }
 
         this.open(input);
@@ -201,21 +212,19 @@ export class EntryDetailsComponent implements OnInit {
 
     if (input === null) return;
 
-    this.keyword = input.kanji ?? input.reading;
+    /**
+     * If it's JMDICT
+     */
+    if (input.source === c.JMDICT) {
+      this.dictSource = c.JMDICT;
+      this.keyword = input.kanji ?? input.reading;
 
-    // Get dict index row from selection
-    // this call is shared for both JMdict and JMnedict
-    this.electronService.ipcRenderer
+      // Get dict index row from selection
+      this.electronService.ipcRenderer
       .invoke('getDictIndexRow', { ...input })
       .then((dictIndexRow) => {
         this.dictIndexRow = dictIndexRow;
       });
-
-    /**
-     * If it's JMDICT
-     */
-    if (input.source === 1) {
-      this.dictSource = c.JMDICT;
 
       // Get JMdict json for the current id
       this.electronService.ipcRenderer
@@ -249,8 +258,16 @@ export class EntryDetailsComponent implements OnInit {
     /**
      * If it's JMNedict
      */
-    if (input.source === 2) {
+    if (input.source === c.JMNEDICT) {
       this.dictSource = c.JMNEDICT;
+      this.keyword = input.kanji ?? input.reading;
+
+      // Get dict index row from selection
+      this.electronService.ipcRenderer
+        .invoke('getDictIndexRow', { ...input })
+        .then((dictIndexRow) => {
+          this.dictIndexRow = dictIndexRow;
+        });
 
       // Get JMnedict json for the current id
       this.electronService.ipcRenderer
@@ -261,6 +278,21 @@ export class EntryDetailsComponent implements OnInit {
         });
 
       return;
+    }
+
+    /**
+     * If it's Kanjidic
+     */
+    if (input.source === c.KANJIDIC) {
+      this.dictSource = c.KANJIDIC;
+      this.keyword = input.kanji;
+
+      this.electronService.ipcRenderer
+        .invoke('getKanjidicRows', { kanjiChars: [this.keyword] })
+        .then((kanjidicDetails) => {
+          this.detailsObjKanjidic = kanjidicDetails[0];
+          this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
+        });
     }
   }
 

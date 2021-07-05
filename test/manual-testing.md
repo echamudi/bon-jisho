@@ -70,3 +70,8 @@ List of tasks to be done by an actual user.
 - ありがとうさん
   - MUST show the page
   - Copy button MUST copy ありがとうさん
+
+### Kanji Details
+- 夢　kanji mode
+  - Details MUST be shown in word-search mode
+  - Details MUST be shown in popup mode

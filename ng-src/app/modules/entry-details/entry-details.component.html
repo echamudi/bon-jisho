@@ -27,11 +27,12 @@
     </div>
   </div>
 
+  <!-- JMDict and JMnedict -->
   <!-- ngIf = only show when all JMdict data is loaded OR all JMnedict data is loaded -->
   <div
     *ngIf="
-      dictIndexRow && detailsObjJMdict && alternatives && sameKanji
-      || dictIndexRow && detailsObjJMnedict"
+      (dictIndexRow && detailsObjJMdict && alternatives && sameKanji)
+      || (dictIndexRow && detailsObjJMnedict)"
     class="entry-details__content">
     <div class="entry-details__wrap">
 
@@ -248,6 +249,19 @@
           </div>
         </div>
       </ng-container>
+    </div>
+  </div>
+
+  <!-- Kanjidic -->
+  <div
+    *ngIf="detailsObjKanjidic"
+    class="entry-details__content">
+    <div class="entry-details__wrap">
+      <div class="detail-block">
+        <div class="detail-row">
+          <pre>{{ detailsString }}</pre>
+        </div>
+      </div>
     </div>
   </div>
 </div>

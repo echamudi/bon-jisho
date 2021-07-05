@@ -6,6 +6,7 @@ import { JapaneseDB } from 'japanese-db';
 import { UnderscoreService } from 'App/modules/shared/services/underscore.service';
 import { EntryDetailsQuery } from 'Types/bon-jisho';
 import { StatesService } from 'App/modules/shared/services/states.service';
+// import { c } from 'Lib/const';
 
 @Component({
   selector: 'app-main--search',
@@ -78,6 +79,12 @@ export class SearchComponent implements OnInit {
       console.log('Error: #entryDetails component is not found')
       return;
     }
+
+    // const debugSelector: KanjidicQuery = {
+    //   source: c.KANJIDIC,
+    //   kanji: '夢',
+    // }
+    // this.entryDetails.open(debugSelector);
 
     this.entryDetails.open(selectedItem);
 
