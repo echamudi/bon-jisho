@@ -14,11 +14,13 @@ Currently, the app is only supported on mac.
 yarn
 npx electron-builder install-app-deps
 
+# Download KanjiStrokeOrders
 mkdir -p ./ng-src/assets/fonts
 (cd ./ng-src/assets/fonts \
-  && curl -o KanjiStrokeOrders.ttf https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004.ttf \
+  && curl -o "KanjiStrokeOrders.ttf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004.ttf \
   && curl -o "KanjiStrokeOrders_v4.004 - copyright.txt" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004%20-%20copyright.txt)
 ```
+<!-- TODO: Add downloader for JMDict etc -->
 
 ### Building the Database
 
