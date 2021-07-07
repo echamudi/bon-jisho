@@ -225,7 +225,9 @@ export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<Japanese
   });
 }
 
-// TODO: Create quick kanji reading + meaing returns
+// TODO: Create quick kanji reading + meaning + group returns
+// TODO: Create related kanji calls
+// TODO: kanji alive examples
 
 export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjivgTreeRow[]> {
   const { kanjiChars } = query;
