@@ -148,6 +148,7 @@ Thumbs.db
 /db-src/ka_data.csv
 
 # ng-src
+/ng-src/assets/fonts
 
 # db-dist
 /static/db-dist
