@@ -225,6 +225,8 @@ export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<Japanese
   });
 }
 
+// TODO: Create quick kanji reading + meaing returns
+
 export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjivgTreeRow[]> {
   const { kanjiChars } = query;
   const wildCards = Array(kanjiChars.length).fill('?').join(',');
