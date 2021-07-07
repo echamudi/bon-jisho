@@ -163,6 +163,9 @@ test('getKanjidicRows', async () => {
         "nanori": null
     }]`)
     );
+
+    const res2 = await getKanjidicRows({ kanjiChars: ['A', 'B'] });
+    expect(res2).toEqual([]);
 });
 
 
@@ -221,4 +224,7 @@ test('getKanjivgTreeRows', async () => {
       }]`,
       ),
     );
+
+  const res2 = await getKanjivgTreeRows({ kanjiChars: ['A', 'B'] });
+  expect(res2).toEqual([]);
 });
