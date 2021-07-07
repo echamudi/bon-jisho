@@ -218,6 +218,7 @@ export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<Japanese
         query_code: JSON.parse(value.query_code),
         reading: JSON.parse(value.reading),
         meaning: JSON.parse(value.meaning),
+        nanori: JSON.parse(value.nanori)
       })) as any;
       resolve(postProcessed);
     });

@@ -45,6 +45,9 @@ export class EntryDetailsComponent implements OnInit {
   detailsObjJMnedict: JMnedict.entry | null = null;
   detailsObjKanjidic: JapaneseDB.KanjidicRow | null = null;
 
+  /** All kanji readings, for kanjidic mode only */
+  kanjiReadings: { on: string[], kun: string[], nanori: string[] } | null = null;
+
   sameKanji: JapaneseDB.DictIndexRow[] | null  = [];
 
   dictSource: DictSource | null = null;
@@ -148,6 +151,8 @@ export class EntryDetailsComponent implements OnInit {
     this.detailsObjJMdict = null;
     this.detailsObjJMnedict = null;
     this.detailsObjKanjidic = null;
+
+    this.kanjiReadings = null;
 
     this.sameKanji = null;
 
@@ -288,12 +293,27 @@ export class EntryDetailsComponent implements OnInit {
       this.dictSource = c.KANJIDIC;
       this.keyword = input.kanji;
 
-      this.electronService.ipcRenderer
-        .invoke('getKanjidicRows', { kanjiChars: [this.keyword] })
-        .then((kanjidicDetails) => {
-          this.detailsObjKanjidic = kanjidicDetails[0];
-          this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
+      (async () => {
+        const kanjidicDetails = await this.electronService.ipcRenderer
+          .invoke('getKanjidicRows', { kanjiChars: [this.keyword] });
+
+        this.detailsObjKanjidic = kanjidicDetails[0];
+        this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
+
+        const kanjiReadings: EntryDetailsComponent['kanjiReadings'] = {
+          kun: [],
+          nanori: [],
+          on: []
+        };
+
+        kanjidicDetails[0].reading?.forEach((el) => {
+          if (el.r_type === 'ja_on') kanjiReadings.on.push(el.$t);
+          if (el.r_type === 'ja_kun') kanjiReadings.kun.push(el.$t);
         });
+        kanjiReadings.nanori = kanjidicDetails?.[0]?.nanori ?? [];
+
+        this.kanjiReadings = kanjiReadings;
+      })();
 
       return;
     }

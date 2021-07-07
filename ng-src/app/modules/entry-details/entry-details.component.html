@@ -92,7 +92,7 @@
         <div class="detail-block">
           <!-- JMdict Translation -->
           <ng-container *ngIf="dictSource === 1 && detailsObjJMdict !== null">
-            <div class="detail-row">
+            <div class="detail-row" style="user-select: text;">
               <div *ngFor="let sense of detailsObjJMdict?.sense; index as i">
                 <div *ngIf="sense.pos" class="detail-row__title">{{ sense.pos | getEntities:'jmdict' | join:', ' }}</div>
                 <div class="sense-item">
@@ -257,6 +257,47 @@
     *ngIf="detailsObjKanjidic"
     class="entry-details__content">
     <div class="entry-details__wrap">
+      <div class="entry-head">
+        <div class="entry-head__kanji">
+          <app-entry-details--ruby
+            [kanji]="detailsObjKanjidic.literal">
+          </app-entry-details--ruby>
+        </div>
+      </div>
+
+      <div class="separator-pad">
+        <div class="separator-pad__label">
+          READINGS
+        </div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-row">
+          <div *ngIf="kanjiReadings?.kun.length > 0">
+            Kunyomi
+            <ng-container *ngFor="let kunReading of kanjiReadings?.kun">
+              <span>{{ kunReading }} ;</span>
+            </ng-container>
+          </div>
+          <div *ngIf="kanjiReadings?.on.length > 0">
+            Onyomi
+            <ng-container *ngFor="let onReading of kanjiReadings?.on">
+              <span>{{ onReading }} ;</span>
+            </ng-container>
+          </div>
+          <div *ngIf="kanjiReadings?.nanori.length > 0">
+            Nanori
+            <ng-container *ngFor="let nanoriReading of kanjiReadings?.nanori">
+              <span>{{ nanoriReading }} ;</span>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator-pad">
+        <div class="separator-pad__label">
+          RAW
+        </div>
+      </div>
       <div class="detail-block">
         <div class="detail-row">
           <pre>{{ detailsString }}</pre>
