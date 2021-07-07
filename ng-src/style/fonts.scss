@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/NotoSansJP-Regular.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/NotoSansJP-Bold.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/NotoSerifJP-Regular.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/NotoSerifJP-Bold.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'KanjiStrokeOrders';
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/KanjiStrokeOrders.ttf") format('truetype');
+}

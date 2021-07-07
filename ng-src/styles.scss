@@ -1,5 +1,6 @@
-@import './style/normalizer.scss';
+@import "./style/normalizer.scss";
 @import "./style/fill.scss";
+@import "./style/fonts.scss";
 
 /* You can add global styles to this file, and also import other style files */
 body {
@@ -9,6 +10,19 @@ body {
 
 img {
   -webkit-user-drag: none;
+}
+
+// Font Families
+.font-jp-serif {
+  font-family: 'Noto Serif JP', serif;
+}
+
+.font-jp-sans {
+  font-family: 'Noto Sans  JP', sans-serif;
+}
+
+.font-jp-stroke-order {
+  font-family: 'KanjiStrokeOrders';
 }
 
 // BEM Block: sidebar
