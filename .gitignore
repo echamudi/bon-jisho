@@ -140,11 +140,13 @@ Thumbs.db
 # Bon Jisho
 # db-src
 /db-src/JMdict_e
-/db-src/JMdict_e.xml
+/db-src/JMdict_e.zip
 /db-src/JMnedict
 /db-src/JMnedict.xml
+/db-src/JMnedict.xml.zip
 /db-src/kanjidic2
 /db-src/kanjidic2.xml
+/db-src/kanjidic2.xml.zip
 /db-src/ka_data.csv
 
 # ng-src

@@ -14,31 +14,35 @@ Currently, the app is only supported on mac.
 yarn
 npx electron-builder install-app-deps
 
+# Download DB materials
+mkdir -p ./db-src
+(cd ./db-src \
+  && curl -o "JMdict_e.zip" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/EDRDG%20-%202021-06-30/JMdict_e.zip \
+  && curl -o "JMnedict.xml.zip" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/EDRDG%20-%202021-06-30/JMnedict.xml.zip \
+  && curl -o "kanjidic2.xml.zip" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/EDRDG%20-%202021-06-30/kanjidic2.xml.zip \
+  && curl -o "ka_data.csv" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/kanji-data-media/ka_data.csv )
+(cd ./db-src \
+  && unzip "JMdict_e.zip" \
+  && unzip "JMnedict.xml.zip" \
+  && unzip "kanjidic2.xml.zip")
+
 # Download KanjiStrokeOrders
 mkdir -p ./ng-src/assets/fonts
 (cd ./ng-src/assets/fonts \
   && curl -o "KanjiStrokeOrders.ttf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004.ttf \
   && curl -o "KanjiStrokeOrders_v4.004 - copyright.txt" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004%20-%20copyright.txt)
+
+# Download Noto Fonts
+mkdir -p ./ng-src/assets/fonts
+(cd ./ng-src/assets/fonts \
+  && curl -o "NotoSansJP-Regular.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Sans_JP/NotoSansJP-Regular.otf \
+  && curl -o "NotoSansJP-Bold.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Sans_JP/NotoSansJP-Bold.otf \
+  && curl -o "NotoSerifJP-Regular.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Serif_JP/NotoSerifJP-Regular.otf \
+  && curl -o "NotoSerifJP-Bold.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Serif_JP/NotoSerifJP-Bold.otf )
+
+# Build the database using Japanese-DB (https://github.com/ezhmd/japanese-db)
+yarn db-build
 ```
-<!-- TODO: Add downloader for JMDict etc -->
-
-### Building the Database
-
-Before compiling the app, we need to build the database.
-This project uses [Japanese DB](https://github.com/ezhmd/japanese-db) tool to build the database. 
-
-1. Download the required materials from the following sources:
-  - JMdict_e: http://ftp.edrdg.org/pub/Nihongo/JMdict_e.gz
-  - JMnedict.xml: http://ftp.edrdg.org/pub/Nihongo/JMnedict.xml.gz
-  - kanjidic2.xml: http://www.edrdg.org/kanjidic/kanjidic2.xml.gz
-  - ka_data.csv: https://raw.githubusercontent.com/echamudi/kanji-data-media/master/language-data/ka_data.csv
-
-1. Extract and put all the required materials inside `db-src` folder. Make sure the file names are exactly `JMdict_e`, `JMnedict.xml`, `kanjidic2.xml`, and `ka_data.csv` respectively.
-
-1. Run following script:
-    ```sh
-    yarn db-build
-    ```
 
 ### Watch
 
