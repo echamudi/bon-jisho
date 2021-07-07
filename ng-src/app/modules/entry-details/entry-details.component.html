@@ -329,6 +329,22 @@
 
       <div class="separator-pad">
         <div class="separator-pad__label">
+          KANJI TREE
+        </div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-row">
+          <div *ngIf="kanjiTree?.length > 0">
+            <pre>
+              {{ kanjiTree }}
+               <!-- TODO: Create kanji tree component -->
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator-pad">
+        <div class="separator-pad__label">
           RAW
         </div>
       </div>

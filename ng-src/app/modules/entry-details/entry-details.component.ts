@@ -47,6 +47,7 @@ export class EntryDetailsComponent implements OnInit {
 
   /** All kanji readings, for kanjidic mode only */
   kanjiReadings: { on: string[], kun: string[], nanori: string[] } | null = null;
+  kanjiTree: JapaneseDB.KanjivgTreeRow[] | null = null;
 
   sameKanji: JapaneseDB.DictIndexRow[] | null  = [];
 
@@ -153,6 +154,7 @@ export class EntryDetailsComponent implements OnInit {
     this.detailsObjKanjidic = null;
 
     this.kanjiReadings = null;
+    this.kanjiTree = null;
 
     this.sameKanji = null;
 
@@ -297,6 +299,9 @@ export class EntryDetailsComponent implements OnInit {
         const kanjidicDetails = await this.electronService.ipcRenderer
           .invoke('getKanjidicRows', { kanjiChars: [this.keyword] });
 
+        // If the requested kanji is not found
+        if (kanjidicDetails.length === 0) return;
+
         this.detailsObjKanjidic = kanjidicDetails[0];
         this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
 
@@ -314,9 +319,19 @@ export class EntryDetailsComponent implements OnInit {
 
         this.kanjiReadings = kanjiReadings;
       })();
-
-      return;
     }
+
+    (async () => {
+      const kanjiTree = await this.electronService.ipcRenderer
+        .invoke('getKanjivgTreeRows', { kanjiChars: [this.keyword] });
+
+      // If the requested kanji is not found
+      if (kanjiTree.length === 0) return;
+
+      this.kanjiTree = kanjiTree;
+    })();
+
+    return;
   }
 
   openWebBroser(url: string): void {

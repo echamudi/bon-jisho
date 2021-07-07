@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow, getKanjidicRows } from 'Main/db';
+import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow, getKanjidicRows, getKanjivgTreeRows } from 'Main/db';
 
 type _ipcRenderer = typeof ipcRenderer;
 
@@ -9,5 +9,6 @@ export interface BonIpcRenderer extends _ipcRenderer {
   invoke(channel: 'getJMdictJsonsRows', query: Parameters<typeof getJMdictJsonsRows>[0]): ReturnType<typeof getJMdictJsonsRows>;
   invoke(channel: 'getJMnedictJsonsRows', query: Parameters<typeof getJMnedictJsonsRows>[0]): ReturnType<typeof getJMnedictJsonsRows>;
   invoke(channel: 'getKanjidicRows', query: Parameters<typeof getKanjidicRows>[0]): ReturnType<typeof getKanjidicRows>;
+  invoke(channel: 'getKanjivgTreeRows', query: Parameters<typeof getKanjivgTreeRows>[0]): ReturnType<typeof getKanjivgTreeRows>;
   invoke(channel: 'openURL' | 'open-url-electron', query: {url: string}): Promise<undefined>;
 }
