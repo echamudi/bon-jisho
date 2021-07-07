@@ -15,8 +15,8 @@ yarn
 npx electron-builder install-app-deps
 
 mkdir -p ./ng-src/assets/fonts
-(cd ./ng-src/assets/fonts && curl -o KanjiStrokeOrders.ttf https://github.com/echamudi/jp-resources-mirror/raw/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004.ttf)
-(cd ./ng-src/assets/fonts && curl -o "KanjiStrokeOrders_v4.004 - copyright.txt" https://github.com/echamudi/jp-resources-mirror/blob/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004%20-%20copyright.txt)
+(cd ./ng-src/assets/fonts && curl -o KanjiStrokeOrders.ttf https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004.ttf)
+(cd ./ng-src/assets/fonts && curl -o "KanjiStrokeOrders_v4.004 - copyright.txt" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/34a3254dc9ed46ba2dfbf64cf62156c1077fb673/KanjiStrokeOrders_v4.004%20-%20copyright.txt)
 ```
 
 ### Building the Database
