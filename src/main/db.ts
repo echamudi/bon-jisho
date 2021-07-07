@@ -233,11 +233,11 @@ export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<Japan
 
   return new Promise((resolve) => {
     db.all(sql, kanjiChars, (err: any, rows: any[]) => {
-      // const postProcessed = rows.map((value) => ({
-      //   ent_seq: value.ent_seq,
-      //   json: JSON.parse(value.json),
-      // }));
-      resolve(rows);
+      const postProcessed = rows.map((value) => ({
+        kanji: value.kanji,
+        tree_json: JSON.parse(value.tree_json),
+      }));
+      resolve(postProcessed);
     });
   });
 }

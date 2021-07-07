@@ -172,21 +172,53 @@ test('getKanjivgTreeRows', async () => {
   expect(res)
     .toEqual(
       JSON.parse(
-        `
-        [
-          {
-              "kanji": "化",
-              "tree_json": "{\\"element\\":\\"化\\",\\"g\\":[{\\"element\\":\\"亻\\"},{\\"element\\":\\"匕\\"}]}"
-          },
-          {
-              "kanji": "夢",
-              "tree_json": "{\\"element\\":\\"夢\\",\\"g\\":[{\\"g\\":[{\\"element\\":\\"艹\\"},{\\"element\\":\\"罒\\"},{\\"element\\":\\"冖\\"}]},{\\"element\\":\\"夕\\"}]}"
-          },
-          {
-              "kanji": "悪",
-              "tree_json": "{\\"element\\":\\"悪\\",\\"g\\":[{\\"element\\":\\"亜\\",\\"g\\":[{\\"element\\":\\"二\\",\\"g\\":[{\\"element\\":\\"一\\"}]},{\\"element\\":\\"口\\"},{\\"element\\":\\"二\\"}]},{\\"element\\":\\"心\\"}]}"
+        `[{
+          "kanji": "化",
+          "tree_json": {
+              "element": "化",
+              "g": [{
+                  "element": "亻"
+              }, {
+                  "element": "匕"
+              }]
           }
-        ]`,
+      }, {
+          "kanji": "夢",
+          "tree_json": {
+              "element": "夢",
+              "g": [{
+                  "g": [{
+                      "element": "艹"
+                  }, {
+                      "element": "罒"
+                  }, {
+                      "element": "冖"
+                  }]
+              }, {
+                  "element": "夕"
+              }]
+          }
+      }, {
+          "kanji": "悪",
+          "tree_json": {
+              "element": "悪",
+              "g": [{
+                  "element": "亜",
+                  "g": [{
+                      "element": "二",
+                      "g": [{
+                          "element": "一"
+                      }]
+                  }, {
+                      "element": "口"
+                  }, {
+                      "element": "二"
+                  }]
+              }, {
+                  "element": "心"
+              }]
+          }
+      }]`,
       ),
     );
 });
