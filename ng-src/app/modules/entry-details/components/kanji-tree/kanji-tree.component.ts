@@ -10,26 +10,38 @@ import { KanjiQuickDataRow } from 'Main/db';
 })
 export class KanjiTreeComponent implements OnInit {
 
-  @Input() kanjiTree: KanjivgTreeRow['tree_json'] | undefined;
+  @Input() kanjiChars: string[] | undefined;
 
   // If the component is recursive element
   @Input() child: boolean | undefined;
 
   @Input() kanjiQuickInfo: Record<string, KanjiQuickDataRow> | undefined;
 
+  @Input() trees: Array<KanjivgTreeRow['tree_json']> | undefined;
+
   constructor(private electronService: ElectronService) { }
 
   ngOnInit(): void {
     // Gather all characters in a tree, and get quick data only in parent element
-    if (!this.child) {
-      let allChars: string[] = [];
-      if (this.kanjiTree) allChars = this.getAllChars(this.kanjiTree);
+    if (!this.child && this.kanjiChars) {
+      const kanjiChars = this.kanjiChars;
+      (async () => {
+        const trees = await this.electronService.ipcRenderer
+          .invoke('getKanjivgTreeRows', { kanjiChars });
 
-      this.electronService.ipcRenderer
-        .invoke('getKanjiQuickDataRows', { kanjiChars: allChars })
-        .then((res) => {
-          this.kanjiQuickInfo = res;
+          console.log(trees)
+
+        // Collect all chars
+        const allChars: string[] = [];
+        trees.forEach((tree) => {
+          allChars.push(...this.getAllChars(tree.tree_json));
         });
+
+        this.kanjiQuickInfo = await this.electronService.ipcRenderer
+          .invoke('getKanjiQuickDataRows', { kanjiChars: allChars });
+
+        this.trees = trees.map((tree) => tree.tree_json);
+      })();
     };
   }
 

@@ -1,12 +1,16 @@
-<div *ngIf="kanjiTree" style="border: solid 1px red;padding-left: 20px; font-size: 24px;">
-  {{ kanjiTree.element }}
-  <div *ngIf="kanjiQuickInfo && kanjiTree.element">
-    {{ kanjiQuickInfo[kanjiTree.element].kun }}
-    {{ kanjiQuickInfo[kanjiTree.element].on }}
-  </div>
-  <div *ngIf="kanjiTree.g">
-    <div *ngFor="let g of kanjiTree.g">
-      <app-entry-details--kanji-tree [kanjiTree]="g" [child]="true" [kanjiQuickInfo]="kanjiQuickInfo"></app-entry-details--kanji-tree>
+<ng-container *ngIf="trees">
+  <div *ngFor="let tree of trees">
+    <div style="border: solid 1px red;padding-left: 20px; font-size: 24px;">
+      {{ tree.element }}
+      <div *ngIf="kanjiQuickInfo && tree.element">
+        {{ kanjiQuickInfo[tree.element].kun }}
+        {{ kanjiQuickInfo[tree.element].on }}
+      </div>
+      <div *ngIf="tree && tree.g">
+        <div *ngFor="let g of tree.g">
+          <app-entry-details--kanji-tree [child]="true" [trees]="[g]" [kanjiQuickInfo]="kanjiQuickInfo"></app-entry-details--kanji-tree>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>

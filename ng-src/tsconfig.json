@@ -3,5 +3,8 @@
   "extends": "../tsconfig.angular.json",
   "include": [
     "./**/*.ts",
-  ]
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+  }
 }
