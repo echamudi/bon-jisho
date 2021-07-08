@@ -362,7 +362,6 @@ test('getKanjiQuickDataRows', async () => {
 test('getKanjiAliveRows', async () => {
   const res = await getKanjiAliveRows({ kanjiChars: ['悪', '夢', '悪', '化'] });
 
-  console.log(JSON.stringify(res, undefined, 2));
   expect(res)
     .toEqual(
       JSON.parse(
