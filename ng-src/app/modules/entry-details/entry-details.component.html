@@ -141,7 +141,7 @@
                     <span *ngFor="let text of trans.trans_det">
                       {{ text }}
                     </span>
-                    <span *ngIf="isPlace(trans.name_type)">
+                    <span *ngIf="trans.name_type && isPlace(trans.name_type)">
                       <button (click)="openWebBroser('https://www.google.com/maps/search/' + keyword)">
                         See location in Google Maps</button>
                     </span>
@@ -272,19 +272,19 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <div *ngIf="kanjiReadings?.kun.length > 0">
+          <div *ngIf="kanjiReadings?.kun?.length > 0">
             Kunyomi
             <ng-container *ngFor="let kunReading of kanjiReadings?.kun">
               <span>{{ kunReading }}; </span>
             </ng-container>
           </div>
-          <div *ngIf="kanjiReadings?.on.length > 0">
+          <div *ngIf="kanjiReadings?.on?.length > 0">
             Onyomi
             <ng-container *ngFor="let onReading of kanjiReadings?.on">
               <span>{{ onReading }}; </span>
             </ng-container>
           </div>
-          <div *ngIf="kanjiReadings?.nanori.length > 0">
+          <div *ngIf="kanjiReadings?.nanori?.length > 0">
             Nanori
             <ng-container *ngFor="let nanoriReading of kanjiReadings?.nanori">
               <span>{{ nanoriReading }}; </span>
@@ -300,7 +300,7 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <div *ngIf="detailsObjKanjidic.meaning?.length > 0">
+          <div *ngIf="detailsObjKanjidic?.meaning?.length > 0">
             <ng-container *ngFor="let meaning of detailsObjKanjidic.meaning">
               <span>{{ meaning }}; </span>
             </ng-container>
