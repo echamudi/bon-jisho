@@ -134,7 +134,7 @@ export function getDictIndexRow(
     id: number,
     kanji: string | null,
     reading: string
-  }): Promise<JapaneseDB.DictIndexRow|null> {
+  }): Promise<JapaneseDB.DictIndexRow | null> {
 
   const { source, id, kanji, reading } = query;
 
@@ -169,7 +169,7 @@ export function getDictIndexRow(
 
 // export function getEntities(query: {}): Promise<{jmdict: JapaneseDB.JMdictEntitiesRow[], b: JapaneseDB.JMnedictEntitiesRow[]}> { }
 
-export function getJMdictJsonsRows(query: {entSeqs: number[]}): Promise<JapaneseDB.JMdictJsonsRow[]> {
+export function getJMdictJsonsRows(query: { entSeqs: number[] }): Promise<JapaneseDB.JMdictJsonsRow[]> {
   const { entSeqs } = query;
   const wildCards = Array(entSeqs.length).fill('?').join(',');
 
@@ -203,7 +203,7 @@ export function getJMnedictJsonsRows(query: { entSeqs: number[] }): Promise<Japa
   });
 }
 
-export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjidicRow[]> {
+export function getKanjidicRows(query: { kanjiChars: string[] }): Promise<JapaneseDB.KanjidicRow[]> {
   const { kanjiChars } = query;
   const wildCards = Array(kanjiChars.length).fill('?').join(',');
 
@@ -225,11 +225,24 @@ export function getKanjidicRows(query: {kanjiChars: string[]}): Promise<Japanese
   });
 }
 
-// TODO: Create quick kanji reading + meaning + group returns
-// TODO: Create related kanji calls
-// TODO: kanji alive examples
+export function getKanjiAliveRows(query: { kanjiChars: string[] }): Promise<JapaneseDB.KanjiAliveRow[]> {
+  const { kanjiChars } = query;
+  const wildCards = Array(kanjiChars.length).fill('?').join(',');
 
-export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<JapaneseDB.KanjivgTreeRow[]> {
+  const sql = `SELECT * FROM kanjialive WHERE kanji IN (${wildCards})`;
+
+  return new Promise((resolve) => {
+    db.all(sql, kanjiChars, (err: any, rows: any[]) => {
+      const postProcessed = rows.map((value) => ({
+        ...value,
+        examples: JSON.parse(value.examples),
+      })) as any;
+      resolve(postProcessed);
+    });
+  });
+}
+
+export function getKanjivgTreeRows(query: { kanjiChars: string[] }): Promise<JapaneseDB.KanjivgTreeRow[]> {
   const { kanjiChars } = query;
   const wildCards = Array(kanjiChars.length).fill('?').join(',');
 
@@ -241,6 +254,94 @@ export function getKanjivgTreeRows(query: {kanjiChars: string[]}): Promise<Japan
         kanji: value.kanji,
         tree_json: JSON.parse(value.tree_json),
       }));
+      resolve(postProcessed);
+    });
+  });
+}
+
+export interface RelatedKanjiAggregateRow {
+  literal: string,
+  related_antonyms: string[],
+  related_lookalikes: string[],
+  related_synonyms: string[],
+  related_variants: string[],
+};
+
+export function getRelatedKanjiAggregateRows(query: { kanjiChars: string[] }): Promise<RelatedKanjiAggregateRow[]> {
+  const { kanjiChars } = query;
+  const wildCards = Array(kanjiChars.length).fill('?').join(',');
+
+  const sql = `SELECT
+    literal,
+    related_antonyms.array as \`related_antonyms\`,
+    related_lookalikes.array as \`related_lookalikes\`,
+    related_synonyms.array as \`related_synonyms\`,
+    related_variants.array as \`related_variants\`
+    FROM kanjidic
+    LEFT JOIN related_antonyms on kanjidic.literal == related_antonyms.kanji
+    LEFT JOIN related_lookalikes on kanjidic.literal == related_lookalikes.kanji
+    LEFT JOIN related_synonyms on kanjidic.literal == related_synonyms.kanji
+    LEFT JOIN related_variants on kanjidic.literal == related_variants.kanji
+    WHERE literal IN (${wildCards});`
+
+  return new Promise((resolve) => {
+    db.all(sql, kanjiChars, (err: any, rows: any[]) => {
+      const postProcessed = rows.map((value) => ({
+        literal: value.literal,
+        related_antonyms: JSON.parse(value.related_antonyms),
+        related_lookalikes: JSON.parse(value.related_lookalikes),
+        related_synonyms: JSON.parse(value.related_synonyms),
+        related_variants: JSON.parse(value.related_variants),
+      }));
+      resolve(postProcessed);
+    });
+  });
+}
+
+export interface KanjiQuickDataRow {
+  literal: string,
+  kanken: number | null,
+  jlpt_new: number | null,
+  on: string[] | null,
+  kun: string[] | null,
+  meaning: string[] | null,
+};
+
+export function getKanjiQuickDataRows(query: { kanjiChars: string[] }): Promise<KanjiQuickDataRow[]> {
+  const { kanjiChars } = query;
+  const wildCards = Array(kanjiChars.length).fill('?').join(',');
+
+  const sql = `
+  SELECT
+    literal,
+    reading,
+    meaning,
+    kanji_groups.kanken,
+    kanji_groups.jlpt_new
+  FROM kanjidic
+  LEFT JOIN kanji_groups on kanjidic.literal == kanji_groups.kanji
+  WHERE literal IN (${wildCards});`
+
+  return new Promise((resolve) => {
+    db.all(sql, kanjiChars, (err: any, rows: any[]) => {
+      const postProcessed = rows.map((value) => {
+
+        const reading: { [key: string]: string; }[] | null = JSON.parse(value.reading);
+        let on = reading?.filter((val) => val.r_type === 'ja_on').map((val) => val.$t) ?? null;
+        let kun = reading?.filter((val) => val.r_type === 'ja_kun').map((val) => val.$t) ?? null;
+
+        if (on?.length === 0) on = null;
+        if (kun?.length === 0) kun = null;
+
+        return {
+          literal: value.literal,
+          kanken: value.kanken,
+          jlpt_new: value.jlpt_new,
+          on,
+          kun,
+          meaning: JSON.parse(value.meaning),
+        };
+      });
       resolve(postProcessed);
     });
   });

@@ -1,4 +1,4 @@
-import { getJMdictJsonsRows, getKanjidicRows, getKanjivgTreeRows } from 'Main/db';
+import { getJMdictJsonsRows, getKanjiAliveRows, getKanjidicRows, getKanjiQuickDataRows, getKanjivgTreeRows, getRelatedKanjiAggregateRows } from 'Main/db';
 
 test('getJMdictJsonsRows', async () => {
   getJMdictJsonsRows({
@@ -227,4 +227,318 @@ test('getKanjivgTreeRows', async () => {
 
   const res2 = await getKanjivgTreeRows({ kanjiChars: ['A', 'B'] });
   expect(res2).toEqual([]);
+});
+
+test('getRelatedKanjiAggregateRows', async () => {
+  const res = await getRelatedKanjiAggregateRows({ kanjiChars: ['悪', '夢', '悪', '化'] });
+
+  expect(res)
+    .toEqual(
+      JSON.parse(
+        `[
+          {
+            "literal": "化",
+            "related_antonyms": null,
+            "related_lookalikes": null,
+            "related_synonyms": null,
+            "related_variants": [
+              ""
+            ]
+          },
+          {
+            "literal": "夢",
+            "related_antonyms": null,
+            "related_lookalikes": null,
+            "related_synonyms": null,
+            "related_variants": [
+              "梦"
+            ]
+          },
+          {
+            "literal": "悪",
+            "related_antonyms": [
+              "善",
+              "美",
+              "好",
+              "良"
+            ],
+            "related_lookalikes": null,
+            "related_synonyms": [
+              "醜",
+              "粗",
+              "憎"
+            ],
+            "related_variants": [
+              "惡"
+            ]
+          }
+        ]`,
+      ),
+    );
+});
+
+test('getKanjiQuickDataRows', async () => {
+  const res = await getKanjiQuickDataRows({ kanjiChars: ['悪', '夢', '悪', '化'] });
+
+  expect(res)
+    .toEqual(
+      JSON.parse(
+        `[
+          {
+            "literal": "化",
+            "kanken": 80,
+            "jlpt_new": 3,
+            "on": [
+              "カ",
+              "ケ"
+            ],
+            "kun": [
+              "ば.ける",
+              "ば.かす",
+              "ふ.ける",
+              "け.する"
+            ],
+            "meaning": [
+              "change",
+              "take the form of",
+              "influence",
+              "enchant",
+              "delude",
+              "-ization"
+            ]
+          },
+          {
+            "literal": "夢",
+            "kanken": 60,
+            "jlpt_new": 3,
+            "on": [
+              "ム",
+              "ボウ"
+            ],
+            "kun": [
+              "ゆめ",
+              "ゆめ.みる",
+              "くら.い"
+            ],
+            "meaning": [
+              "dream",
+              "vision",
+              "illusion"
+            ]
+          },
+          {
+            "literal": "悪",
+            "kanken": 80,
+            "jlpt_new": 4,
+            "on": [
+              "アク",
+              "オ"
+            ],
+            "kun": [
+              "わる.い",
+              "わる-",
+              "あ.し",
+              "にく.い",
+              "-にく.い",
+              "ああ",
+              "いずくに",
+              "いずくんぞ",
+              "にく.む"
+            ],
+            "meaning": [
+              "bad",
+              "vice",
+              "rascal",
+              "false",
+              "evil",
+              "wrong"
+            ]
+          }
+        ]`,
+      ),
+    );
+});
+
+test('getKanjiAliveRows', async () => {
+  const res = await getKanjiAliveRows({ kanjiChars: ['悪', '夢', '悪', '化'] });
+
+  console.log(JSON.stringify(res, undefined, 2));
+  expect(res)
+    .toEqual(
+      JSON.parse(
+        `[
+          {
+            "kanji": "化",
+            "kname": "ba(keru)",
+            "kstroke": 4,
+            "kmeaning": "change into",
+            "kgrade": 3,
+            "kunyomi_ja": "ば、ばける、ばかす",
+            "kunyomi": "ba, bakeru, bakasu",
+            "onyomi_ja": "カ、ケ",
+            "onyomi": "ka, ke",
+            "examples": [
+              [
+                "変化する（へんかする）",
+                "change [v.i.]"
+              ],
+              [
+                "強化する（きょうかする）",
+                "strengthen"
+              ],
+              [
+                "悪化する（あっかする）",
+                "grow worse"
+              ],
+              [
+                "消化する（しょうかする）",
+                "digest"
+              ],
+              [
+                "近代化する（きんだいかする）",
+                "modernize"
+              ],
+              [
+                "映画化する（えいがかする）",
+                "adapt (a book) to film"
+              ],
+              [
+                "化学（かがく）",
+                "chemistry"
+              ],
+              [
+                "化粧品（けしょうひん）",
+                "cosmetics"
+              ],
+              [
+                "化ける（ばける）",
+                "appear in disguise [v.i.]"
+              ],
+              [
+                "お化け（おばけ）",
+                "ghost"
+              ],
+              [
+                "化かす（ばかす）",
+                "bewitch [v.t.]"
+              ]
+            ],
+            "radical": "⼔",
+            "rad_order": 26,
+            "rad_stroke": 2,
+            "rad_name_ja": "さじ",
+            "rad_name": "saji",
+            "rad_meaning": "spoon",
+            "rad_position_ja": "つくり",
+            "rad_position": "tsukuri"
+          },
+          {
+            "kanji": "夢",
+            "kname": "yume",
+            "kstroke": 13,
+            "kmeaning": "dream",
+            "kgrade": 5,
+            "kunyomi_ja": "ゆめ",
+            "kunyomi": "yume",
+            "onyomi_ja": "ム",
+            "onyomi": "mu",
+            "examples": [
+              [
+                "夢中で（むちゅうで）",
+                "be absorbed, be engrossed"
+              ],
+              [
+                "夢想家（むそうか）",
+                "dreamer"
+              ],
+              [
+                "悪夢（あくむ）",
+                "nightmare"
+              ],
+              [
+                "夢（ゆめ）",
+                "dream [n.]"
+              ],
+              [
+                "初夢（はつゆめ）",
+                "first dream of the year"
+              ],
+              [
+                "正夢（まさゆめ）",
+                "dream that comes true"
+              ]
+            ],
+            "radical": "⼣",
+            "rad_order": 42,
+            "rad_stroke": 3,
+            "rad_name_ja": "ゆうべ",
+            "rad_name": "yuube",
+            "rad_meaning": "evening",
+            "rad_position_ja": null,
+            "rad_position": null
+          },
+          {
+            "kanji": "悪",
+            "kname": "waru(i)",
+            "kstroke": 11,
+            "kmeaning": "bad, evil",
+            "kgrade": 3,
+            "kunyomi_ja": "わる、あ、わるい、わるさ、あし、あしき",
+            "kunyomi": "waru, a, warui, warusa, ashi, ashiki",
+            "onyomi_ja": "アク、オ",
+            "onyomi": "aku, o",
+            "examples": [
+              [
+                "悪魔（あくま）",
+                "devil"
+              ],
+              [
+                "悪事（あくじ）",
+                "evil deed"
+              ],
+              [
+                "最悪（さいあく）",
+                "the worst"
+              ],
+              [
+                "悪条件（あくじょうけん）",
+                "unfavorable conditions"
+              ],
+              [
+                "悪化する（あっかする）",
+                "get worse [v.i.]"
+              ],
+              [
+                "悪寒（おかん）",
+                "chill"
+              ],
+              [
+                "悪い（わるい）",
+                "bad"
+              ],
+              [
+                "悪口（わるくち）",
+                "slander, abuse [n.]"
+              ],
+              [
+                "悪しからず（あしからず）",
+                "don't get me wrong, but ..."
+              ],
+              [
+                "善し悪し（よしあし）",
+                "good or bad"
+              ]
+            ],
+            "radical": "⼼",
+            "rad_order": 80,
+            "rad_stroke": 4,
+            "rad_name_ja": "こころ",
+            "rad_name": "kokoro",
+            "rad_meaning": "heart, mind, spirit",
+            "rad_position_ja": null,
+            "rad_position": null
+          }
+        ]`,
+      ),
+    );
 });
