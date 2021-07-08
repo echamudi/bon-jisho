@@ -283,8 +283,8 @@ test('getKanjiQuickDataRows', async () => {
   expect(res)
     .toEqual(
       JSON.parse(
-        `[
-          {
+        `{
+          "化": {
             "literal": "化",
             "kanken": 80,
             "jlpt_new": 3,
@@ -307,7 +307,7 @@ test('getKanjiQuickDataRows', async () => {
               "-ization"
             ]
           },
-          {
+          "夢": {
             "literal": "夢",
             "kanken": 60,
             "jlpt_new": 3,
@@ -326,7 +326,7 @@ test('getKanjiQuickDataRows', async () => {
               "illusion"
             ]
           },
-          {
+          "悪": {
             "literal": "悪",
             "kanken": 80,
             "jlpt_new": 4,
@@ -354,7 +354,7 @@ test('getKanjiQuickDataRows', async () => {
               "wrong"
             ]
           }
-        ]`,
+        }`,
       ),
     );
 });

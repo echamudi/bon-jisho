@@ -307,7 +307,7 @@ export interface KanjiQuickDataRow {
   meaning: string[] | null,
 };
 
-export function getKanjiQuickDataRows(query: { kanjiChars: string[] }): Promise<KanjiQuickDataRow[]> {
+export function getKanjiQuickDataRows(query: { kanjiChars: string[] }): Promise<Record<string, KanjiQuickDataRow>> {
   const { kanjiChars } = query;
   const wildCards = Array(kanjiChars.length).fill('?').join(',');
 
@@ -342,7 +342,13 @@ export function getKanjiQuickDataRows(query: { kanjiChars: string[] }): Promise<
           meaning: JSON.parse(value.meaning),
         };
       });
-      resolve(postProcessed);
+
+      const fin: Record<string, KanjiQuickDataRow> = {};
+      postProcessed.forEach((el) => {
+        fin[el.literal] = el;
+      });
+
+      resolve(fin);
     });
   });
 }

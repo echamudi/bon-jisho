@@ -334,11 +334,8 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <div *ngIf="kanjiTree?.length > 0">
-            <pre>
-              {{ kanjiTree }}
-               <!-- TODO: Create kanji tree component -->
-            </pre>
+          <div *ngIf="kanjiTree && kanjiTree.length > 0">
+            <app-entry-details--kanji-tree [kanjiTree]="kanjiTree[0].tree_json"></app-entry-details--kanji-tree>
           </div>
         </div>
       </div>
