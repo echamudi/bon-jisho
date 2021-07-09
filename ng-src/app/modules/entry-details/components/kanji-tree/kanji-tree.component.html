@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <div style="margin-bottom: 10px;"></div>
+      <div class="separator"></div>
       <div *ngIf="tree && tree.g">
         <div *ngFor="let g of tree.g">
           <app-entry-details--kanji-tree [child]="true" [trees]="[g]" [kanjiQuickInfo]="kanjiQuickInfo" (entryOpenRequest)="entryOpenRequest.emit($event)"></app-entry-details--kanji-tree>

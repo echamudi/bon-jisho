@@ -1,6 +1,6 @@
 .kanji-tree-wrap {
-  border-left: solid 5px #85899620;
-  padding-left: 15px;
+  border-left: solid 5px #85899630;
+  padding-left: 12px;
 
   &_no-indent {
     border-left: none;
@@ -12,9 +12,8 @@
   display: flex;
   align-content: center;
   align-items: center;
-  padding: 2px;
+  padding: 5px;
   border-radius: 5px;
-  margin-bottom: 5px;
 
   &__kanji {
     margin-inline-end: 5px;
@@ -41,4 +40,8 @@
   &:active {
     background: rgba(0,0,0,0.075);
   }
+}
+
+.separator {
+  margin-bottom: 5px;
 }
