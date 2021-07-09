@@ -45,6 +45,7 @@ List of tasks to be done by an actual user.
     - The search sentences in weblio MUST be clickable.
 - Kanji Tree
   - The kanji tree MUST be shown in the correct sorting
+  - The text must be clickable to open the details
 
 ### Special Features on Some Pages
 - 根本 ねもと　1290160

@@ -244,7 +244,7 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <app-entry-details--kanji-tree [kanjiChars]="keyword.split('')"></app-entry-details--kanji-tree>
+          <app-entry-details--kanji-tree [kanjiChars]="keyword.split('')" (entryOpenRequest)="open($event)"></app-entry-details--kanji-tree>
         </div>
       </div>
 
@@ -351,7 +351,7 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <app-entry-details--kanji-tree [kanjiChars]="[keyword]"></app-entry-details--kanji-tree>
+          <app-entry-details--kanji-tree [kanjiChars]="[keyword]" (entryOpenRequest)="open($event)"></app-entry-details--kanji-tree>
         </div>
       </div>
 

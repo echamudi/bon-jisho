@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ElectronService } from 'App/modules/shared/services/electron.service';
 import { KanjivgTreeRow } from 'japanese-db/dist/commonjs/types/japanesedb';
 import { KanjiQuickDataRow } from 'Main/db';
+import { EntryDetailsQuery } from 'Types/bon-jisho';
 
 @Component({
   selector: 'app-entry-details--kanji-tree',
@@ -18,6 +19,8 @@ export class KanjiTreeComponent implements OnInit {
   @Input() kanjiQuickInfo: Record<string, KanjiQuickDataRow> | undefined;
 
   @Input() trees: Array<KanjivgTreeRow['tree_json']> | undefined;
+
+  @Output() entryOpenRequest = new EventEmitter<EntryDetailsQuery>();
 
   constructor(private electronService: ElectronService) { }
 

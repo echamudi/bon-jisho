@@ -2,7 +2,7 @@
   <div *ngFor="let tree of trees">
     <div class="kanji-tree-wrap" [ngClass]="{'kanji-tree-wrap_no-indent': child === undefined}">
       <div class="kanji-tree-view">
-        <div class="kanji-tree-view__kanji">
+        <div *ngIf="tree.element" class="kanji-tree-view__kanji" (click)="entryOpenRequest.emit({ source: 3, kanji: tree.element})">
           {{ tree.element }}
         </div>
         <div class="kanji-tree-view__details" *ngIf="tree.element">
@@ -22,7 +22,7 @@
       <div style="margin-bottom: 10px;"></div>
       <div *ngIf="tree && tree.g">
         <div *ngFor="let g of tree.g">
-          <app-entry-details--kanji-tree [child]="true" [trees]="[g]" [kanjiQuickInfo]="kanjiQuickInfo"></app-entry-details--kanji-tree>
+          <app-entry-details--kanji-tree [child]="true" [trees]="[g]" [kanjiQuickInfo]="kanjiQuickInfo" (entryOpenRequest)="entryOpenRequest.emit($event)"></app-entry-details--kanji-tree>
         </div>
       </div>
     </div>
