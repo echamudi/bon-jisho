@@ -268,7 +268,7 @@
 
   <!-- Kanjidic -->
   <div
-    *ngIf="detailsObjKanjidic"
+    *ngIf="dictSource === 3 && detailsObjKanjidic"
     class="entry-details__content">
     <div class="entry-details__wrap">
       <div class="writing-style">
@@ -355,6 +355,19 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- If kanjidic query fails -->
+  <div *ngIf="dictSource === 3 && !detailsObjKanjidic" class="entry-details__content">
+    <div class="entry-details__wrap">
+      <div class="detail-block">
+        <div class="about">
+          <div class="about__content">
+            <div>The kanji explanation page of {{ keyword }} doesn't exist. 💦</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

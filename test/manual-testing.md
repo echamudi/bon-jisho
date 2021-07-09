@@ -83,6 +83,8 @@ List of tasks to be done by an actual user.
   - Copy button MUST copy ありがとうさん
 
 ### Kanji Details
-- 夢　kanji mode
+- 夢
   - Details MUST be shown in word-search mode
   - Details MUST be shown in popup mode
+- ⻌
+  - MUST show a proper not found page
