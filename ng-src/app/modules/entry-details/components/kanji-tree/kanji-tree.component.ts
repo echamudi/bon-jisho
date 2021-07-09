@@ -26,19 +26,26 @@ export class KanjiTreeComponent implements OnInit {
     if (!this.child && this.kanjiChars) {
       const kanjiChars = this.kanjiChars;
       (async () => {
-        const trees = await this.electronService.ipcRenderer
+        const treesRaw = await this.electronService.ipcRenderer
           .invoke('getKanjivgTreeRows', { kanjiChars });
+
+        const treesRecord: Record<string, KanjivgTreeRow['tree_json']> = {};
 
         // Collect all chars
         const allChars: string[] = [];
-        trees.forEach((tree) => {
+        treesRaw.forEach((tree) => {
           allChars.push(...this.getAllChars(tree.tree_json));
+
+          treesRecord[tree.kanji] = tree.tree_json;
         });
 
         this.kanjiQuickInfo = await this.electronService.ipcRenderer
           .invoke('getKanjiQuickDataRows', { kanjiChars: allChars });
 
-        this.trees = trees.map((tree) => tree.tree_json);
+        // Make　sure the assigned list of trees is sorted as kanjiChars
+        this.trees = kanjiChars
+          .filter((char) => treesRecord.hasOwnProperty(char))
+          .map((char) => treesRecord[char]);
       })();
     };
   }
