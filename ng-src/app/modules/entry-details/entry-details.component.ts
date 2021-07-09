@@ -11,6 +11,7 @@ import { getEntryDetailsUrl } from 'Lib/url-generator';
 
 import { DictSource, EntryDetailsQuery, EntryDetailsHistory, JMDetailsQuery, KanjidicQuery } from 'Types/bon-jisho';
 import { StatesService } from '../shared/services/states.service';
+import { UnderscoreService } from '../shared/services/underscore.service';
 
 type Mode =
   'window' // The component is used using direct router, e.g. /#/entry-details/?source=...
@@ -65,7 +66,11 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  constructor(private electronService: ElectronService, private router: Router, private statesService: StatesService) {
+  constructor(private electronService: ElectronService,
+    private _: UnderscoreService,
+    private router: Router,
+    private statesService: StatesService) {
+
     // Prepare history stack
     this.history = {
       stack: [null],
@@ -162,6 +167,10 @@ export class EntryDetailsComponent implements OnInit {
   }
 
   async open(input: EntryDetailsQuery) {
+    // Reject open if it's the same as the current page
+    if (this._.isEqual(input, this.history.stack[this.history.pointer]))
+      return;
+
     // Increment pointer
     this.history.pointer += 1;
 
