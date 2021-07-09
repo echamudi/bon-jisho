@@ -257,11 +257,30 @@
     *ngIf="detailsObjKanjidic"
     class="entry-details__content">
     <div class="entry-details__wrap">
-      <div class="entry-head">
-        <div class="entry-head__kanji">
-          <app-entry-details--ruby
-            [kanji]="detailsObjKanjidic.literal">
-          </app-entry-details--ruby>
+      <div class="writing-style">
+        <div class="writing-style__item">
+          <div class="font-jp-sans">
+            {{ detailsObjKanjidic.literal}}
+          </div>
+          <div class="writing-style__item-description">
+            Sans Serif
+          </div>
+        </div>
+        <div class="writing-style__item">
+          <div class="font-jp-serif">
+            {{ detailsObjKanjidic.literal}}
+          </div>
+          <div class="writing-style__item-description">
+            Serif
+          </div>
+        </div>
+        <div class="writing-style__item">
+          <div class="font-jp-stroke-order">
+            {{ detailsObjKanjidic.literal}}
+          </div>
+          <div class="writing-style__item-description">
+            Stroke Order
+          </div>
         </div>
       </div>
 
@@ -307,42 +326,6 @@
             <ng-container *ngFor="let meaning of detailsObjKanjidic.meaning">
               <span>{{ meaning }}; </span>
             </ng-container>
-          </div>
-        </div>
-      </div>
-
-      <div class="separator-pad">
-        <div class="separator-pad__label">
-          WRITING STYLES
-        </div>
-      </div>
-      <div class="detail-block">
-        <div class="detail-row">
-          <div class="writing-style">
-            <div class="writing-style__item">
-              <div class="font-jp-sans">
-                {{ detailsObjKanjidic.literal}}
-              </div>
-              <div class="writing-style__item-description">
-                Sans Serif
-              </div>
-            </div>
-            <div class="writing-style__item">
-              <div class="font-jp-serif">
-                {{ detailsObjKanjidic.literal}}
-              </div>
-              <div class="writing-style__item-description">
-                Serif
-              </div>
-            </div>
-            <div class="writing-style__item">
-              <div class="font-jp-stroke-order">
-                {{ detailsObjKanjidic.literal}}
-              </div>
-              <div class="writing-style__item-description">
-                Stroke Order
-              </div>
-            </div>
           </div>
         </div>
       </div>

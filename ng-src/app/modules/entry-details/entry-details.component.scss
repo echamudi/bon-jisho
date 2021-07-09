@@ -11,8 +11,10 @@
 }
 
 .writing-style {
-  font-size: 200px;
+  font-size: 120px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   &__item {
     margin: 0 20px;
