@@ -17,6 +17,7 @@ List of tasks to be done by an actual user.
 - Search result list
   - The kanji section header MUST NOT be shown if there's no kanji in search
   - The words section header MUST NOT be shown if there's no word in search
+
 ## Entry Details
 
 ### All Pages
@@ -41,6 +42,9 @@ List of tasks to be done by an actual user.
   - Explore Buttons
     - The search images button MUST be clickable.
     - The search sentences in weblio MUST be clickable.
+- Kanji Tree
+  - The kanji tree MUST be shown in the correct sorting
+
 ### Special Features on Some Pages
 - 根本 ねもと　1290160
   - Explore other definitions (same writings) MUST be clickable.
@@ -76,7 +80,7 @@ List of tasks to be done by an actual user.
   - MUST show the page
   - Copy button MUST copy ありがとうさん
 
-### Kanji Details
+## Kanji Details
 - 夢　kanji mode
   - Details MUST be shown in word-search mode
   - Details MUST be shown in popup mode
