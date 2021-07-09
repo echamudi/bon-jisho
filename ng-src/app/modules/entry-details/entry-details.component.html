@@ -267,29 +267,32 @@
 
       <div class="separator-pad">
         <div class="separator-pad__label">
-          READINGS
+          READING
         </div>
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <div *ngIf="kanjiReadings?.kun?.length > 0">
-            Kunyomi
-            <ng-container *ngFor="let kunReading of kanjiReadings?.kun">
-              <span>{{ kunReading }}; </span>
-            </ng-container>
-          </div>
-          <div *ngIf="kanjiReadings?.on?.length > 0">
-            Onyomi
-            <ng-container *ngFor="let onReading of kanjiReadings?.on">
-              <span>{{ onReading }}; </span>
-            </ng-container>
-          </div>
-          <div *ngIf="kanjiReadings?.nanori?.length > 0">
-            Nanori
-            <ng-container *ngFor="let nanoriReading of kanjiReadings?.nanori">
-              <span>{{ nanoriReading }}; </span>
-            </ng-container>
-          </div>
+            <dl class="reading-description" *ngIf="kanjiReadings?.kun?.length > 0">
+              <dt class="reading-description__term">Kunyomi</dt>
+              <dd class="reading-description__details">
+                  <span>{{ kanjiReadings?.kun | join: ', '}}; </span>
+              </dd>
+            </dl>
+
+            <dl class="reading-description" *ngIf="kanjiReadings?.on?.length > 0">
+              <dt class="reading-description__term">Onyomi</dt>
+              <dd class="reading-description__details">
+                  <span>{{ kanjiReadings?.on | join: ', '}}; </span>
+              </dd>
+            </dl>
+
+          <dl class="reading-description" *ngIf="kanjiReadings?.nanori?.length > 0">
+            <dt class="reading-description__term">Nanori</dt>
+            <dd class="reading-description__details">
+                <span>{{ kanjiReadings?.nanori| join: ', '}}; </span>
+            </dd>
+          </dl>
+
         </div>
       </div>
 
@@ -310,19 +313,36 @@
 
       <div class="separator-pad">
         <div class="separator-pad__label">
-          WRITING
+          WRITING STYLES
         </div>
       </div>
       <div class="detail-block">
         <div class="detail-row">
-          <div class="font-jp-sans" style="font-size: 200px;">
-            {{ detailsObjKanjidic.literal}}
-          </div>
-          <div class="font-jp-serif" style="font-size: 200px;">
-            {{ detailsObjKanjidic.literal}}
-          </div>
-          <div class="font-jp-stroke-order" style="font-size: 200px;">
-            {{ detailsObjKanjidic.literal}}
+          <div class="writing-style">
+            <div class="writing-style__item">
+              <div class="font-jp-sans">
+                {{ detailsObjKanjidic.literal}}
+              </div>
+              <div class="writing-style__item-description">
+                Sans Serif
+              </div>
+            </div>
+            <div class="writing-style__item">
+              <div class="font-jp-serif">
+                {{ detailsObjKanjidic.literal}}
+              </div>
+              <div class="writing-style__item-description">
+                Serif
+              </div>
+            </div>
+            <div class="writing-style__item">
+              <div class="font-jp-stroke-order">
+                {{ detailsObjKanjidic.literal}}
+              </div>
+              <div class="writing-style__item-description">
+                Stroke Order
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -338,16 +358,6 @@
         </div>
       </div>
 
-      <div class="separator-pad">
-        <div class="separator-pad__label">
-          RAW
-        </div>
-      </div>
-      <div class="detail-block">
-        <div class="detail-row">
-          <pre>{{ detailsString }}</pre>
-        </div>
-      </div>
     </div>
   </div>
 </div>

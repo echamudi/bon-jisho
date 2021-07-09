@@ -1,0 +1,27 @@
+.reading-description {
+  display: flex;
+  margin: 5px 0;
+
+  &__term {
+    color: #858996;
+    font-size: 14px;
+    font-weight: bold;
+    width: 50px;
+  }
+}
+
+.writing-style {
+  font-size: 200px;
+  display: flex;
+
+  &__item {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item-description {
+    font-size: 16px;
+    text-align: center;
+  }
+}
