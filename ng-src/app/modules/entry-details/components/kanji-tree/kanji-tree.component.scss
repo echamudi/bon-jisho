@@ -1,0 +1,21 @@
+.kanji-tree-view {
+  display: flex;
+  align-content: center;
+  align-items: center;
+
+  &__kanji {
+    margin-inline-end: 5px;
+  }
+
+  &__details {
+
+  }
+
+  &__details-reading {
+
+  }
+
+  &__details-meaning {
+
+  }
+}

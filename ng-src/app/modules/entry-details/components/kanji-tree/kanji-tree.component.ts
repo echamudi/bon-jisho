@@ -29,8 +29,6 @@ export class KanjiTreeComponent implements OnInit {
         const trees = await this.electronService.ipcRenderer
           .invoke('getKanjivgTreeRows', { kanjiChars });
 
-          console.log(trees)
-
         // Collect all chars
         const allChars: string[] = [];
         trees.forEach((tree) => {

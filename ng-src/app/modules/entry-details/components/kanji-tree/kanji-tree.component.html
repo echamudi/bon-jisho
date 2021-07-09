@@ -1,11 +1,25 @@
-<ng-container *ngIf="trees">
+<ng-container *ngIf="trees && kanjiQuickInfo">
   <div *ngFor="let tree of trees">
-    <div style="border: solid 1px red;padding-left: 20px; font-size: 24px;">
-      {{ tree.element }}
-      <div *ngIf="kanjiQuickInfo && tree.element">
-        {{ kanjiQuickInfo[tree.element].kun }}
-        {{ kanjiQuickInfo[tree.element].on }}
+    <div style="border-left: solid 5px rgb(214, 214, 214); padding-left: 15px;">
+      <div class="kanji-tree-view">
+        <div class="kanji-tree-view__kanji" style="font-size: 28px;">
+          {{ tree.element }}
+        </div>
+        <div class="kanji-tree-view__details" *ngIf="tree.element">
+          <div class="kanji-tree-view__details-reading">
+            <ng-container *ngIf="kanjiQuickInfo[tree.element].on">
+              {{ kanjiQuickInfo[tree.element].on | join:', ' }};
+            </ng-container>
+            <ng-container *ngIf="kanjiQuickInfo[tree.element].kun">
+              {{ kanjiQuickInfo[tree.element].kun | join:', ' }};
+            </ng-container>
+          </div>
+          <div class="kanji-tree-view__details-meaning" *ngIf="kanjiQuickInfo[tree.element].meaning">
+            {{ kanjiQuickInfo[tree.element].meaning | join:', ' }}
+          </div>
+        </div>
       </div>
+      <div style="margin-bottom: 10px;"></div>
       <div *ngIf="tree && tree.g">
         <div *ngFor="let g of tree.g">
           <app-entry-details--kanji-tree [child]="true" [trees]="[g]" [kanjiQuickInfo]="kanjiQuickInfo"></app-entry-details--kanji-tree>
