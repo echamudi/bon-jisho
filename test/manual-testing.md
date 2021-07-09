@@ -35,6 +35,7 @@ List of tasks to be done by an actual user.
   - Open popup button in jmdict details MUST open the current details in popup.
   - Open popup button in jmnedict details MUST open the current details in popup.
   - Open popup button in empty page details MUST be disabled.
+  - Open popup button in kanjidic details MUST open the current details in popup.
 - Behaviour
   - Entry details head text MUST be selectable
   - Back and forward buttons 
@@ -80,7 +81,7 @@ List of tasks to be done by an actual user.
   - MUST show the page
   - Copy button MUST copy ありがとうさん
 
-## Kanji Details
+### Kanji Details
 - 夢　kanji mode
   - Details MUST be shown in word-search mode
   - Details MUST be shown in popup mode
