@@ -6,7 +6,7 @@
           {{ tree.element }}
         </div>
         <div class="kanji-tree-view__details" *ngIf="tree.element">
-          <div class="kanji-tree-view__details-reading">
+          <div class="kanji-tree-view__details-reading" *ngIf="kanjiQuickInfo[tree.element]">
             <ng-container *ngIf="kanjiQuickInfo[tree.element].on">
               {{ kanjiQuickInfo[tree.element].on | join:', ' }};
             </ng-container>
@@ -14,7 +14,7 @@
               {{ kanjiQuickInfo[tree.element].kun | join:', ' }};
             </ng-container>
           </div>
-          <div class="kanji-tree-view__details-meaning" *ngIf="kanjiQuickInfo[tree.element].meaning">
+          <div class="kanji-tree-view__details-meaning" *ngIf="kanjiQuickInfo[tree.element]?.meaning">
             {{ kanjiQuickInfo[tree.element].meaning | join:', ' }}
           </div>
         </div>
