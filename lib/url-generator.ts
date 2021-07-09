@@ -22,5 +22,16 @@ export function getEntryDetailsUrl(query: EntryDetailsQuery): string | null {
     return `#/entry-details/?source=${source}&id=${id}&kanji=${kanji}&reading=${reading}`;
   }
 
+  if (query.source === c.KANJIDIC) {
+    let kanji;
+    if (query.kanji !== null && query.kanji !== undefined) {
+      kanji = encodeURI(query.kanji);
+    } else {
+      kanji = 'null';
+    }
+
+    return `#/entry-details/?source=kanjidic&kanji=${kanji}`;
+  }
+
   return null;
 }
