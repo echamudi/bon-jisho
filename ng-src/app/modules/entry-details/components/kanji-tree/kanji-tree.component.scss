@@ -1,6 +1,11 @@
 .kanji-tree-wrap {
   border-left: solid 5px #85899656;
   padding-left: 15px;
+
+  &_no-indent {
+    border-left: none;
+    padding-left: none;
+  }
 }
 
 .kanji-tree-view {
@@ -10,6 +15,7 @@
 
   &__kanji {
     margin-inline-end: 5px;
+    font-size: 28px;
   }
 
   &__details {
@@ -21,6 +27,7 @@
   }
 
   &__details-meaning {
-
+    color: #7d7f86;
+    font-style: italic;
   }
 }

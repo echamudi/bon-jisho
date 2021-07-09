@@ -1,8 +1,8 @@
 <ng-container *ngIf="trees && kanjiQuickInfo">
   <div *ngFor="let tree of trees">
-    <div class="kanji-tree-wrap">
+    <div class="kanji-tree-wrap" [ngClass]="{'kanji-tree-wrap_no-indent': child === undefined}">
       <div class="kanji-tree-view">
-        <div class="kanji-tree-view__kanji" style="font-size: 28px;">
+        <div class="kanji-tree-view__kanji">
           {{ tree.element }}
         </div>
         <div class="kanji-tree-view__details" *ngIf="tree.element">
