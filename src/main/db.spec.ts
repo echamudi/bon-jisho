@@ -1,4 +1,4 @@
-import { getJMdictJsonsRows, getKanjiAliveRows, getKanjidicRows, getKanjiQuickDataRows, getKanjivgTreeRows, getRelatedKanjiAggregateRows } from 'Main/db';
+import { getJMdictJsonsRows, getKanjiAliveRows, getKanjidicRows, getKanjiQuickDataRows, getKanjivgTreeRows, getRelatedKanjiAggregateRows, getWordsByTag } from 'Main/db';
 
 test('getJMdictJsonsRows', async () => {
   getJMdictJsonsRows({
@@ -164,8 +164,8 @@ test('getKanjidicRows', async () => {
     }]`)
     );
 
-    const res2 = await getKanjidicRows({ kanjiChars: ['A', 'B'] });
-    expect(res2).toEqual([]);
+  const res2 = await getKanjidicRows({ kanjiChars: ['A', 'B'] });
+  expect(res2).toEqual([]);
 });
 
 
@@ -540,4 +540,11 @@ test('getKanjiAliveRows', async () => {
         ]`,
       ),
     );
+});
+
+test('getWordsByTag', async () => {
+  const res = await getWordsByTag({ tag: 'nf01' });
+
+  expect(res.some((el) => el.kanji === '経営')).toBe(true);
+  expect(res.some((el) => el.kanji === '経済力')).toBe(false);
 });

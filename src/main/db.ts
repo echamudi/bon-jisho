@@ -352,3 +352,23 @@ export function getKanjiQuickDataRows(query: { kanjiChars: string[] }): Promise<
     });
   });
 }
+
+export function getWordsByTag(query: { tag: string }): Promise<JapaneseDB.DictIndexRow[]> {
+  const { tag } = query;
+
+  const sql = `SELECT * FROM dict_index WHERE tags LIKE '%"' || ?1 || '"%' GROUP BY id ORDER BY pri_point ASC`;
+
+  return new Promise((resolve) => {
+    db.all(sql, {
+      1: tag,
+    }, (_err: any, rows: any[]) => {
+      const postProcessed = rows.map((row) => ({
+        ...row,
+        furigana: JSON.parse(row.furigana),
+        tags: JSON.parse(row.tags),
+      }));
+      resolve(postProcessed);
+    });
+  });
+}
+
