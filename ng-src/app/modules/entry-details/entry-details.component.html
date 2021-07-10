@@ -58,7 +58,7 @@
       <!-- **
       * Alternatives
       * -->
-      <div class="detail-block" *ngIf="alternatives?.length > 1">
+      <div class="detail-block" *ngIf="alternatives && alternatives.length > 1">
         <div class="detail-row">
           <div class="detail-row__title">Alternative Writings and Readings</div>
           <div class="alternative-writing">
@@ -191,7 +191,7 @@
           </div>
         </div>
         <div class="detail-block">
-          <div class="detail-row" *ngIf="sameKanji?.length > 0">
+          <div class="detail-row" *ngIf="sameKanji && sameKanji.length > 0">
             <div class="detail-row__title">
               Other meanings of {{ dictIndexRow.kanji }}
             </div>
@@ -305,21 +305,21 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-            <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.kun?.length > 0">
+            <dl class="reading-description user-select-text" *ngIf="kanjiReadings && kanjiReadings.kun && kanjiReadings.kun.length > 0">
               <dt class="reading-description__term">Kunyomi</dt>
               <dd class="reading-description__details">
                   <span>{{ kanjiReadings?.kun | join: ', '}}; </span>
               </dd>
             </dl>
 
-            <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.on?.length > 0">
+            <dl class="reading-description user-select-text" *ngIf="kanjiReadings && kanjiReadings.on && kanjiReadings.on.length > 0">
               <dt class="reading-description__term">Onyomi</dt>
               <dd class="reading-description__details">
                   <span>{{ kanjiReadings?.on | join: ', '}}; </span>
               </dd>
             </dl>
 
-          <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.nanori?.length > 0">
+          <dl class="reading-description user-select-text" *ngIf="kanjiReadings && kanjiReadings.nanori && kanjiReadings.nanori.length > 0">
             <dt class="reading-description__term">Nanori</dt>
             <dd class="reading-description__details">
                 <span>{{ kanjiReadings?.nanori| join: ', '}}; </span>
@@ -336,7 +336,7 @@
       </div>
       <div class="detail-block">
         <div class="detail-row user-select-text">
-          <div *ngIf="detailsObjKanjidic?.meaning?.length > 0">
+          <div *ngIf="detailsObjKanjidic && detailsObjKanjidic.meaning && detailsObjKanjidic.meaning.length > 0">
             <ng-container *ngFor="let meaning of detailsObjKanjidic.meaning">
               <span>{{ meaning }}; </span>
             </ng-container>
