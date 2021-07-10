@@ -1,0 +1,10 @@
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    margin: 5px;
+    background: #0000000d;
+    padding: 5px;
+  }
+}

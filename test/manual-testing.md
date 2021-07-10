@@ -81,6 +81,9 @@ List of tasks to be done by an actual user.
 - ありがとうさん
   - MUST show the page
   - Copy button MUST copy ありがとうさん
+- チョット
+  - MUST show the page in popup mode
+  - MUST NOT show kanji composition section
 
 ### Kanji Details
 - 夢

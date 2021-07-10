@@ -1,1 +1,33 @@
-<p>vocabulary-lists works!</p>
+<div class="entry-details">
+  <div class="toolbar" (dblclick)="toggleMaximize()"></div>
+  <div class="entry-details__content">
+    <div class="entry-details__wrap" style="flex: 1;">
+      <div class="detail-block">
+        <div>
+          <button (click)="openList('news1')">news1</button>
+          <button (click)="openList('news2')">news2</button>
+          <button (click)="openList('ichi1')">ichi1</button>
+          <button (click)="openList('ichi2')">ichi2</button>
+          <button (click)="openList('gai1')">gai1</button>
+          <button (click)="openList('gai2')">gai2</button>
+          <br>
+          <button (click)="openList('nf01')">nf01</button>
+          <button (click)="openList('nf02')">nf02</button>
+          <button (click)="openList('nf03')">nf03</button>
+          <button (click)="openList('nf04')">nf04</button>
+          <button (click)="openList('nf05')">nf05</button>
+        </div>
+        <div class="word-list" *ngIf="list">
+          <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
+            <ng-container *ngIf="item.kanji">
+              {{ item.kanji }} - {{ item.reading }}
+            </ng-container>
+            <ng-container *ngIf="item.kanji === null">
+              {{ item.reading }}
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

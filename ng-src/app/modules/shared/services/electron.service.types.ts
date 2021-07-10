@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 import { getJMdictJsonsRows, getJMnedictJsonsRows, getDictIndexRows, getDictIndexRow,
-  getKanjidicRows, getKanjivgTreeRows, getKanjiQuickDataRows } from 'Main/db';
+  getKanjidicRows, getKanjivgTreeRows, getKanjiQuickDataRows, getWordsByTag } from 'Main/db';
 
 type _ipcRenderer = typeof ipcRenderer;
 
@@ -12,5 +12,6 @@ export interface BonIpcRenderer extends _ipcRenderer {
   invoke(channel: 'getKanjidicRows', query: Parameters<typeof getKanjidicRows>[0]): ReturnType<typeof getKanjidicRows>;
   invoke(channel: 'getKanjivgTreeRows', query: Parameters<typeof getKanjivgTreeRows>[0]): ReturnType<typeof getKanjivgTreeRows>;
   invoke(channel: 'getKanjiQuickDataRows', query: Parameters<typeof getKanjiQuickDataRows>[0]): ReturnType<typeof getKanjiQuickDataRows>;
+  invoke(channel: 'getWordsByTag', query: Parameters<typeof getWordsByTag>[0]): ReturnType<typeof getWordsByTag>;
   invoke(channel: 'openURL' | 'open-url-electron', query: { url: string }): Promise<undefined>;
 }
