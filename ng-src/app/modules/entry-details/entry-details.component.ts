@@ -106,10 +106,12 @@ export class EntryDetailsComponent implements OnInit {
 
       const source: string | undefined = params.source;
       const id: string | undefined = params.id;
-      const kanji: string | undefined = params.kanji;
+      let kanji: string | null | undefined = params.kanji;
       const reading: string | undefined = params.reading;
 
       if (source === 'jmdict' && id && kanji && reading) {
+        if (kanji === 'null') kanji = null;
+
         const input: JMDetailsQuery = {
           source: c.JMDICT,
           id: parseInt(id, 10),
