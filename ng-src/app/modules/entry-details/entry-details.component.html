@@ -92,7 +92,7 @@
         <div class="detail-block">
           <!-- JMdict Translation -->
           <ng-container *ngIf="dictSource === 1 && detailsObjJMdict !== null">
-            <div class="detail-row" style="user-select: text;">
+            <div class="detail-row user-select-text">
               <div *ngFor="let sense of detailsObjJMdict?.sense; index as i">
                 <div *ngIf="sense.pos" class="detail-row__title">{{ sense.pos | getEntities:'jmdict' | join:', ' }}</div>
                 <div class="sense-item">
@@ -305,21 +305,21 @@
       </div>
       <div class="detail-block">
         <div class="detail-row">
-            <dl class="reading-description" *ngIf="kanjiReadings?.kun?.length > 0">
+            <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.kun?.length > 0">
               <dt class="reading-description__term">Kunyomi</dt>
               <dd class="reading-description__details">
                   <span>{{ kanjiReadings?.kun | join: ', '}}; </span>
               </dd>
             </dl>
 
-            <dl class="reading-description" *ngIf="kanjiReadings?.on?.length > 0">
+            <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.on?.length > 0">
               <dt class="reading-description__term">Onyomi</dt>
               <dd class="reading-description__details">
                   <span>{{ kanjiReadings?.on | join: ', '}}; </span>
               </dd>
             </dl>
 
-          <dl class="reading-description" *ngIf="kanjiReadings?.nanori?.length > 0">
+          <dl class="reading-description user-select-text" *ngIf="kanjiReadings?.nanori?.length > 0">
             <dt class="reading-description__term">Nanori</dt>
             <dd class="reading-description__details">
                 <span>{{ kanjiReadings?.nanori| join: ', '}}; </span>
@@ -335,7 +335,7 @@
         </div>
       </div>
       <div class="detail-block">
-        <div class="detail-row">
+        <div class="detail-row user-select-text">
           <div *ngIf="detailsObjKanjidic?.meaning?.length > 0">
             <ng-container *ngFor="let meaning of detailsObjKanjidic.meaning">
               <span>{{ meaning }}; </span>
