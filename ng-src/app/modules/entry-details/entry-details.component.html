@@ -237,16 +237,18 @@
       <!-- **
       * Kanji Tree
       * -->
-      <div class="separator-pad">
-        <div class="separator-pad__label">
-          KANJI COMPOSITION TREE
+      <ng-container *ngIf="hasKanji">
+        <div class="separator-pad">
+          <div class="separator-pad__label">
+            KANJI COMPOSITION TREE
+          </div>
         </div>
-      </div>
-      <div class="detail-block">
-        <div class="detail-row">
-          <app-entry-details--kanji-tree [kanjiChars]="keyword.split('')" (entryOpenRequest)="open($event)"></app-entry-details--kanji-tree>
+        <div class="detail-block">
+          <div class="detail-row">
+            <app-entry-details--kanji-tree [kanjiChars]="keyword.split('')" (entryOpenRequest)="open($event)"></app-entry-details--kanji-tree>
+          </div>
         </div>
-      </div>
+      </ng-container>
 
       <!-- **
       * Raw JSON Easter Egg

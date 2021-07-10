@@ -55,6 +55,8 @@ export class EntryDetailsComponent implements OnInit {
 
   rendering: boolean = false;
 
+  hasKanji: boolean = true;
+
   @Input()
   compMode: string | undefined;
 
@@ -162,7 +164,7 @@ export class EntryDetailsComponent implements OnInit {
     this.kanjiReadings = null;
 
     this.sameKanji = null;
-
+    this.hasKanji = false;
     this.dictSource = null;
 
     this.exploreClickCount = 0;
@@ -186,6 +188,7 @@ export class EntryDetailsComponent implements OnInit {
     this.render(this.history.stack[this.history.pointer]);
     // console.log(this.history.pointer, this.history.stack);
 
+    // Signal the search column to select the current word
     if (this.mode === 'word-search') {
       this.statesService.wordSearchSelection.next(input);
     }
@@ -236,6 +239,8 @@ export class EntryDetailsComponent implements OnInit {
       this.dictSource = c.JMDICT;
       this.keyword = input.kanji ?? input.reading;
 
+      if (typeof input.kanji === 'string') this.hasKanji = true;
+
       // Get dict index row from selection
       this.electronService.ipcRenderer
       .invoke('getDictIndexRow', { ...input })
@@ -278,6 +283,8 @@ export class EntryDetailsComponent implements OnInit {
     if (input.source === c.JMNEDICT) {
       this.dictSource = c.JMNEDICT;
       this.keyword = input.kanji ?? input.reading;
+
+      if (typeof input.kanji === 'string') this.hasKanji = true;
 
       // Get dict index row from selection
       this.electronService.ipcRenderer
