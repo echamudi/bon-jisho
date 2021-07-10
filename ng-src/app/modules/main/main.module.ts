@@ -12,6 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'App/modules/shared/shared.module';
 import { EntryDetailsModule } from 'App/modules/entry-details/entry-details.module';
+import { VocabularyListsComponent } from './components/vocabulary-lists/vocabulary-lists.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EntryDetailsModule } from 'App/modules/entry-details/entry-details.modu
     SidebarComponent,
     InspectTextComponent,
     SearchComponent,
-    AboutComponent
+    AboutComponent,
+    VocabularyListsComponent
   ],
   imports: [
     CommonModule,
