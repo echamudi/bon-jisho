@@ -20,10 +20,11 @@
         <div class="word-list" *ngIf="list">
           <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
             <ng-container *ngIf="item.kanji">
-              {{ item.kanji }} - {{ item.reading }}
+              <span class="word-list__item-kanji">{{ item.kanji }}</span><br>
+              <span class="word-list__item-reading"> - {{ item.reading }}</span>
             </ng-container>
             <ng-container *ngIf="item.kanji === null">
-              {{ item.reading }}
+              <span class="word-list__item-kanji">{{ item.reading }}</span>
             </ng-container>
           </div>
         </div>

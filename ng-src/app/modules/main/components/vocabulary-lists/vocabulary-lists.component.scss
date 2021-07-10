@@ -3,8 +3,16 @@
   flex-wrap: wrap;
 
   &__item {
+    font-size: 16px;
     margin: 5px;
-    background: #0000000d;
+    border-radius: 4px;
+    background: #0000000e;
     padding: 5px;
+    width: 150px;
+  }
+
+  &__item-reading {
+    font-size: 14px;
+    color: #00000090;
   }
 }
