@@ -284,10 +284,7 @@ img {
   box-sizing: border-box;
 
   &__content {
-    padding-top: (50 / 16) * 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
     display: flex;
     justify-content: center;
   }
