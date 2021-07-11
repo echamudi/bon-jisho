@@ -48,6 +48,8 @@ export class EntryDetailsComponent implements OnInit {
 
   /** All kanji readings, for kanjidic mode only */
   kanjiReadings: { on: string[], kun: string[], nanori: string[] } | null = null;
+  /** kanjidic only, if kanji not found */
+  kanjiNotFound: boolean | null = null;
 
   sameKanji: JapaneseDB.DictIndexRow[] | null  = [];
 
@@ -162,6 +164,7 @@ export class EntryDetailsComponent implements OnInit {
     this.detailsObjKanjidic = null;
 
     this.kanjiReadings = null;
+    this.kanjiNotFound = false;
 
     this.sameKanji = null;
     this.hasKanji = false;
@@ -316,7 +319,10 @@ export class EntryDetailsComponent implements OnInit {
           .invoke('getKanjidicRows', { kanjiChars: [this.keyword] });
 
         // If the requested kanji is not found
-        if (kanjidicDetails.length === 0) return;
+        if (kanjidicDetails.length === 0) {
+          this.kanjiNotFound = true;
+          return;
+        }
 
         this.detailsObjKanjidic = kanjidicDetails[0];
         this.detailsString = JSON.stringify(kanjidicDetails[0], null, 2);
