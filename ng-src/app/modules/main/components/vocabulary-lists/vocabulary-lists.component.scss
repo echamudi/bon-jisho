@@ -76,10 +76,9 @@
   grid-template-areas:
       "groups header"
       "groups content";
-  padding-top: 39px;
   grid-template-columns: 300px 1fr;
   grid-template-rows: auto 1fr;
-  height: 100vh;
+  height: calc(100vh - 39px);
   box-sizing: border-box;
 
   &__groups {
