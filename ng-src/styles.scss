@@ -88,7 +88,7 @@ img {
 
 // BEM Block: toolbar
 .toolbar {
-  position: fixed;
+  position: sticky;
   width: 100%;
   height: (40 / 16) * 1rem;
   background: white;
@@ -103,6 +103,15 @@ img {
 
   &__window-buttons-pad {
     width: 70px;
+  }
+
+  &__flex {
+    flex: 1;
+  }
+
+  &__title {
+    color: #4D4D4D;
+    font-weight: bold;
   }
 
   &_invisible {
@@ -136,7 +145,7 @@ img {
     @include fill(#707070, 1);
   }
 
-  &__disabled {
+  &_disabled {
     @include fill(#BCBCBC, 1);
 
     &:hover, &:active {

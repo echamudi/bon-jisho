@@ -2,7 +2,7 @@
   <div class="toolbar" (dblclick)="toggleMaximize()">
     <div *ngIf="mode === 'window'" class="toolbar__window-buttons-pad"></div>
     <div class="toolbar-button"
-      [ngClass]="{'toolbar-button__disabled': history.pointer <= 1}"
+      [ngClass]="{'toolbar-button_disabled': history.pointer <= 1}"
       (dblclick)="$event.stopPropagation()"
       (click)="back()">
       <img
@@ -10,13 +10,18 @@
         src="assets/icons/chevron-left.svg">
     </div>
     <div class="toolbar-button"
-      [ngClass]="{'toolbar-button__disabled': history.pointer + 1 == history.stack.length}"
+      [ngClass]="{'toolbar-button_disabled': history.pointer + 1 == history.stack.length}"
       (dblclick)="$event.stopPropagation()"
       (click)="forward()">
       <img
         class="toolbar-button__icon"
         src="assets/icons/chevron-right.svg">
     </div>
+    <div class="toolbar__flex"></div>
+    <div class="toolbar__title">
+      {{ keyword }}
+    </div>
+    <div class="toolbar__flex"></div>
     <div
       *ngIf="mode === 'word-search'"
       class="toolbar-button"
