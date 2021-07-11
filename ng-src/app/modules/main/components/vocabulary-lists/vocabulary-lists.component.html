@@ -1,34 +1,65 @@
-<div class="entry-details">
-  <div class="toolbar" (dblclick)="toggleMaximize()"></div>
-  <div class="entry-details__content">
-    <div class="entry-details__wrap" style="flex: 1;">
-      <div class="detail-block">
-        <div>
-          <button (click)="openList('news1')">news1</button>
-          <button (click)="openList('news2')">news2</button>
-          <button (click)="openList('ichi1')">ichi1</button>
-          <button (click)="openList('ichi2')">ichi2</button>
-          <button (click)="openList('gai1')">gai1</button>
-          <button (click)="openList('gai2')">gai2</button>
-          <br>
-          <button (click)="openList('nf01')">nf01</button>
-          <button (click)="openList('nf02')">nf02</button>
-          <button (click)="openList('nf03')">nf03</button>
-          <button (click)="openList('nf04')">nf04</button>
-          <button (click)="openList('nf05')">nf05</button>
-        </div>
-        <div class="word-list" *ngIf="list">
-          <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
-            <ng-container *ngIf="item.kanji">
-              <span class="word-list__item-kanji">{{ item.kanji }}</span><br>
-              <span class="word-list__item-reading"> - {{ item.reading }}</span>
-            </ng-container>
-            <ng-container *ngIf="item.kanji === null">
-              <span class="word-list__item-kanji">{{ item.reading }}</span>
-            </ng-container>
-          </div>
-        </div>
-      </div>
+
+<div class="toolbar" (dblclick)="toggleMaximize()"></div>
+<div class="vocabulary-lists">
+
+
+  <div class="vocabulary-lists__groups">
+    <div class="group-title">Collection of 10,000 words (1万語語彙分類集)</div>
+    <div class="group-buttons">
+      <button class="group-buttons__button" [ngClass]="{'group-buttons__button_selected' : selectedGroup === 'ichi1' }" (click)="openList('ichi1')">ichi1</button>
+      <button class="group-buttons__button" [ngClass]="{'group-buttons__button_selected' : selectedGroup === 'ichi2' }" (click)="openList('ichi2')">ichi2</button>
+    </div>
+    <div class="group-title">Alexandre Girardi's Wordfreq</div>
+    <div class="group-buttons">
+      <ng-container *ngFor="let nf of nfGroups; let i = index">
+        <button class="group-buttons__button" [ngClass]="{'group-buttons__button_selected' : selectedGroup === nf }" (click)="openList(nf)">{{ nf }}</button>
+      </ng-container>
+    </div>
+    <div class="group-title">Common Loan Words</div>
+    <div class="group-buttons">
+      <button class="group-buttons__button" [ngClass]="{'group-buttons__button_selected' : selectedGroup === 'gai1' }" (click)="openList('gai1')">gai1</button>
+      <button class="group-buttons__button" [ngClass]="{'group-buttons__button_selected' : selectedGroup === 'gai2' }" (click)="openList('gai2')">gai2</button>
     </div>
   </div>
+
+
+  <div class="vocabulary-lists__header">
+    <div class="vocabulary-lists__header-title">
+      {{ selectedGroup }}
+    </div>
+    <div *ngIf="selectedGroup === 'ichi1'">
+      The following words appear in the 10,000 selected vocabularies collection by Senmon Kyouiku. (Ichimango goi bunruishuu)
+    </div>
+    <div *ngIf="selectedGroup === 'ichi2'">
+      The following words appear in the 10,000 selected vocabularies collection by Senmon Kyouiku. (Ichimango goi bunruishuu, Senmon Kyouiku) (additional words)
+    </div>
+    <div *ngIf="selectedGroup && selectedGroup[0] === 'n' && selectedGroup[1] === 'f'">
+      The following words are the group number {{ selectedGroup[2] === '0' ? '' : selectedGroup[2] }}{{ selectedGroup[3] }} of the Mainichi Shimbun frequency list, compiled by Alexandre Girardi.
+      The group number is sorted by frequency.
+    </div>
+    <div *ngIf="selectedGroup === 'gai1'">
+      The following words are common loan words in Alexandre Girardi's frequency list, part 1.
+    </div>
+    <div *ngIf="selectedGroup === 'gai2'">
+      The following words are common loan words in Alexandre Girardi's frequency list, part 2.
+    </div>
+  </div>
+
+
+  <div class="vocabulary-lists__content">
+    <div class="word-list" *ngIf="list !== 'loading' && list?.length">
+      <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
+        <ng-container *ngIf="item.kanji">
+          <span class="word-list__item-kanji">{{ item.kanji }}</span><br>
+          <span class="word-list__item-reading">{{ item.reading }}</span>
+        </ng-container>
+        <ng-container *ngIf="item.kanji === null">
+          <span class="word-list__item-kanji">{{ item.reading }}</span>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="list === 'loading'">Loading...</div>
+  </div>
+
 </div>
+

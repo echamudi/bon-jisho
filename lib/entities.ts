@@ -235,14 +235,18 @@ export function getTagDescription(tag: string): string {
     return Priorities[tag];
   }
 
-  if (tag === 'ichi1' || tag === 'ichi2') {
-    return Priorities.ichi;
+  if (tag === 'ichi1') {
+    return `This word appears in the 10,000 selected vocabularies collection by Senmon Kyouiku. (Ichimango goi bunruishuu)`;
+  }
+
+  if (tag === 'ichi2') {
+    return `This word appears in the 10,000 selected vocabularies collection by Senmon Kyouiku. (Ichimango goi bunruishuu) (Additional Words)`;
   }
 
   if (tag.slice(0, 2) === 'nf') {
     const nf = parseInt(tag.slice(2, 4), 10);
 
-    return `This word is ranked between ${nf * 500 - 499}-${nf * 500} in the Mainichi Shimbun frequency list.`;
+    return `This word is ranked between ${nf * 500 - 499}-${nf * 500} in the Mainichi Shimbun frequency list, compiled by Alexandre Girardi.`;
   }
 
   if (tag === 'gai1' || tag === 'gai2') {
