@@ -4,6 +4,7 @@
     <rb>{{ furiganaChunk.w }}</rb>
     <rt>{{ furiganaChunk.r ? furiganaChunk.r : '' }}</rt>
   </ruby>
+  <br style="content: '';"> <!-- Chrome bug hack -->
 </ng-container>
 <!-- If it's a kanji word but doesn't have furigana breakdown -->
 <ng-container *ngIf="kanji && !furigana">
@@ -11,11 +12,9 @@
     <rb>{{ kanji }}</rb>
     <rt>{{ reading }}</rt>
   </ruby>
+  <br style="content: '';"> <!-- Chrome bug hack -->
 </ng-container>
 <!-- If it's a kana only word -->
 <ng-container *ngIf="!kanji">
-  <ruby>
-    <rb>{{ reading }}</rb>
-  </ruby>
+  <div>{{ reading }}</div>
 </ng-container>
-<br style="content: '';"> <!-- Chrome bug hack -->
