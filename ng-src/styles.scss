@@ -123,6 +123,8 @@ img {
   &_invisible {
     background: none;
     box-shadow: none;
+    backdrop-filter: none;
+    position: fixed;
   }
 }
 
@@ -555,7 +557,7 @@ img {
       "groups content";
   grid-template-columns: 300px 1fr;
   grid-template-rows: auto 1fr;
-  height: calc(100vh - 39px);
+  height: 100vh;
   box-sizing: border-box;
 
   &__groups {
