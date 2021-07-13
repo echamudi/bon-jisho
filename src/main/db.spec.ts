@@ -1,4 +1,4 @@
-import { getJMdictJsonsRows, getKanjiAliveRows, getKanjidicRows, getKanjiQuickDataRows, getKanjivgTreeRows, getRelatedKanjiAggregateRows, getWordsByTag } from 'Main/db';
+import { getJMdictJsonsRows, getKanjiAliveRows, getKanjidicRows, getKanjiGroups, getKanjiQuickDataRows, getKanjivgTreeRows, getRelatedKanjiAggregateRows, getWordsByTag } from 'Main/db';
 
 test('getJMdictJsonsRows', async () => {
   getJMdictJsonsRows({
@@ -547,4 +547,10 @@ test('getWordsByTag', async () => {
 
   expect(res.some((el) => el.kanji === '経営')).toBe(true);
   expect(res.some((el) => el.kanji === '経済力')).toBe(false);
+});
+
+test('getKanjiGroups', async () => {
+  const res = await getKanjiGroups();
+
+  console.log(res);
 });

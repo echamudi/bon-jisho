@@ -370,3 +370,24 @@ export function getWordsByTag(query: { tag: string }): Promise<JapaneseDB.DictIn
   });
 }
 
+export interface KanjiGroupRow {
+  literal: string,
+  stroke_count: number,
+  freq: number | null,
+  jlpt: number | null,
+  kanken: number | null,
+  jlpt_new: number | null
+}
+
+export function getKanjiGroups(): Promise<KanjiGroupRow[]> {
+  const sql = `SELECT literal, stroke_count, freq, jlpt, kanken, jlpt_new FROM kanjidic LEFT JOIN kanji_groups on kanjidic.literal == kanji_groups.kanji ORDER BY freq ASC NULLS LAST;`;
+
+  return new Promise((resolve) => {
+    db.all(sql, (_err: any, rows: any[]) => {
+      // const postProcessed = rows.map((row) => ({
+      //   ...row,
+      // }));
+      resolve(rows);
+    });
+  });
+}
