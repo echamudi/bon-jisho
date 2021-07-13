@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: 'search', component: MainComponent },
       { path: 'inspect-text', component: MainComponent },
       { path: 'vocabulary-lists', component: MainComponent },
+      { path: 'kanji-lists', component: MainComponent },
       { path: 'about', component: MainComponent },
     ],
   },

@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'App/modules/shared/shared.module';
 import { EntryDetailsModule } from 'App/modules/entry-details/entry-details.module';
 import { VocabularyListsComponent } from './components/vocabulary-lists/vocabulary-lists.component';
+import { KanjiListsComponent } from './components/kanji-lists/kanji-lists.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { VocabularyListsComponent } from './components/vocabulary-lists/vocabula
     InspectTextComponent,
     SearchComponent,
     AboutComponent,
-    VocabularyListsComponent
+    VocabularyListsComponent,
+    KanjiListsComponent
   ],
   imports: [
     CommonModule,
