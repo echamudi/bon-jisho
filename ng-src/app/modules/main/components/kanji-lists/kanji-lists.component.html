@@ -48,8 +48,8 @@
       <ng-container *ngFor="let section of selectedGroup">
         <div>{{ section.sectionName }}</div>
         <div class="word-list">
-          <div class="word-list__item" *ngFor="let kanji of section.kanjis" (click)="selectItem(kanji)">
-            <span class="word-list__item-kanji">{{ kanji }}</span><br>
+          <div class="word-list__item-char" *ngFor="let kanji of section.kanjis" (click)="selectItem(kanji)">
+            <span>{{ kanji }}</span>
           </div>
         </div>
       </ng-container>
