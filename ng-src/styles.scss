@@ -469,6 +469,11 @@ img {
     font-size: 14px;
     color: #00000090;
   }
+
+  &__loading {
+    color: #00000050;
+    font-weight: bold;
+  }
 }
 
 // BEM Block: group-buttons

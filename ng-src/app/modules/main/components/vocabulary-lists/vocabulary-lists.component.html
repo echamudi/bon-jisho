@@ -53,6 +53,7 @@
 
 
   <div class="collection-grid__content">
+
     <div class="word-list" *ngIf="list !== 'loading' && list?.length">
       <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
         <ng-container *ngIf="item.kanji">
@@ -64,7 +65,12 @@
         </ng-container>
       </div>
     </div>
-    <div *ngIf="list === 'loading'">Loading...</div>
+
+
+    <div class="word-list" *ngIf="list === 'loading'">
+      <div class="word-list__loading">Loading...</div>
+    </div>
+
   </div>
 
 </div>
