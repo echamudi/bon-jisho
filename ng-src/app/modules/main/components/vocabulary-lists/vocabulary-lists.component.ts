@@ -22,14 +22,14 @@ export class VocabularyListsComponent implements OnInit {
     ...Array<string>(9).fill('nf').map((el, i) => el + '0' + (i + 1)),
     ...Array<string>(39).fill('nf').map((el, i) => el + (i + 10)),
   ];
-  selectedGroup: string | undefined;
+  selectedGroupName: string | undefined;
 
   ngOnInit(): void {
   }
 
   async openList(tag: string): Promise<void> {
     this.list = 'loading';
-    this.selectedGroup = tag;
+    this.selectedGroupName = tag;
     this.electronService.ipcRenderer.invoke('getWordsByTag', { tag }).then((res) => {
       this.list = res;
     });
