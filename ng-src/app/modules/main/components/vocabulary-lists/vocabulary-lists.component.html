@@ -53,19 +53,22 @@
 
 
   <div class="collection-grid__content">
-
-    <div class="word-list" *ngIf="list !== 'loading' && list?.length">
-      <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
-        <ng-container *ngIf="item.kanji">
-          <span class="word-list__item-kanji">{{ item.kanji }}</span><br>
-          <span class="word-list__item-reading">{{ item.reading }}</span>
-        </ng-container>
-        <ng-container *ngIf="item.kanji === null">
-          <span class="word-list__item-kanji">{{ item.reading }}</span>
-        </ng-container>
+    <ng-container *ngIf="list !== 'loading' && list?.length">
+      <div class="collection-notice">
+        The words are sorted alphabetically (五十音順)
       </div>
-    </div>
-
+      <div class="word-list">
+        <div class="word-list__item" *ngFor="let item of list" (click)="selectItem(item)">
+          <ng-container *ngIf="item.kanji">
+            <span class="word-list__item-kanji">{{ item.kanji }}</span><br>
+            <span class="word-list__item-reading">{{ item.reading }}</span>
+          </ng-container>
+          <ng-container *ngIf="item.kanji === null">
+            <span class="word-list__item-kanji">{{ item.reading }}</span>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
 
     <div class="word-list" *ngIf="list === 'loading'">
       <div class="word-list__loading">Loading...</div>
