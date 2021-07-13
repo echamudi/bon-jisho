@@ -1,35 +1,39 @@
 <div class="entry-details">
   <div class="toolbar" (dblclick)="toggleMaximize()">
-    <div *ngIf="mode === 'window'" class="toolbar__window-buttons-pad"></div>
-    <div class="toolbar-button"
-      [ngClass]="{'toolbar-button_disabled': history.pointer <= 1}"
-      (dblclick)="$event.stopPropagation()"
-      (click)="back()">
-      <img
-        class="toolbar-button__icon"
-        src="assets/icons/chevron-left.svg">
+    <div class="toolbar__layer">
+      <div class="toolbar__flex"></div>
+      <div class="toolbar__title">
+        {{ keyword }}
+        <span *ngIf="dictSource === 3"> (Kanji)</span>
+      </div>
+      <div class="toolbar__flex"></div>
     </div>
-    <div class="toolbar-button"
-      [ngClass]="{'toolbar-button_disabled': history.pointer + 1 == history.stack.length}"
-      (dblclick)="$event.stopPropagation()"
-      (click)="forward()">
-      <img
-        class="toolbar-button__icon"
-        src="assets/icons/chevron-right.svg">
-    </div>
-    <div class="toolbar__flex"></div>
-    <div class="toolbar__title">
-      {{ keyword }}
-      <span *ngIf="dictSource === 3"> (Kanji)</span>
-    </div>
-    <div class="toolbar__flex"></div>
-    <div
-      *ngIf="mode === 'word-search'"
-      class="toolbar-button"
-      (click)="popupCurrent()">
-      <img
-        class="toolbar-button__icon"
-        src="assets/icons/external-link.svg">
+    <div class="toolbar__layer">
+      <div *ngIf="mode === 'window'" class="toolbar__window-buttons-pad"></div>
+      <div class="toolbar-button"
+        [ngClass]="{'toolbar-button_disabled': history.pointer <= 1}"
+        (dblclick)="$event.stopPropagation()"
+        (click)="back()">
+        <img
+          class="toolbar-button__icon"
+          src="assets/icons/chevron-left.svg">
+      </div>
+      <div class="toolbar-button"
+        [ngClass]="{'toolbar-button_disabled': history.pointer + 1 == history.stack.length}"
+        (dblclick)="$event.stopPropagation()"
+        (click)="forward()">
+        <img
+          class="toolbar-button__icon"
+          src="assets/icons/chevron-right.svg">
+      </div>
+      <div
+        *ngIf="mode === 'word-search'"
+        class="toolbar-button"
+        (click)="popupCurrent()">
+        <img
+          class="toolbar-button__icon"
+          src="assets/icons/external-link.svg">
+      </div>
     </div>
   </div>
 

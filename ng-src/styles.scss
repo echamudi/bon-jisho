@@ -98,8 +98,14 @@ img {
   box-shadow: 0px -1px 0 0 #CDCDCD inset;
   user-select: none;
   -webkit-app-region: drag;
-  display: flex;
-  align-items: center;
+
+  &__layer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+  }
 
   &__window-buttons-pad {
     width: 70px;
@@ -246,7 +252,7 @@ img {
     line-height: 25px;
     padding: 5px;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: (4 / 16) * 1rem;
     margin: 2.5px;
 
     &:hover {
@@ -368,7 +374,7 @@ img {
     padding: 1px 3px;
     line-height: 1.15;
     box-sizing: border-box;
-    border-radius: 2px;
+    border-radius: (4 / 16) * 1rem;
     background: #fff3cd;
     border: solid 1px #ffeeba;
   }
@@ -444,17 +450,17 @@ img {
   &__item {
     font-size: 16px;
     margin: 5px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.05);
+    border-radius: (4 / 16) * 1rem;
+    background: rgba(255, 255, 255, 1);
     padding: 5px;
     width: 150px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     &:active {
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.2);
     }
 
   }
@@ -475,7 +481,7 @@ img {
     color: #0063e1;
     padding: 5px;
     background: rgba(0, 0, 0, 0.05);
-    border-radius: 2px;
+    border-radius: (4 / 16) * 1rem;
     margin: 5px;
 
     &:hover {
@@ -546,6 +552,7 @@ img {
     grid-area: content;
     overflow-y: auto;
     padding: 20px;
+    background: #F1F2F6;
   }
 }
 
@@ -624,7 +631,7 @@ img {
 .detail-block {
   padding: 10px 20px;
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: (4 / 16) * 1rem;
 }
 
 .detail-row {
