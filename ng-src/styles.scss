@@ -529,6 +529,10 @@ img {
         background: darken(#0063E1, 10%);
       }
     }
+
+    &_full-width {
+      width: 100%;
+    }
   }
 }
 
