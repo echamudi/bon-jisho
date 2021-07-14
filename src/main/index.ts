@@ -22,7 +22,7 @@ if (isDevelopment) {
 const createMainWindow = () => {
   // Create the browser window.
   const window = new BrowserWindow({
-    width: 800,
+    width: 850,
     height: 600,
     minWidth: 620,
     minHeight: 350,
@@ -120,15 +120,25 @@ ipcMain.handle('openURL', async (_event, message) => {
   shell.openExternal(message.url);
 });
 
+let windowPositionI = 0;
+let windowPositionCol = 0;
+
 ipcMain.handle(
   'open-url-electron',
   async (_event, message) => {
-    const focusedWindow = BrowserWindow.getFocusedWindow();
-    const [x, y] = focusedWindow?.getPosition() ?? [100, 100];
+    // const focusedWindow = BrowserWindow.getFocusedWindow();
+    // const [x, y] = focusedWindow?.getPosition() ?? [100, 100];
+
+    // Reset popup birth location if there's no other popups
+    const windows = BrowserWindow.getAllWindows();
+    if (windows.length === 1) {
+      windowPositionI = 0;
+      windowPositionCol = 0;
+    }
 
     const windowPop = new BrowserWindow({
-      x: x + 40,
-      y: y + 40,
+      x: 40 + (windowPositionI * 35) + (windowPositionCol * 40),
+      y: 40 + (windowPositionI * 35),
       width: 600,
       height: 550,
       minWidth: 300,
@@ -155,6 +165,17 @@ ipcMain.handle(
         slashes: true,
       }) + message.url);
     }
+
+    // Slighyly move window position
+    windowPositionI += 1;
+    if (windowPositionI >= 6) {
+      windowPositionI = 0;
+      windowPositionCol += 1;
+    };
+
+    if (windowPositionCol >= 5) {
+      windowPositionCol = 0;
+    };
   },
 );
 
