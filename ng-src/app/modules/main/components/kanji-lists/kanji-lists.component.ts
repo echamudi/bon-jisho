@@ -95,6 +95,12 @@ export class KanjiListsComponent implements OnInit {
         }
       });
       this.memoStrokeCount = res;
+    } else if (tag === 'Kanji Frequency' && this.memoKanjiFrequency === null) {
+      const res: SelectedGroup = [{
+        sectionName: '', kanjis: this.rawGroups.filter((row) => row.freq !== null).map((row) => row.literal)
+      }];
+
+      this.memoKanjiFrequency = res;
     }
 
     if (tag === 'Old JLPT') {
@@ -103,10 +109,11 @@ export class KanjiListsComponent implements OnInit {
       this.selectedGroup = this.memoNewJlpt;
     } else if (tag === 'Stroke Count') {
       this.selectedGroup = this.memoStrokeCount;
+    } else if (tag === 'Kanji Frequency') {
+      this.selectedGroup = this.memoKanjiFrequency;
     }
 
     // TODO: Add more groupings
-
     this.selectedGroupName = tag;
   }
 
