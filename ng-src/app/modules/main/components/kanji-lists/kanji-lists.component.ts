@@ -49,7 +49,31 @@ export class KanjiListsComponent implements OnInit {
     }
 
     // Use memo for selected group. Otherwise, build it
-    if (tag === 'Old JLPT' && this.memoOldJlpt === null) {
+    if (tag === 'Kanji Kentei' && this.memoKanken === null) {
+      const res: SelectedGroup = [
+        { sectionName: 'Level 10', kanjis: [] }, { sectionName: 'Level 9', kanjis: [] },
+        { sectionName: 'Level 8', kanjis: [] }, { sectionName: 'Level 7', kanjis: [] },
+        { sectionName: 'Level 6', kanjis: [] }, { sectionName: 'Level 5', kanjis: [] },
+        { sectionName: 'Level 4', kanjis: [] }, { sectionName: 'Level 3', kanjis: [] },
+        { sectionName: 'Level Pre-2', kanjis: [] }, { sectionName: 'Level 2', kanjis: [] },
+        { sectionName: 'Level Pre-1', kanjis: [] }, { sectionName: 'Level 1', kanjis: [] },
+      ];
+      this.rawGroups.forEach((row) => {
+        if (row.kanken === 100) res[0].kanjis.push(row.literal);
+        else if (row.kanken === 90) res[1].kanjis.push(row.literal);
+        else if (row.kanken === 80) res[2].kanjis.push(row.literal);
+        else if (row.kanken === 70) res[3].kanjis.push(row.literal);
+        else if (row.kanken === 60) res[4].kanjis.push(row.literal);
+        else if (row.kanken === 50) res[5].kanjis.push(row.literal);
+        else if (row.kanken === 40) res[6].kanjis.push(row.literal);
+        else if (row.kanken === 30) res[7].kanjis.push(row.literal);
+        else if (row.kanken === 25) res[8].kanjis.push(row.literal);
+        else if (row.kanken === 20) res[9].kanjis.push(row.literal);
+        else if (row.kanken === 15) res[10].kanjis.push(row.literal);
+        else if (row.kanken === 10) res[11].kanjis.push(row.literal);
+      });
+      this.memoKanken = res;
+    } else if (tag === 'Old JLPT' && this.memoOldJlpt === null) {
       const res: SelectedGroup = [
         { sectionName: 'JLPT4', kanjis: [] },
         { sectionName: 'JLPT3', kanjis: [] },
@@ -58,9 +82,9 @@ export class KanjiListsComponent implements OnInit {
       ];
       this.rawGroups.forEach((row) => {
         if (row.jlpt === 4) res[0].kanjis.push(row.literal);
-        if (row.jlpt === 3) res[1].kanjis.push(row.literal);
-        if (row.jlpt === 2) res[2].kanjis.push(row.literal);
-        if (row.jlpt === 1) res[3].kanjis.push(row.literal);
+        else if (row.jlpt === 3) res[1].kanjis.push(row.literal);
+        else if (row.jlpt === 2) res[2].kanjis.push(row.literal);
+        else if (row.jlpt === 1) res[3].kanjis.push(row.literal);
       });
       this.memoOldJlpt = res;
     } else if (tag === 'New JLPT' && this.memoNewJlpt === null) {
@@ -73,10 +97,10 @@ export class KanjiListsComponent implements OnInit {
       ];
       this.rawGroups.forEach((row) => {
         if (row.jlpt_new === 5) res[0].kanjis.push(row.literal);
-        if (row.jlpt_new === 4) res[1].kanjis.push(row.literal);
-        if (row.jlpt_new === 3) res[2].kanjis.push(row.literal);
-        if (row.jlpt_new === 2) res[3].kanjis.push(row.literal);
-        if (row.jlpt_new === 1) res[4].kanjis.push(row.literal);
+        else if (row.jlpt_new === 4) res[1].kanjis.push(row.literal);
+        else if (row.jlpt_new === 3) res[2].kanjis.push(row.literal);
+        else if (row.jlpt_new === 2) res[3].kanjis.push(row.literal);
+        else if (row.jlpt_new === 1) res[4].kanjis.push(row.literal);
       });
       this.memoNewJlpt = res;
     } else if (tag === 'Stroke Count' && this.memoStrokeCount === null) {
@@ -103,7 +127,9 @@ export class KanjiListsComponent implements OnInit {
       this.memoKanjiFrequency = res;
     }
 
-    if (tag === 'Old JLPT') {
+    if (tag === 'Kanji Kentei') {
+      this.selectedGroup = this.memoKanken;
+    } else if (tag === 'Old JLPT') {
       this.selectedGroup = this.memoOldJlpt;
     } else if (tag === 'New JLPT') {
       this.selectedGroup = this.memoNewJlpt;
