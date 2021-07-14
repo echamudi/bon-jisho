@@ -115,6 +115,7 @@ export class EntryDetailsComponent implements OnInit {
 
       if (source === 'jmdict' && id && kanji && reading) {
         if (kanji === 'null') kanji = null;
+        document.title = `Popup - ${kanji ?? reading}`;
 
         const input: JMDetailsQuery = {
           source: c.JMDICT,
@@ -128,6 +129,9 @@ export class EntryDetailsComponent implements OnInit {
       }
 
       if (source === 'jmnedict' && id && kanji && reading) {
+        if (kanji === 'null') kanji = null;
+        document.title = `Popup - ${kanji ?? reading}`;
+
         const input: JMDetailsQuery = {
           source: c.JMNEDICT,
           id: parseInt(id, 10),
@@ -140,6 +144,8 @@ export class EntryDetailsComponent implements OnInit {
       }
 
       if (source === 'kanjidic' && kanji) {
+        document.title = `Popup - ${kanji}`;
+
         const input: KanjidicQuery = {
           source: c.KANJIDIC,
           kanji
