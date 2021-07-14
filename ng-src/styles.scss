@@ -463,7 +463,7 @@ img {
     }
 
     &:active {
-      background: rgba(255, 255, 255, 0.2);
+      transform: scale(0.96);
     }
   }
 
@@ -484,7 +484,7 @@ img {
     }
 
     &:active {
-      background: rgba(255, 255, 255, 0.2);
+      transform: scale(0.96);
     }
   }
 
