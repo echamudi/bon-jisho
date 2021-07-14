@@ -29,8 +29,20 @@
     <div class="collection-grid__header-title">
       {{ selectedGroupName }}
     </div>
+    <div *ngIf="selectedGroupName === 'Kanji Kentei'">
+      Kanji levels used for evaluating kanji knowledge in Japan Kanji Aptitude Test. (日本漢字能力検定)
+    </div>
+    <div *ngIf="selectedGroupName === 'Old JLPT'">
+      List of kanji used in pre-2010 JLPT tests.
+    </div>
     <div *ngIf="selectedGroupName === 'New JLPT'">
-      The new JLPT
+      Unofficial list of required kanji for the new JLPT test.
+    </div>
+    <div *ngIf="selectedGroupName === 'Stroke Count'">
+      The number of stroke for writing each kanji character.
+    </div>
+    <div *ngIf="selectedGroupName === 'Kanji Frequency'">
+      The frequency ranking of 2,501 kanji characters in Mainichi Newspaper word frequency list.
     </div>
   </div>
 

@@ -35,14 +35,14 @@
       The following words appear in the 10,000 selected vocabularies collection by Senmon Kyouiku. (Ichimango goi bunruishuu, Senmon Kyouiku) (additional words)
     </div>
     <div *ngIf="selectedGroupName && selectedGroupName[0] === 'n' && selectedGroupName[1] === 'f'">
-      The following words are the group number {{ selectedGroupName[2] === '0' ? '' : selectedGroupName[2] }}{{ selectedGroupName[3] }} of the Mainichi Shimbun frequency list, compiled by Alexandre Girardi.
+      The following words are the group number {{ selectedGroupName[2] === '0' ? '' : selectedGroupName[2] }}{{ selectedGroupName[3] }} of the Mainichi Newspaper frequency list.
       The group number is sorted by frequency.
     </div>
     <div *ngIf="selectedGroupName === 'gai1'">
-      The following words are common loan words in Alexandre Girardi's frequency list, part 1.
+      The following words are common loan words in the Mainichi Newspaper frequency list, part 1.
     </div>
     <div *ngIf="selectedGroupName === 'gai2'">
-      The following words are common loan words in Alexandre Girardi's frequency list, part 2.
+      The following words are common loan words in the Mainichi Newspaper frequency list, part 2.
     </div>
   </div>
 

@@ -218,8 +218,8 @@ export const JMnedictEntitites: Record<string, string> = JSON.parse(`
  */
 export const Priorities: Record<string, string> = JSON.parse(`
 {
-  "news1": "This word appears in the first 12,000 words out of 24,000 words from Mainichi Shimbun frequency list.",
-  "news2": "This word appears in the second 12,000 words out of 24,000 words from Mainichi Shimbun frequency list.",
+  "news1": "This word appears in the first 12,000 words out of 24,000 words from Mainichi Newspaper frequency list.",
+  "news2": "This word appears in the second 12,000 words out of 24,000 words from Mainichi Newspaper frequency list.",
   "ichi": "This word appears in 10,000 selected vocabularies collection (Ichimango goi bunruishuu, Senmon Kyouiku).",
   "spec1": "other 1-2000 common words",
   "spec2": "other 2001-4000 common words",
@@ -246,7 +246,7 @@ export function getTagDescription(tag: string): string {
   if (tag.slice(0, 2) === 'nf') {
     const nf = parseInt(tag.slice(2, 4), 10);
 
-    return `This word is ranked between ${nf * 500 - 499}-${nf * 500} in the Mainichi Shimbun frequency list, compiled by Alexandre Girardi.`;
+    return `This word is ranked between ${nf * 500 - 499}-${nf * 500} in the Mainichi Newspaper frequency list.`;
   }
 
   if (tag === 'gai1' || tag === 'gai2') {
