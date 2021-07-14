@@ -49,14 +49,28 @@ export class KanjiListsComponent implements OnInit {
     }
 
     // Use memo for selected group. Otherwise, build it
-    if (tag === 'New JLPT' && this.memoNewJlpt === null) {
+    if (tag === 'Old JLPT' && this.memoOldJlpt === null) {
+      const res: SelectedGroup = [
+        { sectionName: 'JLPT4', kanjis: [] },
+        { sectionName: 'JLPT3', kanjis: [] },
+        { sectionName: 'JLPT2', kanjis: [] },
+        { sectionName: 'JLPT1', kanjis: [] },
+      ];
+      this.rawGroups.forEach((row) => {
+        if (row.jlpt === 4) res[0].kanjis.push(row.literal);
+        if (row.jlpt === 3) res[1].kanjis.push(row.literal);
+        if (row.jlpt === 2) res[2].kanjis.push(row.literal);
+        if (row.jlpt === 1) res[3].kanjis.push(row.literal);
+      });
+      this.memoOldJlpt = res;
+    } else if (tag === 'New JLPT' && this.memoNewJlpt === null) {
       const res: SelectedGroup = [
         { sectionName: 'N5', kanjis: [] },
         { sectionName: 'N4', kanjis: [] },
         { sectionName: 'N3', kanjis: [] },
         { sectionName: 'N2', kanjis: [] },
         { sectionName: 'N1', kanjis: [] },
-      ]
+      ];
       this.rawGroups.forEach((row) => {
         if (row.jlpt_new === 5) res[0].kanjis.push(row.literal);
         if (row.jlpt_new === 4) res[1].kanjis.push(row.literal);
@@ -65,26 +79,30 @@ export class KanjiListsComponent implements OnInit {
         if (row.jlpt_new === 1) res[4].kanjis.push(row.literal);
       });
       this.memoNewJlpt = res;
-    } else if (tag === 'Old JLPT' && this.memoOldJlpt === null) {
-      const res: SelectedGroup = [
-        { sectionName: 'JLPT4', kanjis: [] },
-        { sectionName: 'JLPT3', kanjis: [] },
-        { sectionName: 'JLPT2', kanjis: [] },
-        { sectionName: 'JLPT1', kanjis: [] },
-      ]
+    } else if (tag === 'Stroke Count' && this.memoStrokeCount === null) {
+      const res: SelectedGroup = [];
+
+      // Create sections
+      res.push({sectionName: '1 Stroke', kanjis: []});
+      for (let i = 1; i < 34; i++) {
+        res.push({sectionName: (i + 1) + ' Strokes', kanjis: []});
+      }
+
+      // Fill sections
       this.rawGroups.forEach((row) => {
-        if (row.jlpt === 4) res[0].kanjis.push(row.literal);
-        if (row.jlpt === 3) res[1].kanjis.push(row.literal);
-        if (row.jlpt === 2) res[2].kanjis.push(row.literal);
-        if (row.jlpt === 1) res[3].kanjis.push(row.literal);
+        if (row.freq !== null || row.kanken !== null) {
+          res[row.stroke_count - 1].kanjis.push(row.literal);
+        }
       });
-      this.memoOldJlpt = res;
+      this.memoStrokeCount = res;
     }
 
-    if (tag === 'New JLPT') {
-      this.selectedGroup = this.memoNewJlpt;
-    } else if (tag === 'Old JLPT') {
+    if (tag === 'Old JLPT') {
       this.selectedGroup = this.memoOldJlpt;
+    } else if (tag === 'New JLPT') {
+      this.selectedGroup = this.memoNewJlpt;
+    } else if (tag === 'Stroke Count') {
+      this.selectedGroup = this.memoStrokeCount;
     }
 
     // TODO: Add more groupings
