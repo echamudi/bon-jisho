@@ -38,11 +38,8 @@
   <div class="collection-grid__content">
 
     <ng-container *ngIf="selectedGroupName !== 'loading'">
-      <div class="collection-notice">
-        The words are sorted alphabetically (五十音順)
-      </div>
       <ng-container *ngFor="let section of selectedGroup">
-        <div>{{ section.sectionName }}</div>
+        <div class="word-list-title">{{ section.sectionName }}</div>
         <div class="word-list">
           <div class="word-list__item-char" *ngFor="let kanji of section.kanjis" (click)="selectItem(kanji)">
             <span>{{ kanji }}</span>

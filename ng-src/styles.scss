@@ -448,6 +448,7 @@ img {
 .word-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 43px;
 
   &__item {
     font-size: 16px;
@@ -496,6 +497,14 @@ img {
     color: #00000050;
     font-weight: bold;
   }
+}
+
+// BEM Block: word-list-title
+.word-list-title {
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #737373;
 }
 
 // BEM Block: group-buttons
