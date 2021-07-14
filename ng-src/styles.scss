@@ -697,6 +697,29 @@ img {
   }
 }
 
+// Table
+.table-1 {
+  color: #333333;
+  border: 1px solid rgb(155, 155, 155);
+  font-size: 12pt;
+  border-collapse: collapse;
+}
+
+.table-1 thead th,
+.table-1 tfoot th {
+  background: rgba(0, 0, 0, .1);
+}
+
+.table-1 caption {
+  padding: 0.5em;
+}
+
+.table-1 th,
+.table-1 td {
+  padding: .5em;
+  border: 1px solid rgb(228, 228, 228);
+}
+
 // Helpers
 
 .mb-10 {

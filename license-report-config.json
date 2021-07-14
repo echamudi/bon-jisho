@@ -1,0 +1,9 @@
+{
+  "fields": [
+    "name",
+    "link",
+    "licenseType",
+    "installedVersion",
+    "author"
+  ]
+}
