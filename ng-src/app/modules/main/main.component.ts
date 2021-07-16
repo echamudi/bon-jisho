@@ -3,6 +3,14 @@ import { OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+type CurrentPage =
+'home' |
+'search' |
+'inspect-text' |
+'vocabulary-lists' |
+'kanji-lists' |
+'about' | '';
+
 @Component({
   selector: 'app-root',
   templateUrl: './main.component.html',
@@ -10,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  currentPage: string = '';
+  currentPage: CurrentPage = 'search';
   routerEventsSubscriptions: Subscription | undefined;
 
   constructor(private router: Router) { }
@@ -37,10 +45,10 @@ export class MainComponent implements OnInit, OnDestroy {
       this.router.parseUrl(url).root.children.primary.segments?.[1]?.path;
 
     if (selectedPage !== undefined) {
-      this.currentPage = selectedPage;
+      this.currentPage = selectedPage as CurrentPage;
     } else {
-      this.currentPage = '';
-      this.router.navigateByUrl('/main/home');
+      this.currentPage = 'search';
+      this.router.navigateByUrl('/main/search');
     }
   }
 }
