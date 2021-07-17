@@ -10,9 +10,17 @@ Currently, the app is only supported on mac.
 
 ### Download and Install Dependencies
 
+Install Node modules:
+
 ```sh
 yarn
 npx electron-builder install-app-deps
+```
+
+Download the require materials:
+
+```sh
+# In Windows, you may use WSL to run the following commands OR you can download and extract the files manually
 
 # Download DB materials
 mkdir -p ./db-src
@@ -39,8 +47,11 @@ mkdir -p ./ng-src/assets/fonts
   && curl -o "NotoSansJP-Bold.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Sans_JP/NotoSansJP-Bold.otf \
   && curl -o "NotoSerifJP-Regular.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Serif_JP/NotoSerifJP-Regular.otf \
   && curl -o "NotoSerifJP-Bold.otf" https://raw.githubusercontent.com/echamudi/jp-resources-mirror/443711d6fab8072f7ec23cdd00f47e8f4d51aa71/Noto_Serif_JP/NotoSerifJP-Bold.otf )
+```
 
-# Build the database using Japanese-DB (https://github.com/ezhmd/japanese-db)
+Build the database using Japanese-DB (https://github.com/ezhmd/japanese-db)
+
+```sh
 yarn db-build
 ```
 
