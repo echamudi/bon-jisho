@@ -4,10 +4,6 @@
 
 An open source Japanese dictionary desktop app based on electron.
 
-## Development
-
-Currently, the app is only supported on mac.
-
 ### Download and Install Dependencies
 
 Install Node modules:
@@ -76,14 +72,14 @@ yarn db-build
 To build and package a single executable app, run following command:
 
 ```sh
-# Build Database
+# Build Database, skip this if you already built japanese.db
 yarn db-build
 
 # Build Preload Asar
 npx asar pack ./src/preload ./static/pre.asar
 
 # Build Angular Asar
-ng build --configuration="production"
+npx ng build --configuration="production"
 npx asar pack ./static/ng-dist ./static/ng.asar
 rm -rf ./static/ng-dist
 
