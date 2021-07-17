@@ -2,6 +2,7 @@ import * as path from 'path';
 import { format as formatUrl } from 'url';
 import { app, BrowserWindow, ipcMain, shell} from 'electron';
 import * as db from 'Main/db';
+import * as os from 'os';
 
 declare const __static: string;
 
@@ -101,6 +102,13 @@ app.on('browser-window-focus', (_event, browserWindow) => {
 /**
  * Communication
  */
+
+const platform = os.platform();
+
+ipcMain.handle(
+  'get-platform',
+  async () => platform,
+);
 
 ipcMain.handle(
   'toggle-maximize',

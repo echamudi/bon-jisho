@@ -14,5 +14,6 @@ export interface BonIpcRenderer extends _ipcRenderer {
   invoke(channel: 'getKanjiQuickDataRows', query: Parameters<typeof getKanjiQuickDataRows>[0]): ReturnType<typeof getKanjiQuickDataRows>;
   invoke(channel: 'getWordsByTag', query: Parameters<typeof getWordsByTag>[0]): ReturnType<typeof getWordsByTag>;
   invoke(channel: 'getKanjiGroups'): ReturnType<typeof getKanjiGroups>;
+  invoke(channel: 'get-platform'): Promise<string>;
   invoke(channel: 'openURL' | 'open-url-electron', query: { url: string }): Promise<undefined>;
 }
