@@ -3,10 +3,12 @@ import { format as formatUrl } from 'url';
 import { app, BrowserWindow, ipcMain, shell} from 'electron';
 import * as db from 'Main/db';
 import * as os from 'os';
+import { BrowserWindowConstructorOptions } from 'electron/main';
 
 declare const __static: string;
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const platform = os.platform();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,22 +22,41 @@ if (isDevelopment) {
   preloadPath = path.join(__static, '/pre.asar/preload.js');
 }
 
+// Cross platform window config
+let titleBarStyle: BrowserWindowConstructorOptions['titleBarStyle'];
+let frame: BrowserWindowConstructorOptions['frame'];
+let autoHideMenuBar: BrowserWindowConstructorOptions['autoHideMenuBar'];
+const webPreferences: Readonly<Electron.WebPreferences> = {
+  nodeIntegration: false,
+  enableRemoteModule: false,
+  contextIsolation: true,
+  sandbox: true,
+  preload: preloadPath,
+};
+
+if (platform === 'darwin') {
+  titleBarStyle = 'hiddenInset';
+  frame = false;
+  autoHideMenuBar = false;
+} else if (platform === 'win32') {
+  titleBarStyle = 'hiddenInset';
+  frame = true;
+  autoHideMenuBar = true;
+};
+
 const createMainWindow = () => {
+
+
   // Create the browser window.
   const window = new BrowserWindow({
     width: 850,
     height: 600,
     minWidth: 620,
     minHeight: 350,
-    titleBarStyle: 'hiddenInset',
-    frame: false,
-    webPreferences: {
-      nodeIntegration: false,
-      enableRemoteModule: false,
-      contextIsolation: true,
-      sandbox: true,
-      preload: preloadPath,
-    },
+    titleBarStyle,
+    frame,
+    autoHideMenuBar,
+    webPreferences
   });
 
   if (isDevelopment) {
@@ -103,8 +124,6 @@ app.on('browser-window-focus', (_event, browserWindow) => {
  * Communication
  */
 
-const platform = os.platform();
-
 ipcMain.handle(
   'get-platform',
   async () => platform,
@@ -151,15 +170,10 @@ ipcMain.handle(
       height: 550,
       minWidth: 300,
       minHeight: 350,
-      titleBarStyle: 'hiddenInset',
-      frame: false,
-      webPreferences: {
-        nodeIntegration: false,
-        enableRemoteModule: false,
-        contextIsolation: true,
-        sandbox: true,
-        preload: preloadPath,
-      },
+      titleBarStyle,
+      frame,
+      autoHideMenuBar,
+      webPreferences,
     });
 
     if (isDevelopment) {
@@ -174,7 +188,7 @@ ipcMain.handle(
       }) + message.url);
     }
 
-    // Slighyly move window position
+    // Slightly move window position
     windowPositionI += 1;
     if (windowPositionI >= 6) {
       windowPositionI = 0;
