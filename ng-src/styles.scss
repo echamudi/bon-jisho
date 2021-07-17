@@ -335,6 +335,10 @@ img {
   background: #F1F2F6;
   box-sizing: border-box;
 
+  body.win32 & {
+    box-shadow: -1px 0 0 0 #CDCDCD, 0 1px 0 0 #CDCDCD inset;
+  }
+
   &__content {
     padding: 2rem;
     display: flex;
@@ -618,12 +622,20 @@ img {
     overflow-y: auto;
     padding: 12px;
     box-shadow: -1px 0 0 #cdcdcd inset;
+
+    body.win32 & {
+      box-shadow: -1px 0 0 #cdcdcd inset, 0 1px 0 0 #cdcdcd inset;
+    }
   }
 
   &__header {
     grid-area: header;
     box-shadow: 0 -1px 0 #cdcdcd inset;
     padding: 20px;
+
+    body.win32 & {
+      box-shadow: 0 -1px 0 #cdcdcd inset, 0 1px 0 0 #cdcdcd inset;
+    }
   }
 
   &__header-title {
