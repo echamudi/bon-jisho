@@ -9,7 +9,7 @@
       <div class="toolbar__flex"></div>
     </div>
     <div class="toolbar__layer">
-      <div *ngIf="mode === 'window' && electronService.getPlatform()" class="toolbar__window-buttons-pad"></div>
+      <div *ngIf="mode === 'window' && platform === 'darwin'" class="toolbar__window-buttons-pad"></div>
       <div class="toolbar-button"
         [ngClass]="{'toolbar-button_disabled': history.pointer <= 1}"
         (dblclick)="$event.stopPropagation()"
