@@ -70,7 +70,7 @@ export class EntryDetailsComponent implements OnInit {
    */
   exploreClickCount: number = 0;
 
-  plaftorm: string | undefined;
+  platform: string | undefined;
 
   constructor(private electronService: ElectronService,
     private _: UnderscoreService,
@@ -84,7 +84,7 @@ export class EntryDetailsComponent implements OnInit {
     };
 
     (async () => {
-      this.plaftorm = await this.electronService.getPlatform();
+      this.platform = await this.electronService.getPlatform();
     })();
   }
 
