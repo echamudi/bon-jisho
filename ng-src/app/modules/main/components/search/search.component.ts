@@ -54,6 +54,7 @@ export class SearchComponent implements OnInit {
     setTimeout(() => {
       if (currentKeyword.length === 0) {
         this.list = [];
+        this.kanjiChars = [];
         return;
       }
 
