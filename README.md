@@ -87,6 +87,16 @@ rm -rf ./static/ng-dist
 yarn dist
 ```
 
+## Testing
+
+Automated Test
+
+```
+npx jest
+```
+
+After running the automated test, please do the manual test as listed in [this file](test/manual-testing.md).
+
 ## Authors
 
 * **Ezzat Chamudi** - [ezhmd](https://github.com/ezhmd)
