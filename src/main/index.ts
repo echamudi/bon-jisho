@@ -45,8 +45,6 @@ if (platform === 'darwin') {
 };
 
 const createMainWindow = () => {
-
-
   // Create the browser window.
   const window = new BrowserWindow({
     width: 850,
