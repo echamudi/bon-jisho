@@ -45,8 +45,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     // For testing purpose;
-    this.keyword = '機';
-    this.search(this.keyword);
+    // this.keyword = '機';
+    // this.search(this.keyword);
   }
 
   search($event: string): void {
