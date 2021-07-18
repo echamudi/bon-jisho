@@ -551,6 +551,4 @@ test('getWordsByTag', async () => {
 
 test('getKanjiGroups', async () => {
   const res = await getKanjiGroups();
-
-  console.log(res);
 });

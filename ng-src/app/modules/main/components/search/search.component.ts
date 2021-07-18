@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
   constructor(private electronService: ElectronService, private _: UnderscoreService, private statesService: StatesService) {
     this.isEqual = this._.isEqual;
     this.statesService.wordSearchSelectionObs.subscribe(el => {
-      console.log('now selected', el);
+      // console.log('now selected', el);
       this.selectedItem = el;
     });
   }
@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
 
       // This is done to prevent searching during typing
       if (currentKeyword === this.keyword) {
-        console.log('queried for', currentKeyword);
+        // console.log('queried for', currentKeyword);
 
         /** Contains at least one kanji? */
         const isKanji = currentKeyword.match(/[\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
@@ -115,7 +115,7 @@ export class SearchComponent implements OnInit {
     }
 
     if (this.entryDetails === undefined) {
-      console.log('Error: #entryDetails component is not found')
+      // console.log('Error: #entryDetails component is not found')
       return;
     }
 

@@ -38,7 +38,7 @@ export class VocabularyListsComponent implements OnInit {
   selectItem(item: JapaneseDB.DictIndexRow | string): void {
     let selectedItem: EntryDetailsQuery;
 
-    console.log('selectItem', item);
+    // console.log('selectI tem', item);
 
     // If the user selects kanji search result
     if (typeof item === 'string') {
@@ -58,7 +58,7 @@ export class VocabularyListsComponent implements OnInit {
     }
 
     const url = getEntryDetailsUrl(selectedItem);
-    console.log('selectItem', url);
+    // console.log('selectItem', url);
 
     if (url === null) return;
 

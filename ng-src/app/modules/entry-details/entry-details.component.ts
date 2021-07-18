@@ -94,7 +94,7 @@ export class EntryDetailsComponent implements OnInit {
   toggleMaximize = WindowHelper.toggleMaximize;
 
   ngOnInit(): void {
-    console.log('entry-details > init');
+    // console.log('entry-details > init');
 
     // Render the existing history
     // this.render(this.history.stack[this.history.pointer]);
@@ -374,7 +374,7 @@ export class EntryDetailsComponent implements OnInit {
   popup(edq: EntryDetailsQuery): void {
     const url = getEntryDetailsUrl(edq);
 
-    console.log(url);
+    // console.log(url);
 
     if (url === null) return;
 
