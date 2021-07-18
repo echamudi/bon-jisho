@@ -103,7 +103,7 @@ After running the automated test, please do the manual test as listed in [this f
 
 ## Authors
 
-* **Ezzat Chamudi** - [ezhmd](https://github.com/ezhmd)
+* **Ezzat Chamudi** - [echamudi](https://github.com/echamudi)
 
 ## Licenses
 
