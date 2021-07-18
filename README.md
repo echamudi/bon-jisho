@@ -2,9 +2,13 @@
 
 <img src="https://raw.githubusercontent.com/echamudi/bon-jisho/master/ng-src/assets/bon-jisho-logo.svg" alt="Bon Jisho Logo" height="100" width="100">
 
-An open source Japanese dictionary desktop app based on electron.
+A free and open source Japanese dictionary desktop app based on electron.
 
-### Download and Install Dependencies
+[📥 Download Bon Jisho for Mac & Windows](./releases)
+
+## Development
+
+### Install Dependencies
 
 Install Node modules:
 
