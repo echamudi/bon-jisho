@@ -1,0 +1,6 @@
+{
+  "appId": "me.chamudi.bonjisho",
+  "directories": {
+    "buildResources": "electron-resources"
+  }
+}

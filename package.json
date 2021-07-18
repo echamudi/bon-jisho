@@ -15,7 +15,7 @@
     "db-build": "japanese-db sqlite -s ./db-src -d ./static/db-dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
+    "dist": "yarn compile && electron-builder --config ./electron-builder.json",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "echo \"No linting configured\"",
     "main-test": "npx jest"
