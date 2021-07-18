@@ -28,7 +28,7 @@
       </div>
       <div class="toolbar__flex"></div>
       <div
-        *ngIf="mode === 'word-search'"
+        *ngIf="mode === 'word-search' && history.stack.length > 1"
         class="toolbar-button"
         (click)="popupCurrent()">
         <img
