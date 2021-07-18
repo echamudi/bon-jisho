@@ -553,4 +553,5 @@ test('getKanjiGroups', async () => {
   const res = await getKanjiGroups();
 
   expect(res.length).toBeGreaterThan(100);
+  expect(res.some((el) => el.literal === '経')).toBe(true);
 });
