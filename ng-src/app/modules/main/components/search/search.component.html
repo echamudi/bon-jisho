@@ -12,7 +12,7 @@
         Kanji
       </div>
       <div
-        *ngIf="isKanji"
+        *ngIf="isKanji && kanjiChars.length > 0"
         class="search-result__kanji-area">
         <div
           *ngFor="let kanjiChar of kanjiChars"
