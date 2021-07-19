@@ -8,9 +8,9 @@ A free and open source Japanese dictionary desktop app based on electron.
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/echamudi/echamudi/master/project-screenshots/bon-jisho-mac.png" alt="Bon Jisho Mac Screenshot" height="494" width="900">
+<img src="https://raw.githubusercontent.com/echamudi/echamudi/master/project-screenshots/bon-jisho-mac.png" alt="Bon Jisho Mac Screenshot">
 
-<img src="https://raw.githubusercontent.com/echamudi/echamudi/master/project-screenshots/bon-jisho-windows.png" alt="Bon Jisho Windows Screenshot" height="494" width="900">
+<img src="https://raw.githubusercontent.com/echamudi/echamudi/master/project-screenshots/bon-jisho-windows.png" alt="Bon Jisho Windows Screenshot">
 
 ## Development
 
