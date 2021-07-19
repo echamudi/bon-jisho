@@ -117,6 +117,16 @@ npx jest
 
 After running the automated test, please do the manual test as listed in [this file](test/manual-testing.md).
 
+## Roadmap
+
+These are the upcoming features to be implemented in the future:
+
+- [ ] Allow users to enter inflicted words.
+- [ ] Add "Inspect Text" fetaure, which allows the user to enter an entire paragraph.
+- [ ] Add Anki CSV exporting feature.
+- [ ] Add word of the day.
+- [ ] Add sample sentences from open source materials.
+
 ## Authors
 
 * **Ezzat Chamudi** - [echamudi](https://github.com/echamudi)
