@@ -14,6 +14,16 @@ A free and open source Japanese dictionary desktop app based on electron.
 
 ## Development
 
+### Frameworks & Tools
+
+- Electron (electron-webpack)
+- Angular
+- TypeScript & JavaScript
+- SCSS
+- SQLite
+- Node.js
+- Jest
+
 ### Install Dependencies
 
 Install Node modules:
