@@ -1,7 +1,7 @@
 {
   "name": "bon-jisho",
   "productName": "Bon Jisho",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Japanese dictionary",
   "main": "src/index.js",
   "scripts": {
