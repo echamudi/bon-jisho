@@ -4,7 +4,7 @@
 
 A free and open source Japanese dictionary desktop app based on electron.
 
-[📥 Download Bon Jisho for Mac & Windows](./releases)
+[📥 Download Bon Jisho for Mac & Windows](https://github.com/echamudi/bon-jisho/releases)
 
 ## Development
 
