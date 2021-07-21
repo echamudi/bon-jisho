@@ -33,7 +33,7 @@ yarn
 npx electron-builder install-app-deps
 ```
 
-Download the require materials:
+Download the required materials:
 
 ```sh
 # In Windows, you may use WSL to run the following commands OR you can download and extract the files manually
