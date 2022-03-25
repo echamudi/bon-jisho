@@ -5034,10 +5034,10 @@ electron-webpack@^2.8.2:
     webpack-merge "^4.2.2"
     yargs "^15.3.1"
 
-electron@13.1.5:
-  version "13.1.5"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-13.1.5.tgz#faa6127ac3428ec12c14779a6fe0a89b150ce614"
-  integrity sha512-ZoMCcPQNs/zO/Zdb5hq5H+rwRaKrdI3/sfXEwBVMx7f5jwa9jPQB3dZ2+7t59uD9VcFAWsH/pozr8nPPlv0tyw==
+electron@13.6.6:
+  version "13.6.6"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-13.6.6.tgz#ebd4754b2b55d54a2e8e9cdc3d0a2bb6b7053827"
+  integrity sha512-TP2Bl1nTxaH1yRmlYiF7imzvKE/NASE0cl6wOYA3AaP/UrBGc4L3NwJfn5Z55o+1t4TH8vCRxENufESyb32HhA==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^14.6.2"
