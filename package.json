@@ -62,7 +62,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "codelyzer": "^5.2.2",
-    "electron": "13.1.5",
+    "electron": "15.5.5",
     "electron-builder": "^22.11.7",
     "electron-webpack": "^2.8.2",
     "electron-webpack-ts": "^4.0.1",
